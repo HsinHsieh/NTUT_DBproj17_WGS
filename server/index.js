@@ -1,12 +1,11 @@
-'use strict';
-
 const path = require('path');
 const url = require('url');
+
+const ItemPreview = require('./item_preview.js');
 
 module.exports = class {
 
     constructor(router) {
-
         this.router = router;
         // this.productManager = new ProductManager();
         this.SetAPI();
@@ -26,5 +25,14 @@ module.exports = class {
                 if (err) res.send(404);
             });
         });
+
+        this.router.get("/new_arrival", function(req, res) {
+            var callback = function(msg) {
+                res.send(msg);
+            };
+            (new ItemPreview()).AddItemPreview(callback);
+        });
+
+
     }
 }
