@@ -1,23 +1,9 @@
-var express = require('express');
-var mysql = require('mysql');
+const express = require('express');
+const http = require('http');
+
 
 var app = express();
 
-var connection = mysql.createConnection({
-    host: '140.124.66.13',
-    user: 'admin',
-    password: '2017wgs',
-    database: 'wgs'
-});
-// connection.connect();
-//
-// connection.query('SELECT * FROM `product`',function(error, rows, fields){
-//     //檢查是否有錯誤
-//     if(error){
-//         throw error;
-//     }
-//     console.log(rows[0].PID); //2
-// });
 
 app.get("/", function(req, res) {
     res.sendfile('./UI/index.html', function(err) {
