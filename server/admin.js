@@ -1,7 +1,6 @@
 const path = require('path');
 const url = require('url');
-
-const ItemPreview = require('./item_preview.js');
+const sql = require('./admin/sql.js');
 
 module.exports = class {
 
@@ -19,8 +18,28 @@ module.exports = class {
       });
       // res.end(JSON.stringify({success:true , data:result}));
     });
+    this.router.get("/api/productCatagory", function(req, res) {
+      var callback = function(msg) {
+        res.send(msg);
+      };
+      (new sql("SELECT * FROM `category`")).ReturnJson(callback);
+      // res.end(JSON.stringify({success:true , data:result}));
+    });
+    this.router.get("/api/productIndex", function(req, res) {
+      var callback = function(msg) {
+        res.send(msg);
+      };
+      (new sql("SELECT * FROM `product`")).ReturnJson(callback);
+      // res.end(JSON.stringify({success:true , data:result}));
+    });
+    this.router.post("/api/productSearch", function(req, res) {
+      console.log(req.body);
+      var callback = function(msg) {
+        res.send(msg);
+      };
+      //(new sql(data)).ReturnJson(callback);
+    });
+  };
 
 
-
-  }
 }
