@@ -51,12 +51,13 @@ module.exports = class {
       var callback = function(msg) {
         res.send(msg);
       };
-      console.log(req.body);
-      var sqlPID = req.body.PID == '' ? "" : (" `PID` = '" + req.body.PID + "'");
-      var sqlName = req.body.Name == '' ? "" : (req.body.PID == '' ? "" : " AND ") + " `Product_Name` LIKE '%" + req.body.Name + "%'";
-      var sqlPrice = req.body.Price_low == '' ? "" : (req.body.Name == '' ? "" : " AND ") + " `Price` BETWEEN " + req.body.Price_low + " AND " + req.body.Price_up;
-      var sqlSupplier = req.body.Supplier == '' ? "" : (req.body.Price_up == '' ? "" : " AND ") + " `Supplier` LIKE '%" + req.body.Supplier + "%'";
-      var sqlStr = "SELECT *  FROM `product` WHERE" + sqlPID + sqlName + sqlPrice + sqlSupplier;
+
+      var sqlPID = (req.body.PID == '') ? "" : " `PID` = '" + req.body.PID + "'" + " AND ";
+      var sqlName = " `Product_Name` LIKE '%" + req.body.Name + "%'";
+      var sqlPrice = (req.body.Price_low == '') ? "" : " AND " + " `Price` BETWEEN " + req.body.Price_low + " AND " + req.body.Price_up;
+      var sqlSupplier = " AND " + " `Supplier` LIKE '%" + req.body.Supplier + "%'";
+      var sqlCategory = (req.body.Category == '') ? "" : " AND " + " `Category` ='" + req.body.Category + "'";
+      var sqlStr = "SELECT *  FROM `product` WHERE" + sqlPID + sqlName + sqlPrice + sqlSupplier + sqlCategory;
       console.log(sqlStr);
       (new sql(sqlStr)).ReturnJson(callback);
     });

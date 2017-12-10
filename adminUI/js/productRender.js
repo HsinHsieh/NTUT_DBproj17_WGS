@@ -38,4 +38,12 @@ $(document).ready(function() {
     };
     Post('/admin/api/productSearch', data, productRow);
   });
+  $("#filterClear").click(function() {
+    $('#productSearch_PID').val("");
+    $('#productSearch_name').val("");
+    $('#productSearch_supplier').val("");
+    $('#productSearch_price_low').val("");
+    $('#productSearch_price_up').val("");
+    $('#productSearch_catagory').val("");
+  });
 });
