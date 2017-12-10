@@ -17,9 +17,16 @@ $(document).ready(function() {
       $("#productSearch_catagory").append(resStr);
     }
   }
-  //Get('/admin/api/productIndex', productRow);
+  var searchSupplier = function(msg) {
+    var resObj = JSON.parse(msg);
+    for (var i = 0; i < Object.keys(resObj).length; i++) {
+      var resStr = "<option value=" + resObj[i].Supplier + ">" + resObj[i].Supplier + "</option>";
+      $("#productSearch_supplier").append(resStr);
+    }
+  }
+  //  Get('/admin/api/productIndex', productRow);
   Get('/admin/api/productCatagory', searchCatagory);
-
+  Get('/admin/api/productSupplier', searchSupplier);
   $("#productSearch").click(function() {
     var data = {
       "PID": ($('#productSearch_PID').val()),
