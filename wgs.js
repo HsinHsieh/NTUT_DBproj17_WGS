@@ -13,11 +13,13 @@ var indexRouter = express.Router();
 var productRouter = express.Router();
 var loginRouter = express.Router();
 var shoppingCartRouter = express.Router();
+
 app.use(bodyParser.json());
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({
-  extended: false
+    extended: false
 }));
+
 app.use('/admin', express.static('adminUI'));
 app.use('/', express.static('UI'))
 new Index(indexRouter);
@@ -26,6 +28,7 @@ new Admin(adminRouter);
 app.use('/admin', adminRouter);
 //new Product(productRouter);
 app.use('/product', productRouter);
+
 var server = app.listen(3000, function() {
-  console.log('Listening on port 3000');
+    console.log('Listening on port 3000');
 });
