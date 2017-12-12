@@ -15,7 +15,7 @@ function Get(apiUrl, callback) {
     });
 }
 
-function Post(apiUrl, postData, callback, errorCallback = DefaultErrorCallback) {
+function Post(apiUrl, postData, callback) {
     $(document).ready(function() {
         $.ajax({
             type: "POST",
@@ -24,13 +24,6 @@ function Post(apiUrl, postData, callback, errorCallback = DefaultErrorCallback) 
             success: function(msg) {
                 callback(msg);
             },
-            error: function(xhr, textStatus, error) {
-                errorCallback(xhr, textStatus, error);
-            }
         });
     });
-}
-
-function DefaultErrorCallback(xhr, textStatus, error) {
-    console.log(xhr.statusText);
 }

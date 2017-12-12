@@ -26,7 +26,5 @@ module.exports = class {
             };
             (new ItemPreview()).AddItemPreview(callback);
         });
-
-
     }
 }
