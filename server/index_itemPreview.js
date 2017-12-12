@@ -1,6 +1,6 @@
 const DataBaseController = require('../DB/DatabaseController.js')
 
-const item_preview_template = "<div class='col-xs-12 col-sm-6 col-md-4'><div class='pro-text text-center'><div class='pro-img'><img src='./product_pic/{{Product_Name}}.jpg ' alt='幹!找不到圖片' width='200' height='300' /></div><div class='pro-text-outer'><span>{{Category}}</span><a href='{{url}}'><h4>{{Product_Name}}</h4></a><p class='wk-price'> NT$ {{Price}}</p><a href='#' class='add-btn'>Add to cart</a></div></div></div>"
+const item_preview_template = "<div class='col-xs-12 col-sm-6 col-md-3'><div class='pro-text text-center'><div class='pro-img'><img src='./product_pic/{{Product_Name}}.jpg ' alt='幹!找不到圖片' width='180' height='250' /></div><div class='pro-text-outer'><span>{{Category}}</span><a href='{{url}}'><h4>{{Product_Name}}</h4></a><p class='wk-price'> NT$ {{Price}}</p><a href='#' class='add-btn'>Add to cart</a></div></div></div>"
 
 module.exports = class {
     constructor() {

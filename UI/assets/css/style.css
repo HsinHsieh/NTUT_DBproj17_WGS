@@ -776,7 +776,7 @@ a:hover {
 }
 
 .banner-img {
-    background: rgba(0, 0, 0, 0) url("../images/Mini Metro.jpg") no-repeat scroll 0 0 / cover;
+    background: rgba(0, 0, 0, 0) url("../poster/Mini Metro.jpg") no-repeat scroll 0 0 / cover;
     background-size: contain;
     color: #333e48;
     float: left;
@@ -819,11 +819,11 @@ a:hover {
 }
 
 .banner-img2 {
-    background: rgba(0, 0, 0, 0) url("../images/Watch_Dogs 2.jpg") no-repeat scroll 0 0 / cover;
+    background: rgba(0, 0, 0, 0) url("../poster/Watch_Dogs 2.jpg") no-repeat scroll 0 0 / cover;
 }
 
 .banner-img3 {
-    background: rgba(0, 0, 0, 0) url("../images/The Sims 2 Ultimate Edition.jpg") no-repeat scroll 0 0 / cover;
+    background: rgba(0, 0, 0, 0) url("../poster/The Sims 2 Ultimate Edition.jpg") no-repeat scroll 0 0 / cover;
 }
 
 .banner-img4 {
