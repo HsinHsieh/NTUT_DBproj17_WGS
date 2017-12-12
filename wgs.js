@@ -41,11 +41,8 @@ app.use('/admin', adminRouter);
 
 new AdminApi(adminApiRouter);
 app.use('/admin/api', adminApiRouter);
-
-
-app.use('/product', productRouter);
-//new Product(productRouter);
-//main listening process
+new Product(productRouter);
+app.use('/product', productRouter);//main listening process
 var server = app.listen(3000, function() {
     console.log('Listening on port 3000');
 });
