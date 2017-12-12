@@ -41,11 +41,16 @@ app.use('/admin', adminRouter);
 
 new AdminApi(adminApiRouter);
 app.use('/admin/api', adminApiRouter);
+<<<<<<< HEAD
+new Product(productRouter);
+app.use('/product', productRouter);//main listening process
+=======
 
 new Product(productRouter);
 app.use('/product', productRouter);
 
 //main listening process
+>>>>>>> ddae0d9... productDetail.html: 顯示Category_Name以及Product_Name
 var server = app.listen(3000, function() {
     console.log('Listening on port 3000');
 });
