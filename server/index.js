@@ -23,6 +23,7 @@ module.exports = class {
         this.router.get("/new_arrival", function(req, res) {
             var callback = function(msg) {
                 res.send(msg);
+                //console.log(msg);
             };
             (new ItemPreview()).AddItemPreview(callback);
         });

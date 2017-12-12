@@ -1,7 +1,7 @@
 const path = require('path');
 const url = require('url');
 
-const ItemList = require('./searchList.js');
+const ItemList = require('./searchList_item.js');
 
 module.exports = class {
 
@@ -20,7 +20,7 @@ module.exports = class {
             // res.end(JSON.stringify({success:true , data:result}));
         });
 
-        this.router.get("/Search", function(req, res) {
+        this.router.get("/Searching", function(req, res) {
             var callback = function(msg) {
                 res.send(msg);
             };

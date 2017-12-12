@@ -9,14 +9,14 @@ module.exports = class {
     }
 
     AddItems(callback) {
-        this.db.query("SELECT * FROM `product` ORDER BY `product`.`Launch_Date` ASC LIMIT 16", function(error, rows, fields) {
+        this.db.query("SELECT * FROM `product` ORDER BY `product`.`Launch_Date` ASC LIMIT 1", function(error, rows, fields) {
             //檢查是否有錯誤
             if (error)
                 throw error;
             this.items = "";
             for (var i = 0; i < rows.length; i++) {
                 this.data = rows[i];
-                this.items += item_preview_template //replace("{{num}}",i+1)
+                this.items += item_template //replace("{{num}}",i+1)
                     .replace("{{Category}}", this.data.Category)
                     .replace("{{Product_Name}}", this.data.Product_Name)
                     .replace("{{PID}}", this.data.PID)
@@ -24,6 +24,6 @@ module.exports = class {
                     .replace("{{Product_Description}}", this.data.Product_Description);
             }
             callback(this.items);
-        })
+        });
     }
 }

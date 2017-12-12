@@ -36,14 +36,14 @@ app.use('/', indexRouter);
 new SearchList(searchListRouter);
 app.use('/search', searchListRouter);
 
+new Product(productRouter);
+app.use('/product', productRouter);
+
 new Admin(adminRouter);
 app.use('/admin', adminRouter);
 
 new AdminApi(adminApiRouter);
 app.use('/admin/api', adminApiRouter);
-
-new Product(productRouter);
-app.use('/product', productRouter);
 
 //main listening process
 var server = app.listen(3000, function() {

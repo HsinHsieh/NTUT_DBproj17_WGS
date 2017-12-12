@@ -4,9 +4,10 @@ $(document).ready(function() {
 });
 
 function GetItems() {
-    var apiUrl = '/Search'
+    var apiUrl = '/search/Searching'
     var callback = function(msg) {
-        $("#itemList").append(msg);
+        $("#itemList").html(msg);
+        //console.log(msg);
     }
     Get(apiUrl, callback);
 }
