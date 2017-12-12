@@ -20,19 +20,24 @@ module.exports = class {
       this.db.query("SELECT * FROM `product` WHERE `PID` LIKE '" + this.id + "'", function(error, rows, fields) {
           if (error)
               throw error;
-          this.product_info["Category_Name"] = GetProductCategoryName(rows[0].Category);
-              // .replace("{{Category_Name}}", rows[0].Category);
-          callback(this.product_info);
+          console.log(rows[0])
+          // this.data = rows[0];
+          callback(rows[0]);
       });
+      // this.db.query("SELECT `Category_Name` FROM `category` WHERE `CAID` LIKE '" + this.data["Category"] +"'", function(error, rows, fields) {
+      //     if (error)
+      //         throw error;
+      //     this.product_info["Category_Name"] = rows[0].Category_Name;
+      // });
     }
 
-    GetProductCategoryName(caid){
-        this.db.query("SELECT `Category_Name` FROM `category` WHERE `CAID` LIKE '" + caid +"'", function(error, rows, fields) {
-            if (error)
-                throw error;
-            return rows[0]
-        });
-    }
+    // GetProductCategoryName(caid){
+    //     this.db.query("SELECT `Category_Name` FROM `category` WHERE `CAID` LIKE '" + caid +"'", function(error, rows, fields) {
+    //         if (error)
+    //             throw error;
+    //         return rows[0]
+    //     });
+    // }
 
     GetProductCategory(callback){
         this.db.query("SELECT `category`.`Category_Name`, `product`.`Product_Name` FROM `category` LEFT JOIN `product` ON `product`.`Category` = `category`.`CAID` WHERE (`product`.`Product_Name` LIKE 'Half-Life 3')", function(error, rows, fields) {

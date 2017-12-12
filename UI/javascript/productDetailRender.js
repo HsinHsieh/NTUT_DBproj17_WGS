@@ -5,8 +5,8 @@ $(document).ready(function() {
     // GetProductByName(attribute.Name);
 
     // GetProductByID('STG0000001');
-    GetProductCategory();
-    GetProductName();
+    // GetProductCategory();
+    // GetProductName();
 });
 
 function GetProductByID(id){
@@ -15,7 +15,7 @@ function GetProductByID(id){
         $("#category").html(product_info["Category_Name"]);
         $("#product_name").html(product_info["Product_Name"]);
     }
-    Get(apiUrl, (new ProductDetail(id)).GetProductInfo(callback));
+    Get(apiUrl, callback);
 }
 
 function GetProductCategory() {
