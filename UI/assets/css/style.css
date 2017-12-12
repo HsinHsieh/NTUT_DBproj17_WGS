@@ -4822,6 +4822,7 @@ blockquote {
     }
     .pro-img>img {
         width: 100%;
+        size=20 px;
     }
     .ads>img {
         width: 100%;
