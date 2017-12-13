@@ -1,6 +1,6 @@
 const path = require('path');
 const url = require('url');
-const sql = require('./admin/sql.js');
+const sql = require('./sql.js');
 
 module.exports = class {
 
