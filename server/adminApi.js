@@ -1,6 +1,6 @@
 const path = require('path');
 const url = require('url');
-const sql = require('./admin/sql.js');
+const sql = require('./sql.js');
 module.exports = class {
 
   constructor(router) {
@@ -41,6 +41,14 @@ module.exports = class {
       console.log(sqlStr);
       (new sql(sqlStr)).ReturnJson(callback);
     });
+    this.router.get("/productEdit/:PID", function(req, res) {
+      var callback = function(msg) {
+        res.send(msg);
+      };
+      var sqlStr = "SELECT DISTINCT * FROM `product` WHERE `product`.`PID`='" + req.params.PID + "'";
+      console.log(sqlStr);
+      (new sql(sqlStr)).ReturnJson(callback);
+    })
 
 
 

@@ -27,3 +27,17 @@ function Post(apiUrl, postData, callback) {
         });
     });
 }
+
+function Put(apiUrl, putData) {
+    $(document).ready(function () {
+        $.ajax({
+            type: "PUT",
+            url: hostUrl + apiUrl,
+            data: putData,
+            success: function(msg) {
+                alert(msg);
+            }
+
+        })
+    });
+}

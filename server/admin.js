@@ -1,6 +1,6 @@
 const path = require('path');
 const url = require('url');
-const sql = require('./admin/sql.js');
+const sql = require('./sql.js');
 
 module.exports = class {
 
@@ -24,6 +24,12 @@ module.exports = class {
       });
       // res.end(JSON.stringify({success:true , data:result}));
     });
+    // this.router.get("/product_edit/:PID", function(req, res) {
+    //   res.sendfile('./adminUI/product_edit.html?PID=' + req.params.PID, function(err) {
+    //     if (err) res.send(404);
+    //   });
+    //   // res.end(JSON.stringify({success:true , data:result}));
+    // });
     // this.router.get("/api/productCatagory", function(req, res) {
     //   var callback = function(msg) {
     //     res.send(msg);

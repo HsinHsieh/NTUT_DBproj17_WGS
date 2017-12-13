@@ -28,7 +28,11 @@
 	<link href="assets/owl-carousel/owl.carousel.css" rel="stylesheet">
 	<link href="assets/owl-carousel/owl.theme.css" rel="stylesheet">
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+	<script type="text/javascript" src="./javascript/Ajax.js"></script>
+	<script type="text/javascript" src="./javascript/shoppingCartRender.js"></script>
+
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 	<!--[if lt IE 9]>
@@ -64,7 +68,7 @@
 				</div>
 				<div class="col-md-12">
                   <h2>You cart items</h2>
-                  <table>
+                  <table id="CartList">
                      <tr>
                         <th></th>
                         <th>Product name</th>
@@ -79,7 +83,7 @@
                         <td>Name product #01</td>
                         <td>Lorem Ipsum is simply dummy text of the printing<br/> and typesetting industry.</td>
                         <td><strong>$160.00</strong></td>
-                        <td><input type="number" name="quantity" min="1" max="500"></td>
+                        <td><input type="number" name="quantity" min="1" max="500" value="1"></td>
                         <td><strong>$160.00</strong></td>
                         <td><span class="red"><i class="fa fa-times" aria-hidden="true"></i></span></td>
                      </tr>
