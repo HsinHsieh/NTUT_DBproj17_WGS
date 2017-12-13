@@ -41,8 +41,5 @@ module.exports = class {
             console.log(sqlStr);
             (new sql(sqlStr)).ReturnJson(callback);
         });
-
-
-
     }
 }
