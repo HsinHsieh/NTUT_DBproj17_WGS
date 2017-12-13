@@ -8,6 +8,7 @@ const Product = require('./server/productDetail.js')
 const Admin = require('./server/admin.js')
 const AdminApi = require('./server/adminApi.js')
 const SimpleQuery = require('./server/simpleQueryApi.js')
+const ShoppingCart = require('./server/shoppingCart')
 
 //main framwork declare
 var app = express();
@@ -49,6 +50,9 @@ app.use('/admin', adminRouter);
 
 new AdminApi(adminApiRouter);
 app.use('/admin/api', adminApiRouter);
+
+new ShoppingCart(shoppingCartRouter);
+app.use('/shopping_cart', shoppingCartRouter);
 
 //main listening process
 var server = app.listen(3000, function() {
