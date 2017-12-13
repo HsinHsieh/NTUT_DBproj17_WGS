@@ -7,6 +7,7 @@ const SearchList = require('./server/searchList.js')
 const Product = require('./server/productDetail.js')
 const Admin = require('./server/admin.js')
 const AdminApi = require('./server/adminApi.js')
+const SimpleQuery = require('./server/simpleQueryApi.js')
 
 //main framwork declare
 var app = express();
@@ -19,6 +20,7 @@ var productRouter = express.Router();
 var loginRouter = express.Router();
 var shoppingCartRouter = express.Router();
 var searchListRouter = express.Router();
+var simpleQueryRouter = express.Router();
 
 //body parser-for POST Info to transfer in http packet
 app.use(bodyParser.json());
@@ -38,6 +40,9 @@ app.use('/search', searchListRouter);
 
 new Product(productRouter);
 app.use('/product', productRouter);
+
+new SimpleQuery(simpleQueryRouter);
+app.use('/query', simpleQueryRouter);
 
 new Admin(adminRouter);
 app.use('/admin', adminRouter);

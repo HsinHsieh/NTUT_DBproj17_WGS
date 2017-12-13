@@ -1,6 +1,7 @@
 const path = require('path');
 const url = require('url');
 const sql = require('./sql.js');
+
 module.exports = class {
 
     constructor(router) {
@@ -41,8 +42,5 @@ module.exports = class {
             console.log(sqlStr);
             (new sql(sqlStr)).ReturnJson(callback);
         });
-
-
-
     }
 }
