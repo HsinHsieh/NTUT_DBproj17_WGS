@@ -1,35 +1,22 @@
 $(document).ready(function() {
+    var url = new URL(window.location.href);
+    var pid = url.searchParams.get("pid");
 
-    // var attribute = HashToNameAndColor(location.hash);
-    // $('#main img').attr('src','./image/'+ attribute.Name + "_" + attribute.Color + ".jpg");
-    // GetProductByName(attribute.Name);
-
-    // GetProductByID('STG0000001');
-    // GetProductCategory();
-    // GetProductName();
+    GetProductByID(pid);
 });
 
 function GetProductByID(id){
     var apiUrl = '/product/' + id
     var callback = function(product_info) {
-        $("#category").html(product_info["Category_Name"]);
+        $("#category").html(product_info["Category_Name"]+" 遊戲");
         $("#product_name").html(product_info["Product_Name"]);
-    }
-    Get(apiUrl, callback);
-}
-
-function GetProductCategory() {
-    var apiUrl = '/product/category'
-    var callback = function(msg) {
-        $("#category").html(msg);
-    }
-    Get(apiUrl, callback);
-}
-
-function GetProductName() {
-    var apiUrl = '/product/name'
-    var callback = function(msg) {
-        $("#product_name").html(msg);
+        $("#price").html("NT$ "+product_info["Price"]);
+        $("#description").html(product_info["Product_Description"]);
+        $("#release_date").html(product_info["Formated_Date"]);
+        $("#supplier").html(product_info["Supplier"]);
+        $("#sys_req").html(product_info["System_Requirement"].replace(/(?:\r\n|\r|\n)/g, '<br />'));
+        $("#more_description").html("<br/>"+product_info["Product_Description"]);
+        console.log(product_info)
     }
     Get(apiUrl, callback);
 }

@@ -3464,6 +3464,22 @@ ul {
     width: 100%;
 }
 
+.sys_req {
+    float: left;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.sys_req .tag span{
+    float: left;
+    font-size: 14px;
+    font-weight: normal;
+    margin-top: 10px;
+    width: 100%;
+}
+
 .share ul {
     float: left;
     list-style: outside none none;

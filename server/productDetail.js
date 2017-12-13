@@ -18,24 +18,8 @@ module.exports = class {
         this.router.get("/:id", function(req, res) {
             var callback = function(msg) {
                 res.send(msg);
-                console.log(msg);
             };
-            var a = (new ProductDetail(req.params.id)).GetProductInfo(callback);
-
+            (new ProductDetail(req.params.id)).GetProductInfo(callback);
         });
-
-        // this.router.get("/category", function(req, res) {
-        //     var callback = function(msg) {
-        //         res.send(msg);
-        //     };
-        //     (new ProductDetail()).GetProductCategory(callback);
-        // });
-        //
-        // this.router.get("/name", function(req, res) {
-        //     var callback = function(msg) {
-        //         res.send(msg);
-        //     };
-        //     (new ProductDetail()).GetProductName(callback);
-        // });
     }
 }
