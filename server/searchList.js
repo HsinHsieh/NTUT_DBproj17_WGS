@@ -12,7 +12,6 @@ module.exports = class {
     }
 
     SetAPI() {
-
         this.router.get("/", function(req, res) {
             res.sendfile('./UI/SearchList.html', function(err) {
                 if (err) res.send(404);
@@ -25,6 +24,13 @@ module.exports = class {
                 res.send(msg);
             };
             (new ItemList()).AddItems(callback);
+        });
+
+        this.router.get("/GridSearching", function(req, res) {
+            var callback = function(msg) {
+                res.send(msg);
+            };
+            (new ItemList()).AddItemsInGrid(callback);
         });
     }
 }
