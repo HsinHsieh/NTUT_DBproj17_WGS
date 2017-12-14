@@ -8,6 +8,7 @@ $(document).ready(function() {
 function GetProductByID(id){
     var apiUrl = '/product/' + id
     var callback = function(product_info) {
+        $("#product_pic").attr("src", "./product_pic/"+product_info["PID"]+".jpg");
         $("#category").html(product_info["Category_Name"]+" 遊戲");
         $("#product_name").html(product_info["Product_Name"]);
         $("#price").html("NT$ "+product_info["Price"]);
