@@ -1,6 +1,3 @@
-const path = require('path');
-const url = require('url');
-
 const ItemList = require('./searchList_item.js');
 
 module.exports = class {
