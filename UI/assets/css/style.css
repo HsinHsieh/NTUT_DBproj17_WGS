@@ -3430,7 +3430,7 @@ ul {
 }
 
 .grid-shop .tab-content ul li::before {
-    content: "";
+    content: "...";
     font-family: FontAwesome;
     margin-right: 15px;
 }
@@ -3472,7 +3472,7 @@ ul {
     width: 100%;
 }
 
-.sys_req .tag span{
+.sys_req .tag span {
     float: left;
     font-size: 14px;
     font-weight: normal;
@@ -4982,9 +4982,7 @@ blockquote {
     .carousel.carousel-stage img {
         margin-left: -60px;
     }
-    .connected-carousels .carousel-stage {
-        height: 415px;
-    }
+    .connected-carousels .carousel-stage {}
     .header-outer .header-slider .carousel-inner>.item {
         background-position: 75% 216px !important;
     }
