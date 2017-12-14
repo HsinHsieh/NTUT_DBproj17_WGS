@@ -1,23 +1,39 @@
 $(document).ready(function() {
-    GetItems();
-    GetCategory();
+    var url = new URL(window.location.href);
+    var s = url.searchParams.get("s");
+
+    GetItemsInGrid(s);
+    GetItems(s);
+    GetCategory(s);
+    $("#itemGrid").hide();
+
+    $("#listbtn").click(function() {
+        $("#itemList").show();
+        $("#itemGrid").hide();
+    });
+
+    $("#gridbtn").click(function() {
+        $("#itemList").hide();
+        $("#itemGrid").show();
+    });
 });
 
-function GetItems() {
-    var apiUrl = '/search/Searching'
-    var callback = function(msg) {
-        $("#itemList").html(msg);
-    }
-    Get(apiUrl, callback);
-}
 
-function GetItemsInGrid() {
-    var apiUrl = '/search/GridSearching'
+function GetItems(s) {
+    var apiUrl = '/search/' + s
     var callback = function(msg) {
         $("#itemList").html(msg);
     }
     Get(apiUrl, callback);
-}
+};
+
+function GetItemsInGrid(s) {
+    var apiUrl = '/search/GridSearching/' + s
+    var callback = function(msg) {
+        $("#itemGrid").html(msg);
+    }
+    Get(apiUrl, callback);
+};
 
 function GetCategory() {
     var apiUrl = '/query/productCatagory'
@@ -30,4 +46,4 @@ function GetCategory() {
         $("#cate").html(resStr);
     }
     Get(apiUrl, callback);
-}
+};

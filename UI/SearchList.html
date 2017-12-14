@@ -31,7 +31,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 
-	<script type="text/javascript" src="./javascript/productSearchAndForward.js"></script>
+	<script type="text/javascript" src="./javascript/productListRender.js"></script>
 	<script type="text/javascript" src="./javascript/Ajax.js"></script>
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -174,12 +174,13 @@
 					<div class="col-md-12 grid-banner"> <img src="assets/images/Grid-banner.png" alt="Grid-banner" /> </div>
 					<div class="grid-spr">
 						<div class="col-sm-6 col-md-6">
-							<a href="#" class="grid-view-icon" onclick="GetItems()">LIST</a>
-							<a href="#" class="grid-view-icon" onclick="GetItemsInGrid()">GRID</a>
+							<button id="listbtn" class="grid-view-icon">LIST</button>
+							<button id="gridbtn" class="grid-view-icon">GRID</button>
 						</div>
 					</div>
 					<div>
 						<div id="itemList"></div>
+						<div id="itemGrid"></div>
 					</div>
 
 					<div class="col-xs-12">

@@ -19,18 +19,18 @@ module.exports = class {
             // res.end(JSON.stringify({success:true , data:result}));
         });
 
-        this.router.get("/Searching", function(req, res) {
+        this.router.get("/:target", function(req, res) {
             var callback = function(msg) {
                 res.send(msg);
             };
-            (new ItemList()).AddItems(callback);
+            (new ItemList(req.params.target)).AddItems(callback);
         });
 
-        this.router.get("/GridSearching", function(req, res) {
+        this.router.get("/GridSearching/:target", function(req, res) {
             var callback = function(msg) {
                 res.send(msg);
             };
-            (new ItemList()).AddItemsInGrid(callback);
+            (new ItemList(req.params.target)).AddItemsInGrid(callback);
         });
     }
 }

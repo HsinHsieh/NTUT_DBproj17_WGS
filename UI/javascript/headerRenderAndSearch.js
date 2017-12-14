@@ -13,4 +13,10 @@ function GetCategory() {
         $("#cateMenu").html(resStr);
     }
     Get(apiUrl, callback);
-}
+};
+
+$("#btnSearch").click(function() {
+    var target = $("#headerSearch").val();
+    alert("你搜尋了 : " + target);
+    window.location = '/search?s=' + target;
+});

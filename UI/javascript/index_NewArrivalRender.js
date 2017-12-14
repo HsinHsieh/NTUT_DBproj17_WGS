@@ -1,6 +1,9 @@
 $(document).ready(function() {
-
     GetNewArrival();
+
+    $(".addbtn").click(function() {
+        alert("已加到購物車!");
+    });
 });
 
 function GetNewArrival() {
