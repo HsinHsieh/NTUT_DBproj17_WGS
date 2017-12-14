@@ -7,9 +7,6 @@ module.exports = class {
     constructor(ID) {
         this.id = ID;
         this.db = DataBaseController.GetDB();
-        this.data = null;
-        this.category = "";
-        this.product_name = "";
     }
 
     GetProductInfo(callback){
