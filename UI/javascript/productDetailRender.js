@@ -5,7 +5,13 @@ $(document).ready(function() {
     GetProductByID(pid);
 
     $(".addtocart2").click(function() {
-        alert("已加到購物車!");
+        swal({
+            position: 'top-right',
+            type: 'success',
+            title: '你選擇的物品已經加到購物車~',
+            showConfirmButton: false,
+            timer: 1500
+        });
     });
 });
 
