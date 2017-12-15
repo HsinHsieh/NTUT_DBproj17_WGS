@@ -19,6 +19,7 @@
 </head>
 
 <body>
+
 	<script>
 		$(function() {
 			$("#header").load("header.html");
@@ -27,8 +28,9 @@
 	</script>
 	<div id="header"></div>
 	<!-- /.navbar-collapse -->
+	<script src="./js/ajax.js"></script>
+	<script src="./js/product_add.js"></script>
 	<section>
-
 		<div class="row">
 			<div class="col-md-8 col-md-offset-2">
 				<div class="well">
@@ -36,58 +38,55 @@
 				</div>
 			</div>
 		</div>
-
 	</section>
 	<section>
-		<div class="row">
-			<div class="col-md-8 col-md-offset-2">
-				<form class="" action="index.html" method="post">
-					<div class="form-row">
-						<div class="form-group col-md-6">
-							<label for="Name">遊戲名稱</label>
-							<input type="text" class="form-control" id="product_name" placeholder="請輸入商品名稱">
-							<!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
-						</div>
-						<div class="form-group col-md-6">
-							<label for="Name">遊戲價格</label>
-							<input type="text" class="form-control" id="product_price" placeholder="請輸入整數$">
-							<!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
-						</div>
-					</div>
-					<div class="form-row">
-						<div class="form-group col-md-6">
-							<label for="exampleFormControlSelect1">商品分類</label>
-							<select class="form-control" id="product_catagory">
-                <option>我是分類1</option>
-                <option>我是分類2</option>
-                <option>我是分類3</option>
-                <option>我是分類4</option>
-                <option>我是分類5</option>
-              </select>
-						</div>
-						<div class="form-group col-md-6">
-							<label for="Name">供應商</label>
-							<input type="text" class="form-control" id="product_supplier" placeholder="遊戲廠商">
-							<!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
-						</div>
-					</div>
-					<div class="form-group col-md-12">
-						<label for="Product_Description">商品描述</label>
-						<textarea class="form-control" id="Product_Description" type="text" placeholder="Enter here" row="8"></textarea>
-					</div>
-					<div class="form-group col-md-12">
-						<label for="System_Requirement">系統需求</label>
-						<textarea class="form-control" id="System_Requirement" type="text" placeholder="Enter here" row="8"></textarea>
-					</div>
-					<div class="form-group col-md-6">
-						<label for="Pic">選擇商品圖片</label><br/>
-						<input class="form-control-file" id="Pic" type="file" />
-					</div>
-					<button class="btn btn-primary btn-lg pull-right" type="submit">送出</button>
 
-				</form>
+		<div class="col-md-8 col-md-offset-2">
+			<div class="form-group col-md-6">
+				<label for="Name">產品編號</label>
+				<input type="text" class="form-control" id="productAdd_PID" placeholder="系統自動產生" readonly>
 			</div>
+			<div class="form-group col-md-6">
+				<label for="Name">遊戲名稱</label>
+				<input type="text" class="form-control" id="productAdd_name" placeholder="請輸入商品名稱">
+				<!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+			</div>
+			<div class="form-group col-md-6">
+				<label for="Name">遊戲價格</label>
+				<input type="text" class="form-control" id="productAdd_price" placeholder="請輸入整數$">
+				<!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+			</div>
+			<div class="form-group col-md-6">
+				<label for="exampleFormControlSelect1">商品分類</label>
+				<select class="form-control" id="productAdd_category">
+                <option value=""></option>
+        </select>
+			</div>
+			<div class="form-group col-md-6">
+				<label for="Name">供應商</label>
+				<input type="text" class="form-control" id="productAdd_supplier" placeholder="遊戲廠商">
+				<!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+			</div>
+			<div class="form-group col-md-6">
+				<label for="Name">發售日期</label>
+				<input type="text" class="form-control" id="productAdd_date" placeholder="遊戲上市日期">
+				<!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+			</div>
+			<div class="form-group col-md-12">
+				<label for="Product_Description">商品描述</label>
+				<textarea class="form-control" id="productAdd_description" type="text" placeholder="Enter here" row="8"></textarea>
+			</div>
+			<div class="form-group col-md-12">
+				<label for="System_Requirement">系統需求</label>
+				<textarea class="form-control" id="productAdd_Requirement" type="text" placeholder="Enter here" row="8"></textarea>
+			</div>
+			<div class="form-group col-md-6">
+				<label for="Pic">選擇商品圖片</label><br/>
+				<input class="form-control-file" id="Pic" type="file" />
+			</div>
+			<button class="btn btn-primary btn-lg pull-right" id="product_add_submit">送出</button>
 		</div>
+
 	</section>
 
 

@@ -39,6 +39,22 @@ module.exports = class {
       console.log(sqlStr);
       (new sql(sqlStr)).ReturnJson(callback);
     });
+    this.router.post("/productAdd", function(req, res) {
+      var callback = function(msg) {
+        res.send(msg);
+      };
+      //console.log(sqlStr);
+      console.log(req.body);
+      var Str = "INSERT INTO `product` (`PID`, `Product_Name`, `Price`, `Product_Description`, `System_Requirement`, `Supplier`, `Launch_Date`, `Category`, `Modified_Time`, `Pic_Url`) VALUES ('" + req.body.PID + "','" + req.body.Name + "','" + req.body.Price + "','" + req.body.Description + "','" + req.body.Requirement + "','" + req.body.Supplier + "','" + req.body.Date;
+      var Str2 = "','" + req.body.Category + "',CURRENT_TIMESTAMP, '')";
+      //(new sql(Str+Str2)).ReturnJson(callback);
+    });
+    this.router.get("/productMaxID", function(req, res) {
+      var callback = function(msg) {
+        res.send(msg);
+      };
+      (new sql("SELECT MAX(RIGHT(`product`.`PID`,7))+1 AS 'NUM' FROM `product`")).ReturnJson(callback);
+    });
     this.router.get("/productEdit/:PID", function(req, res) {
       var callback = function(msg) {
         res.send(msg);
