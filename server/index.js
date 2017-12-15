@@ -1,6 +1,3 @@
-const path = require('path');
-const url = require('url');
-
 const ItemPreview = require('./index_itemPreview.js');
 
 module.exports = class {

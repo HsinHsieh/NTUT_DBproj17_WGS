@@ -1,6 +1,3 @@
-const path = require('path');
-const url = require('url');
-
 const ProductDetail = require('./productDetail_db.js');
 
 module.exports = class {
