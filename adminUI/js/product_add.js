@@ -44,20 +44,5 @@ $(document).ready(function() {
   $("#productAdd_category").change(function() {
     Get('/admin/api/productMaxID', searchID);
   });
-  $('.uploadImage').submit(function(e) {
-    e.preventDefault();
 
-    var title = $('#productAdd_PID').val();
-
-    $(this).ajaxSubmit({
-      data: {
-        title: title
-      },
-      contentType: 'application/json',
-      success: function(response) {
-        console.log('image uploaded and form submitted');
-      }
-    });
-    return false;
-  });
 });

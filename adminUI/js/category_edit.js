@@ -21,11 +21,7 @@ $(document).ready(function() {
       "CAID": ($('#catagory_add_CAID').val()),
       "Name": ($('#catagory_add_name').val()),
     };
-    console.log("====");
-    console.log(data);
     Post('/admin/api/categoryAdd', data, addResult);
-    console.log("======");
-    console.log(addResult);
     Get('/admin/api/productCatagory', searchCatagory);
   });
 });

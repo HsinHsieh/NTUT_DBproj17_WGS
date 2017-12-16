@@ -79,5 +79,16 @@ module.exports = class {
         if (err) console.log('ERROR: ' + err);
       });
     });
+    this.router.post("/productEdit", function(req, res) {
+      var callback = function(msg) {
+        res.send(msg);
+      };
+      //console.log(sqlStr);
+      console.log(req.body);
+      var Str = "UPDATE `product` SET `Product_Name` = '" + req.body.Name + "', `Price` = '" + req.body.Price + "', `Product_Description` = '" + req.body.Description + "', `System_Requirement` = '" + req.body.Requirement + "', `Supplier` = '" + req.body.Supplier + "', `Launch_Date` = '" + req.body.Date;
+      var Str2 = "', `Category` = '" + req.body.Category + "', `PID` = '" + req.body.PID + "' WHERE `product`.`PID` = '" + req.body.OriginalPID + "'";
+      console.log(Str + Str2);
+      (new sql(Str + Str2)).ReturnJson(callback);
+    });
   }
 }
