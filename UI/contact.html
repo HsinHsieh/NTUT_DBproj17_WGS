@@ -46,17 +46,17 @@
 	<header class="header2">
 		<!--  top-header  -->
 		<script>
-		$(function(){
-			$("#header").load("header.html");
-		});
+			$(function() {
+				$("#header").load("header.html");
+			});
 		</script>
 		<div id="header"></div>
-			<!--  /top-header  -->
+		<!--  /top-header  -->
 	</header>
-	 <section class="shopping-cart">
-            <!-- .shopping-cart -->
-            <div class="container">
-				<div class="row">
+	<section class="shopping-cart">
+		<!-- .shopping-cart -->
+		<div class="container">
+			<div class="row">
 				<div class="col-md-12">
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -67,89 +67,86 @@
                         <div class="contact-form">
                            <form action="#" method="post" id="commentform" class="comment-form">
 							<div class="row">
-								 <div class="col-md-12">
-								 <div class="contact-bg">
-									<h2>Contact Us</h2>
-									<p>請將您的寶貴意見以填寫表單方式送出<br>我們將<u><b>不會</b></u>有專人為您解決問題</p>
+								<div class="col-md-12">
+									<div class="contact-bg">
+										<h2>Contact Us</h2>
+										<p>請將您的寶貴意見以填寫表單方式送出<br>我們將<u><b>不會</b></u>有專人為您解決問題</p>
+									</div>
 								</div>
+								<div class="col-md-6">
+									<div class="lable">Name <span>*</span></div>
+									<p class="comment-form-author"><input id="author" name="author" value="" size="30" type="text"></p>
 								</div>
-								  <div class="col-md-6">
-                              <div class="lable">Name <span>*</span></div>
-                              <p class="comment-form-author"><input id="author" name="author" value="" size="30" type="text"></p>
-                           </div>
-                           <div class="col-md-6">
-                              <div class="lable">Email <span>*</span></div>
-                              <p class="comment-form-email"><input id="email" name="email" value="" size="30" type="text"></p>
-                           </div>
-                           <div class="col-md-12">
-                              <div class="lable">Comments <span>*</span></div>
-                              <p class="comment-form-comment"><textarea id="comment" name="comment" cols="45" rows="8" placeholder="Comment" aria-required="true"></textarea></p>
-                           </div>
-                           <div class="col-md-12">
-                              <p class="form-submit"><input name="submit" id="submit" class="btn btn-secondary" value="send messages" type="submit">  </p>
-                           </div>
-							 </div>
-                        </form>
-                     </div>
-                  </div>
-					<div class="col-md-6 contact-info">
-						<div class="map">
-                       <!--  map  -->
-                       <!-- The element that will contain our Google Map. This is used in both the Javascript and CSS above. -->
-                      		 <div id="map"></div>
-                       <!--  m/ap  -->
-                       </div>
-						<div class="col-md-12">
-                     	<div class="contact-bg">
-                        	<h2>Contact Us</h2>
-														<p>「一塊不嫌多，五毛不嫌少，百萬會更好」
-															您的贊助與支持讓我們知道世界上的盤子還真不少。<br>
-															如果您有意願<b>抖內</b>我們，請依下列方式聯絡我們，
-															我們將提供你最完善的匯款資訊。</p>
-                        </div>
-                     </div>
-                     <div class="col-sm-3 col-md-6">
-                     	<div class="contact-bg">
-                        <h6>Office Address</h6>
-															國立台北科技大學<br>
-															忠孝東路三段一號<br>
-															大安區, 台北市 106<br>
-															中華民國 (台灣)
-                        </div>
-                     </div>
-                     <div class="col-sm-3 col-md-6">
-                     	<div class="contact-bg">
-                        <h6>Email Address </h6>948794ni@ntut.edu.tw
-                        </div>
-                     </div>
-                     <div class="col-sm-3 col-md-6">
-                     	<div class="contact-bg">
-                        <h6>Phone Number</h6>(800) 123 456 789
-                        </div>
-                     </div>
-                     <div class="col-sm-3 col-md-6">
-                     	<div class="contact-bg">
-                        <h6>Time Hours</h6>
-														24小時全年無休
-                        </div>
-                     </div>
-
-
-                  </div>
+								<div class="col-md-6">
+									<div class="lable">Email <span>*</span></div>
+									<p class="comment-form-email"><input id="email" name="email" value="" size="30" type="text"></p>
+								</div>
+								<div class="col-md-12">
+									<div class="lable">Comments <span>*</span></div>
+									<p class="comment-form-comment"><textarea id="comment" name="comment" cols="45" rows="8" placeholder="Comment" aria-required="true"></textarea></p>
+								</div>
+								<div class="col-md-12">
+									<p class="form-submit"><input name="submit" id="submit" class="btn btn-secondary" value="send messages" type="submit" onclick="clickContackSubmit"> </p>
+								</div>
+							</div>
+						</form>
+					</div>
 				</div>
+				<div class="col-md-6 contact-info">
+					<div class="map">
+						<!--  map  -->
+						<!-- The element that will contain our Google Map. This is used in both the Javascript and CSS above. -->
+						<div id="map"></div>
+						<!--  m/ap  -->
+					</div>
+					<div class="col-md-12">
+						<div class="contact-bg">
+							<h2>Contact Us</h2>
+							<p>「一塊不嫌多，五毛不嫌少，百萬會更好」 您的贊助與支持讓我們知道世界上的盤子還真不少。
+								<br> 如果您有意願
+								<b>抖內</b>我們，請依下列方式聯絡我們， 我們將提供你最完善的匯款資訊。
+							</p>
+						</div>
+					</div>
+					<div class="col-sm-3 col-md-6">
+						<div class="contact-bg">
+							<h6>Office Address</h6> 國立台北科技大學
+							<br> 忠孝東路三段一號
+							<br> 大安區, 台北市 106<br> 中華民國 (台灣)
+						</div>
+					</div>
+					<div class="col-sm-3 col-md-6">
+						<div class="contact-bg">
+							<h6>Email Address </h6>948794ni@ntut.edu.tw
+						</div>
+					</div>
+					<div class="col-sm-3 col-md-6">
+						<div class="contact-bg">
+							<h6>Phone Number</h6>(800) 123 456 789
+						</div>
+					</div>
+					<div class="col-sm-3 col-md-6">
+						<div class="contact-bg">
+							<h6>Time Hours</h6> 24小時全年無休
+						</div>
+					</div>
 
-            </div>
-            <!-- /.shopping-cart -->
-         </section>
-	 <footer>
- 		<script>
- 		$(function(){
- 			$("#footer").load("footer.html");
- 		});
- 		</script>
- 		<div id="footer"></div>
- 			<!--  /top-header  -->
- 	</footer>
+
+				</div>
+			</div>
+
+		</div>
+		<!-- /.shopping-cart -->
+	</section>
+	<footer>
+		<script>
+			$(function() {
+				$("#footer").load("footer.html");
+			});
+		</script>
+		<div id="footer"></div>
+		<!--  /top-header  -->
+	</footer>
 	<!-- sticky-socia -->
 	<aside id="sticky-social">
 		<ul>
@@ -176,40 +173,155 @@
 	<script src="assets/js/custom.js"></script>
 	<script src="http://ditu.google.cn/maps/api/js?key=AIzaSyCO2fJ8DfdyKRIvmxp96MAG6BeNiCX27lQ&callback=initMap"></script>
 
-        <script type="text/javascript">
-            // When the window has finished loading create our google map below
-            google.maps.event.addDomListener(window, 'load', init);
+	<script type="text/javascript">
+		// When the window has finished loading create our google map below
+		google.maps.event.addDomListener(window, 'load', init);
 
-            function init() {
-                // Basic options for a simple Google Map
-                // For more options see: https://developers.google.com/maps/documentation/javascript/reference#MapOptions
-                var mapOptions = {
-                    // How zoomed in you want the map to start at (always required)
-                    zoom: 14,
-					 scrollwheel: false,
-                    // The latitude and longitude to center the map (always required)
-                    center: new google.maps.LatLng(25.0440615,121.5430298), // Taipei
+		function init() {
+			// Basic options for a simple Google Map
+			// For more options see: https://developers.google.com/maps/documentation/javascript/reference#MapOptions
+			var mapOptions = {
+				// How zoomed in you want the map to start at (always required)
+				zoom: 14,
+				scrollwheel: false,
+				// The latitude and longitude to center the map (always required)
+				center: new google.maps.LatLng(25.0440615, 121.5430298), // Taipei
 
-                    // How you would like to style the map.
-                    // This is where you would paste any style found on Snazzy Maps.
-                    styles: [{"featureType":"water","elementType":"geometry","stylers":[{"color":"#e9e9e9"},{"lightness":17}]},{"featureType":"landscape","elementType":"geometry","stylers":[{"color":"#f5f5f5"},{"lightness":20}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#ffffff"},{"lightness":17}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"color":"#ffffff"},{"lightness":29},{"weight":0.2}]},{"featureType":"road.arterial","elementType":"geometry","stylers":[{"color":"#ffffff"},{"lightness":18}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"color":"#ffffff"},{"lightness":16}]},{"featureType":"poi","elementType":"geometry","stylers":[{"color":"#f5f5f5"},{"lightness":21}]},{"featureType":"poi.park","elementType":"geometry","stylers":[{"color":"#dedede"},{"lightness":21}]},{"elementType":"labels.text.stroke","stylers":[{"visibility":"on"},{"color":"#ffffff"},{"lightness":16}]},{"elementType":"labels.text.fill","stylers":[{"saturation":36},{"color":"#333333"},{"lightness":40}]},{"elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"geometry","stylers":[{"color":"#f2f2f2"},{"lightness":19}]},{"featureType":"administrative","elementType":"geometry.fill","stylers":[{"color":"#fefefe"},{"lightness":20}]},{"featureType":"administrative","elementType":"geometry.stroke","stylers":[{"color":"#fefefe"},{"lightness":17},{"weight":1.2}]}]
-                };
+				// How you would like to style the map.
+				// This is where you would paste any style found on Snazzy Maps.
+				styles: [{
+					"featureType": "water",
+					"elementType": "geometry",
+					"stylers": [{
+						"color": "#e9e9e9"
+					}, {
+						"lightness": 17
+					}]
+				}, {
+					"featureType": "landscape",
+					"elementType": "geometry",
+					"stylers": [{
+						"color": "#f5f5f5"
+					}, {
+						"lightness": 20
+					}]
+				}, {
+					"featureType": "road.highway",
+					"elementType": "geometry.fill",
+					"stylers": [{
+						"color": "#ffffff"
+					}, {
+						"lightness": 17
+					}]
+				}, {
+					"featureType": "road.highway",
+					"elementType": "geometry.stroke",
+					"stylers": [{
+						"color": "#ffffff"
+					}, {
+						"lightness": 29
+					}, {
+						"weight": 0.2
+					}]
+				}, {
+					"featureType": "road.arterial",
+					"elementType": "geometry",
+					"stylers": [{
+						"color": "#ffffff"
+					}, {
+						"lightness": 18
+					}]
+				}, {
+					"featureType": "road.local",
+					"elementType": "geometry",
+					"stylers": [{
+						"color": "#ffffff"
+					}, {
+						"lightness": 16
+					}]
+				}, {
+					"featureType": "poi",
+					"elementType": "geometry",
+					"stylers": [{
+						"color": "#f5f5f5"
+					}, {
+						"lightness": 21
+					}]
+				}, {
+					"featureType": "poi.park",
+					"elementType": "geometry",
+					"stylers": [{
+						"color": "#dedede"
+					}, {
+						"lightness": 21
+					}]
+				}, {
+					"elementType": "labels.text.stroke",
+					"stylers": [{
+						"visibility": "on"
+					}, {
+						"color": "#ffffff"
+					}, {
+						"lightness": 16
+					}]
+				}, {
+					"elementType": "labels.text.fill",
+					"stylers": [{
+						"saturation": 36
+					}, {
+						"color": "#333333"
+					}, {
+						"lightness": 40
+					}]
+				}, {
+					"elementType": "labels.icon",
+					"stylers": [{
+						"visibility": "off"
+					}]
+				}, {
+					"featureType": "transit",
+					"elementType": "geometry",
+					"stylers": [{
+						"color": "#f2f2f2"
+					}, {
+						"lightness": 19
+					}]
+				}, {
+					"featureType": "administrative",
+					"elementType": "geometry.fill",
+					"stylers": [{
+						"color": "#fefefe"
+					}, {
+						"lightness": 20
+					}]
+				}, {
+					"featureType": "administrative",
+					"elementType": "geometry.stroke",
+					"stylers": [{
+						"color": "#fefefe"
+					}, {
+						"lightness": 17
+					}, {
+						"weight": 1.2
+					}]
+				}]
+			};
 
-                // Get the HTML DOM element that will contain your map
-                // We are using a div with id="map" seen below in the <body>
-                var mapElement = document.getElementById('map');
+			// Get the HTML DOM element that will contain your map
+			// We are using a div with id="map" seen below in the <body>
+			var mapElement = document.getElementById('map');
 
-                // Create the Google Map using our element and options defined above
-                var map = new google.maps.Map(mapElement, mapOptions);
+			// Create the Google Map using our element and options defined above
+			var map = new google.maps.Map(mapElement, mapOptions);
 
-                // Let's also add a marker while we're at it
-                var marker = new google.maps.Marker({
-                    position: new google.maps.LatLng(25.0440615,121.5430298),
-                    map: map,
-                    title: 'Snazzy!'
-                });
-            }
-        </script>
+			// Let's also add a marker while we're at it
+			var marker = new google.maps.Marker({
+				position: new google.maps.LatLng(25.0440615, 121.5430298),
+				map: map,
+				title: 'Snazzy!'
+			});
+		}
+	</script>
 </body>
 
 </html>
