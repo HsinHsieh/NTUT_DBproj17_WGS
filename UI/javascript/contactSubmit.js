@@ -12,7 +12,7 @@ $.fn.serializeObject = function() {
         o[this.name] = this.value || '';
       }
     });
-    console.log("fuck you");
+  //  console.log("fuck you");
     return o;
   };
 
@@ -22,7 +22,7 @@ function clickContackSubmit() {
   //alert(JSON.stringify(data));
   var jsonUserInfo = $('#form1').serializeObject();
   alert(JSON.stringify(jsonUserInfo));
-  console.log("fuck");
+//  console.log("fuck");
 }
 
 /*
