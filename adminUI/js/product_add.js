@@ -29,9 +29,35 @@ $(document).ready(function() {
       "Requirement": ($('#productAdd_Requirement').val()),
       "Date": ($('#productAdd_date').val()),
     };
+    var title = $('#productAdd_PID').val();
+    $('.uploadImage').ajaxSubmit({
+      data: {
+        title: title
+      },
+      contentType: 'application/json',
+      success: function(response) {
+        console.log('image uploaded and form submitted');
+      }
+    });
     Post('/admin/api/productAdd', data, addResult);
   });
   $("#productAdd_category").change(function() {
     Get('/admin/api/productMaxID', searchID);
+  });
+  $('.uploadImage').submit(function(e) {
+    e.preventDefault();
+
+    var title = $('#productAdd_PID').val();
+
+    $(this).ajaxSubmit({
+      data: {
+        title: title
+      },
+      contentType: 'application/json',
+      success: function(response) {
+        console.log('image uploaded and form submitted');
+      }
+    });
+    return false;
   });
 });

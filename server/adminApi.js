@@ -1,4 +1,7 @@
 const sql = require('./sql.js');
+const fs = require('fs');
+const upload = require('./FileUpload.js');
+var multer = require('multer');
 module.exports = class {
 
   constructor(router) {
@@ -70,8 +73,11 @@ module.exports = class {
       var Str = "INSERT INTO `category` (`CAID`, `Category_Name`) VALUES ('" + req.body.CAID + "', '" + req.body.Name + "')";
       (new sql(Str)).ReturnJson(callback);
     });
-
-
-
+    this.router.post("/productAdd/file", upload.single("imagename"), function(req, res, next) {
+      var fileFormat = (req.file.originalname).split(".");
+      fs.rename('./UI/product_pic/temp', './UI/product_pic/' + req.body.title + "." + fileFormat[fileFormat.length - 1], function(err) {
+        if (err) console.log('ERROR: ' + err);
+      });
+    });
   }
 }
