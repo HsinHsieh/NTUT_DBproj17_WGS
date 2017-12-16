@@ -1,5 +1,5 @@
-(function($) {
-  $.fn.serializeObject = function() {
+
+$.fn.serializeObject = function() {
     var o = {};
     var a = this.serializeArray();
     $.each(a, function() {
@@ -24,7 +24,6 @@ function clickContackSubmit() {
   alert(JSON.stringify(jsonUserInfo));
   console.log("fuck");
 }
-})(jquery);
 
 /*
 1.serialize（）方法
