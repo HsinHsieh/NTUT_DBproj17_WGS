@@ -63,7 +63,6 @@ module.exports = class {
         res.send(msg);
       };
       var sqlStr = "SELECT DISTINCT * FROM `product` WHERE `product`.`PID`='" + req.params.PID + "'";
-      console.log(sqlStr);
       (new sql(sqlStr)).ReturnJson(callback);
     });
     this.router.post("/categoryAdd", function(req, res) {
@@ -83,12 +82,16 @@ module.exports = class {
       var callback = function(msg) {
         res.send(msg);
       };
-      //console.log(sqlStr);
-      console.log(req.body);
       var Str = "UPDATE `product` SET `Product_Name` = '" + req.body.Name + "', `Price` = '" + req.body.Price + "', `Product_Description` = '" + req.body.Description + "', `System_Requirement` = '" + req.body.Requirement + "', `Supplier` = '" + req.body.Supplier + "', `Launch_Date` = '" + req.body.Date;
       var Str2 = "', `Category` = '" + req.body.Category + "', `PID` = '" + req.body.PID + "' WHERE `product`.`PID` = '" + req.body.OriginalPID + "'";
-      console.log(Str + Str2);
       (new sql(Str + Str2)).ReturnJson(callback);
+    });
+    this.router.get("/prouctDelete/:PID", function(req, res) {
+      var callback = function(msg) {
+        res.send(msg);
+      };
+      var sqlStr = "DELETE FROM `product` WHERE `product`.`PID`='" + req.params.PID + "'";
+      (new sql(sqlStr)).ReturnJson(callback);
     });
   }
 }

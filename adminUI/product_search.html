@@ -92,19 +92,47 @@
 				<table class="table table-striped">
 					<thead>
 						<tr>
-							<th scope="col">#</th>
-							<th scope="col">商品編號</th>
-							<th scope="col">商品名稱</th>
-							<th scope="col">供應商</th>
-							<th scope="col">價格</th>
-							<th scope="col">編輯</th>
-							<th scope="col">刪除</th>
+							<th class="col-xs-1">#</th>
+							<th class="col-xs-2">商品編號</th>
+							<th class="col-xs-3">商品名稱</th>
+							<th class="col-xs-3">供應商</th>
+							<th class="col-xs-1">價格</th>
+							<th class="col-xs-1">編輯</th>
+							<th class="col-xs-1">刪除</th>
 						</tr>
 					</thead>
 					<tbody class="product_list">
 
 					</tbody>
 				</table>
+			</div>
+		</div>
+	</section>
+	<section>
+		<div class="modal fade" id="productDeleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content productDeleteModalBody">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title" id="productDeleteModalTitle">是否確認刪除以下產品?</h4>
+					</div>
+					<div class="modal-body" id="productDeleteModalBody">
+
+						<div class="row">
+							<div class="col-md-6">
+								<div class="productDeleteContent"></div>
+							</div>
+							<div class="col-md-6">
+								<div class="productDeletePic"> </div>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer" id="productDeleteModalFooter">
+						<input type="hidden" id="productDeletePID" value="">
+						<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+						<button type="button" class="btn btn-danger" id="productDeleteConfirm">確認</button>
+					</div>
+				</div>
 			</div>
 		</div>
 	</section>
