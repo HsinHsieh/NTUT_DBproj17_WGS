@@ -45,16 +45,17 @@ $(document).ready(function() {
       "Requirement": ($('#productEdit_requirement').val()),
       "Date": ($('#productEdit_date').val()),
     };
-    // var title = $('#productEdit_PID').val();
-    // $('.uploadImage').ajaxSubmit({
-    //   data: {
-    //     title: title
-    //   },
-    //   contentType: 'application/json',
-    //   success: function(response) {
-    //     console.log('image uploaded and form submitted');
-    //   }
-    // });
+    $('.uploadImage').ajaxSubmit({
+      data: {
+        originalname: data.OriginalPID,
+        newname: data.PID,
+        picture: ($('#imagename').val())
+      },
+      contentType: 'application/json',
+      success: function(response) {
+        console.log('image uploaded and form submitted');
+      }
+    });
     Post('/admin/api/productEdit', data, addResult);
   });
   $("#productEdit_category").change(function() {
