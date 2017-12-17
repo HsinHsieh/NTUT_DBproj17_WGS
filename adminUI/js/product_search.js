@@ -31,16 +31,17 @@ $(document).ready(function() {
     $('.productDeletePic').html(PicStr);
   }
   var productDeleteResult = function(msg) {
-    console.log(msg);
     resObj = JSON.parse(msg);
-    if (resObj.message == "") {
-      $('#productDeleteModalTitle').html("操作結果");
-      $('#productDeleteModalBody').html("刪除作業完成");
-      $('#productDeleteModalFooter').html("<button type=\"button\" class=\"btn btn-success\" data-dismiss=\"modal\">確認</button>")
-    } else {
+    if ('errno' in resObj) {
       $('#productDeleteModalTitle').html("操作結果");
       $('#productDeleteModalBody').html("刪除作業失敗!!錯誤代碼：" + resObj.errno);
       $('#productDeleteModalFooter').html("<button type=\"button\" class=\"btn btn-success\" data-dismiss=\"modal\">確認</button>")
+
+    } else {
+      $('#productDeleteModalTitle').html("操作結果");
+      $('#productDeleteModalBody').html("刪除作業完成");
+      $('#productDeleteModalFooter').html("<button type=\"button\" class=\"btn btn-success\" data-dismiss=\"modal\">確認</button>")
+
     }
   }
   var productFetch = function() {

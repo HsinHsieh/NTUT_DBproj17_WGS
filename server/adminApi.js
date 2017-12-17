@@ -123,7 +123,9 @@ module.exports = class {
         res.send(msg);
       };
       var sqlStr = "DELETE FROM `product` WHERE `product`.`PID`='" + req.params.PID + "'";
-      fs.unlink('./UI/product_pic/' + req.params.PID + ".jpg");
+      if (fs.existsSync('./UI/product_pic/' + req.params.PID + ".jpg")) {
+        fs.unlink('./UI/product_pic/' + req.params.PID + ".jpg");
+      }
       (new sql(sqlStr)).ReturnJson(callback);
 
     });
