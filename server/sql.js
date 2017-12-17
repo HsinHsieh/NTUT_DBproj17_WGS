@@ -10,7 +10,7 @@ module.exports = class {
   ReturnJson(callback) {
     this.db.query(this.sqlStr, function(error, rows, fields) {
       if (error)
-        throw error;
+        callback(JSON.stringify(error));
       callback(JSON.stringify(rows));
     })
   }

@@ -25,7 +25,6 @@ $(document).ready(function() {
   }
   var productDelete = function(msg) {
     var resObj = JSON.parse(msg);
-    console.log(resObj);
     var Str = "商品編號：" + resObj[0].PID + "<br>商品名稱：" + resObj[0].Product_Name + "<br>供應商：" + resObj[0].Supplier + "<br>上市日期：" + resObj[0].Launch_Date;
     $('.productDeleteContent').html(Str);
     var PicStr = "<img src=\"/product_pic/" + resObj[0].PID + ".jpg\" alt=\"NO PICTURE\" class=\"img-thumbnail\">"
@@ -34,10 +33,15 @@ $(document).ready(function() {
   var productDeleteResult = function(msg) {
     console.log(msg);
     resObj = JSON.parse(msg);
-    $('#productDeleteModalTitle').html("操作結果");
-    $('#productDeleteModalBody').html("刪除作業完成");
-    $('#productDeleteModalFooter').html("<button type=\"button\" class=\"btn btn-success\" data-dismiss=\"modal\">確認</button>")
-    productFetch();
+    if (resObj.message == "") {
+      $('#productDeleteModalTitle').html("操作結果");
+      $('#productDeleteModalBody').html("刪除作業完成");
+      $('#productDeleteModalFooter').html("<button type=\"button\" class=\"btn btn-success\" data-dismiss=\"modal\">確認</button>")
+    } else {
+      $('#productDeleteModalTitle').html("操作結果");
+      $('#productDeleteModalBody').html("刪除作業失敗!!錯誤代碼：" + resObj.errno);
+      $('#productDeleteModalFooter').html("<button type=\"button\" class=\"btn btn-success\" data-dismiss=\"modal\">確認</button>")
+    }
   }
   var productFetch = function() {
     var data = {
@@ -50,8 +54,17 @@ $(document).ready(function() {
     };
     Post('/admin/api/productSearch', data, productRow);
   }
+  var productDeleteModalSet = function() {
+    $('#productDeleteModalTitle').html("是否確認刪除以下產品?");
+    $('#productDeleteModalBody').html("	<div class=\"row\"><div class=\"col-md-6\"><div class=\"productDeleteContent\"></div></div><div class=\"col-md-6\"><div class=\"productDeletePic\"> </div></div></div>");
+    $('#productDeleteModalFooter').html("");
+    $('#productDeleteModalFooter').append("<input type=\"hidden\" id=\"productDeletePID\" value=\"\"><button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">取消</button><button type=\"button\" class=\"btn btn-danger productDeleteConfirm\">確認</button>")
+  }
   Get('/admin/api/productCatagory', searchCatagory);
   Get('/admin/api/productSupplier', searchSupplier);
+  $('.productDeleteConfirm').click(function() {
+    Get('/admin/api/prouctDelete/' + $('#productDeletePID').val(), productDeleteResult);
+  })
   $("#productSearch").click(productFetch);
   $("#filterClear").click(function() {
     $('#productSearch_PID').val("");
@@ -70,7 +83,12 @@ $(document).ready(function() {
     //modal.find('.modal-title').text('刪除商品' + pid)
     //modal.find('.modal-body input').val(pid)
   });
-  $('#productDeleteConfirm').click(function() {
-    Get('/admin/api/prouctDelete/' + $('#productDeletePID').val(), productDeleteResult);
+  $('#productDeleteModal').on('hidden.bs.modal', function(event) {
+    productFetch();
+    productDeleteModalSet();
+    $('.productDeleteConfirm').click(function() {
+      Get('/admin/api/prouctDelete/' + $('#productDeletePID').val(), productDeleteResult);
+    })
   })
+
 });
