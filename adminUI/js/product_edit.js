@@ -6,7 +6,6 @@ $(document).ready(function() {
     var resObj = JSON.parse(msg);
     for (var i = 0; i < Object.keys(resObj).length; i++) {
       var resStr = "<option value=" + resObj[i].CAID + ">" + resObj[i].CAID + resObj[i].Category_Name + "</option>";
-      console.log(resStr);
       $("#productEdit_category").append(resStr);
     }
   }
@@ -18,10 +17,25 @@ $(document).ready(function() {
   }
   var addResult = function(msg) {
     //console.log(msg);
+    var resObj = JSON.parse(msg);
+    console.log(resObj);
+    if ('errno' in resObj) {
+      $('#productEditModalTitle').html("操作結果");
+      $('#productEditModalBody').html("刪除作業失敗!!<br>錯誤代碼：" + resObj.errno + "<br>錯誤訊息：" + resObj.sqlMessage);
+      $('#productEditModalFooter').html("<button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" onClick=\"window.location.reload()\">再試一次</button><button type=\"button\" class=\"btn btn-danger\" data-dismiss=\"modal\"  onclick=\"location.href = '/admin/product_search';\">確認</button>")
+
+    } else {
+      $('#productEditModalTitle').html("操作結果");
+      $('#productEditModalBody').html("修改作業完成");
+      $('#productEditModalFooter').html("<button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" onClick=\"location.href = '/admin/product_edit?PID=" + $('#productEdit_PID').val() + "';\">再次修改</button><button type=\"button\" class=\"btn btn-success\" data-dismiss=\"modal\" onclick=\"location.href = '/admin/product_search';\">確認</button>")
+    }
+    $("#productEditModal").modal({
+      show: true
+    });
+
   }
   var searchDetail = function(msg) {
     var resObj = JSON.parse(msg);
-    console.log(resObj);
     $('#productEdit_PID').val(resObj[0].PID);
     $('#productEdit_name').val(resObj[0].Product_Name);
     $('#productEdit_price').val(resObj[0].Price);
@@ -30,6 +44,8 @@ $(document).ready(function() {
     $('#productEdit_description').val(resObj[0].Product_Description);
     $('#productEdit_requirement').val(resObj[0].System_Requirement);
     $('#productEdit_date').val(resObj[0].Launch_Date);
+    var PicStr = "<img src=\"/product_pic/" + resObj[0].PID + ".jpg\" alt=\"NO PICTURE\" class=\"img-thumbnail\">"
+    $('.productEditPic').html(PicStr);
   }
   Get('/admin/api/productCatagory', searchCatagory);
   Get('/admin/api/productEdit/' + OriginalPID, searchDetail);
