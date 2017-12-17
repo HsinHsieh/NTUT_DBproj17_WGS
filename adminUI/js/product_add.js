@@ -13,11 +13,11 @@ $(document).ready(function() {
     if (resObj.message == "") {
       $('#productAddModalTitle').html("操作結果");
       $('#productAddModalBody').html("上架作業完成");
-      $('#productAddModalFooter').html("<button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" onClick=\"window.location.reload()\">繼續新增</button><button type=\"button\" class=\"btn btn-success\" data-dismiss=\"modal\">確認</button>")
+      $('#productAddModalFooter').html("<button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" onClick=\"window.location.reload()\">繼續新增</button><button type=\"button\" class=\"btn btn-success\" data-dismiss=\"modal\" onclick=\"location.href = '/admin';\">確認</button>")
     } else {
       $('#productAddModalTitle').html("操作結果");
       $('#productAddModalBody').html("刪除作業失敗!!<br>錯誤代碼：" + resObj.errno + "<br>錯誤訊息：" + resObj.sqlMessage);
-      $('#productAddModalFooter').html("<button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" onClick=\"window.location.reload()\">再試一次</button><button type=\"button\" class=\"btn btn-danger\" data-dismiss=\"modal\">確認</button>")
+      $('#productAddModalFooter').html("<button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" onClick=\"window.location.reload()\">再試一次</button><button type=\"button\" class=\"btn btn-danger\" data-dismiss=\"modal\"  onclick=\"location.href = '/admin';\">確認</button>")
     }
     $("#productAddModal").modal({
       show: true
