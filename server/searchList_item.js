@@ -1,6 +1,6 @@
 const DataBaseController = require('../DB/DatabaseController.js')
 
-const item_template_list = "<div class='col-xs-12 col-sm-12 col-md-12'><div class='pro-text'><div class='col-xs-12 col-sm-5 col-md-5'><div class='pro-img'> <img src='./product_pic/{{PID}}.jpg ' alt='幹!找不到圖片' style='display:block; margin:auto; width:200px'><div class='hover-icon'> <a href='#'><span class='icon icon-Heart'></span></a> <a href='#'><span class='icon icon-Search'></span></a> <a href='#'><span class='icon icon-Restart'></span></a> </div></div></div><div class='col-xs-12 col-sm-7 col-md-7'><div class='pro-text-outer list-pro-text'><span>{{Category}}</span><a href='/product?pid={{PID}}'><h4>{{Product_Name}}</h4></a><p class='wk-price'> NT$ {{Price}}</p><p>{{Product_Description}}</p><a href='#' class='add-btn'>Add to cart 🛒</a> <a href='#' class='add-btn2'><span class='icon icon-Heart'></span></a> <a href='#' class='add-btn2'><span class='icon icon-Restart'></span></a></div></div></div></div>";
+const item_template_list = "<div class='col-xs-12 col-sm-12 col-md-12'><div class='pro-text'><div class='col-xs-12 col-sm-5 col-md-5'><div class='pro-img'> <img src='./product_pic/{{PID}}.jpg ' alt='幹!找不到圖片' style='display:block; margin:auto; width:200px'><div class='hover-icon'> <a href='#'><span class='icon icon-Heart'></span></a> <a href='#'><span class='icon icon-Search'></span></a> <a href='#'><span class='icon icon-Restart'></span></a> </div></div></div><div class='col-xs-12 col-sm-7 col-md-7'><div class='pro-text-outer list-pro-text'><span>{{Category}}</span><a href='/product?pid={{PID}}'><h4>{{Product_Name}}</h4></a><p class='wk-price'> NT$ {{Price}}</p><p>{{Product_Description}}</p><br><p> ... (點進來看更詳細)</p><a href='#' class='add-btn'>Add to cart 🛒</a> <a href='#' class='add-btn2'><span class='icon icon-Heart'></span></a> <a href='#' class='add-btn2'><span class='icon icon-Restart'></span></a></div></div></div></div>";
 
 const item_template_grid = "<div class='col-xs-12 col-sm-6 col-md-3'><div class='pro-text text-center' style='min-height:385px;'><div class='pro-img'><img src='./product_pic/{{PID}}.jpg ' alt='幹!找不到圖片' style='display:block; margin:auto; width:120px; height:160px;' /></div><br><div class='pro-text-outer'><span>{{Category}}</span><a href='/product?pid={{PID}}'><h4>{{Product_Name}}</h4></a><p class='wk-price'> NT$ {{Price}}</p><a href='#' class='add-btn'>Add to cart</a></div></div></div>";
 
@@ -9,8 +9,8 @@ module.exports = class {
         this.db = DataBaseController.GetDB();
         this.data = "";
         //this.target = tar;
-        this.queryCmd = "SELECT * FROM `product` WHERE `Product_Name` LIKE '%" + tar + "%'";
-        console.log(this.queryCmd);
+        this.queryCmd = "SELECT * FROM `product` WHERE `Product_Name` LIKE '%" + tar + "%' OR product.Category = '" + tar + "'";
+        // console.log(this.queryCmd);
     }
 
     AddItems(callback) {
@@ -27,7 +27,7 @@ module.exports = class {
                     .replace("{{PID}}", this.data.PID)
                     .replace("{{PID}}", this.data.PID)
                     .replace("{{Price}}", this.data.Price)
-                    .replace("{{Product_Description}}", this.data.Product_Description);
+                    .replace("{{Product_Description}}", this.data.Product_Description.substr(0, 160));
             }
             callback(this.items);
         });

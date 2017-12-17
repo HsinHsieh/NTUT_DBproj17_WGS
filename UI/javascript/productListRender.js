@@ -1,6 +1,8 @@
 $(document).ready(function() {
     var url = new URL(window.location.href);
+
     var s = url.searchParams.get("s");
+    if (s == null) s = url.searchParams.get("cate");
 
     GetItemsInGrid(s);
     GetItems(s);
@@ -41,7 +43,7 @@ function GetCategory() {
         var resObj = JSON.parse(msg);
         var resStr = "";
         for (var i = 0; i < resObj.length; i++) {
-            resStr += "<li><a href='#'> 🎲" + resObj[i].Category_Name + "<span><i class='fa fa-angle-right' aria-hidden='true'></i></span></a></li>";
+            resStr += "<li><a href='/search?cate=" + resObj[i].CAID + "'> 🎲" + resObj[i].Category_Name + "<span><i class='fa fa-angle-right' aria-hidden='true'></i></span></a></li>";
         }
         $("#cate").html(resStr);
     }
