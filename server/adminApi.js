@@ -80,40 +80,24 @@ module.exports = class {
     });
     this.router.post("/productEdit/file", upload.single("imagename"), function(req, res, next) {
       if (req.body.picture != '') {
-        fs.unlink('./UI/product_pic/' + req.body.originalname + ".jpg");
+        if (fs.existsSync('./UI/product_pic/' + req.body.originalname + ".jpg")) {
+          fs.unlink('./UI/product_pic/' + req.body.originalname + ".jpg");
+        }
         fs.rename('./UI/product_pic/temp', './UI/product_pic/' + req.body.newname + ".jpg");
       } else {
         if (req.body.originalname != req.body.newname) {
-          fs.rename('./UI/product_pic/' + req.body.originalname + ".jpg", './UI/product_pic/' + req.body.newname + ".jpg");
+          if (fs.existsSync('./UI/product_pic/' + req.body.originalname + ".jpg")) {
+            fs.rename('./UI/product_pic/' + req.body.originalname + ".jpg", './UI/product_pic/' + req.body.newname + ".jpg");
+          }
         }
+
       }
     });
     this.router.post("/productEdit", function(req, res) {
       var callback = function(msg) {
         res.send(msg);
       };
-      // if (req.body.OriginalPID != req.body.PID) {
-      //   if (fs.existsSync('./UI/product_pic/temp')) {
-      //     fs.unlink('./UI/product_pic/' + req.body.OriginalPID + ".jpg");
-      //     fs.rename('./UI/product_pic/temp', './UI/product_pic/' + req.body.PID + ".jpg");
-      //   } else {
-      //     fs.rename('./UI/product_pic/' + req.body.OriginalPID + ".jpg", './UI/product_pic/' + req.body.PID + ".jpg");
-      //   }
-      // } else {
-      //   if (fs.existsSync('./UI/product_pic/temp')) {
-      //     fs.unlink('./UI/product_pic/' + req.body.OriginalPID + ".jpg");
-      //     fs.rename('./UI/product_pic/temp', './UI/product_pic/' + req.body.PID + ".jpg");
-      //   }
-      // }
-      // if ((req.body.originalname != req.body.newname) && (!fs.statSync('./UI/product_pic/temp'))) {
-      //   fs.rename('./UI/product_pic/' + req.body.originalname + ".jpg", './UI/product_pic/' + req.body.newname + ".jpg", function(err) {
-      //     if (err) console.log('ERROR: ' + err);
-      //   });
-      // } else if (fs.statSync('./UI/product_pic/temp')) {
-      //   fs.rename('./UI/product_pic/temp', './UI/product_pic/' + req.body.title + ".jpg", function(err) {
-      //     if (err) console.log('ERROR: ' + err);
-      //   });
-      // };
+
       var Str = "UPDATE `product` SET `Product_Name` = '" + req.body.Name + "', `Price` = '" + req.body.Price + "', `Product_Description` = '" + req.body.Description + "', `System_Requirement` = '" + req.body.Requirement + "', `Supplier` = '" + req.body.Supplier + "', `Launch_Date` = '" + req.body.Date;
       var Str2 = "', `Category` = '" + req.body.Category + "', `PID` = '" + req.body.PID + "' WHERE `product`.`PID` = '" + req.body.OriginalPID + "'";
       (new sql(Str + Str2)).ReturnJson(callback);
