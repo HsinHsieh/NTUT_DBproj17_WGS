@@ -1,5 +1,6 @@
 $(document).ready(function() {
     GetCategory();
+
 });
 
 function GetCategory() {
@@ -17,5 +18,23 @@ function GetCategory() {
 
 $("#btnSearch").click(function() {
     var target = $("#headerSearch").val();
-    window.location = '/search?s=' + encodeURIComponent(target);
+    if (target != "")
+        window.location = '/search?s=' + encodeURIComponent(target);
+});
+
+$("#loginBtn").click(function() {
+    var {
+        value: formValues
+    } = swal({
+        title: 'Login',
+        html: '<input id="acc" type="email" class="swal2-input">' +
+            '<input id="psw" type="password" class="swal2-input">',
+        focusConfirm: true,
+        preConfirm: () => {
+            return [
+                $('#acc').val(),
+                $('#psw').val()
+            ]
+        }
+    })
 });

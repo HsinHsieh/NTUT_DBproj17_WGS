@@ -1,6 +1,6 @@
 const DataBaseController = require('../DB/DatabaseController.js')
 
-const item_preview_template = "<div class='col-xs-12 col-sm-6 col-md-3' style='background-color:#C9E2E2'><div class='pro-text text-center'><div class='pro-img'><img src='./product_pic/{{PID}}.jpg ' alt='幹!找不到圖片' style='display:block; margin:auto; width:150px; height:200px;' /></div><div class='pro-text-outer'><span>{{Category}}</span><a href='/product?pid={{PID}}'><h4>{{Product_Name}}</h4></a><p class='wk-price'> NT$ {{Price}}</p><button class='add-btn addbtn'>Add to cart</button></div></div></div>";
+const item_preview_template = "<div class='col-xs-12 col-sm-6 col-md-3' style='background-color:#C9E2E2'><div class='pro-text text-center' style='min-height:435px;'><div class='pro-img'><img src='./product_pic/{{PID}}.jpg ' alt='幹!找不到圖片' style='display:block; margin:auto; width:150px; height:200px;' /></div><div class='pro-text-outer'><span>{{Category}}</span><a href='/product?pid={{PID}}'><h4>{{Product_Name}}</h4></a><p class='wk-price'> NT$ {{Price}}</p><button class='add-btn addbtn'>Add to cart</button></div></div></div>";
 
 module.exports = class {
     constructor() {
@@ -9,7 +9,7 @@ module.exports = class {
     }
 
     AddItemPreview(callback) {
-        this.db.query("SELECT * FROM `product` ORDER BY `product`.`Launch_Date` ASC LIMIT 16", function(error, rows, fields) {
+        this.db.query("SELECT * FROM `product` ORDER BY `product`.`Launch_Date` DESC LIMIT 16", function(error, rows, fields) {
             //檢查是否有錯誤
             if (error)
                 throw error;

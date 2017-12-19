@@ -21,6 +21,11 @@
     <link href="assets/owl-carousel/owl.carousel.css" rel="stylesheet">
     <link href="assets/owl-carousel/owl.theme.css" rel="stylesheet">
 
+    <script src="./javascript/sweetalert2/dist/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="./javascript/sweetalert2/dist/sweetalert2.min.css">
+    <!-- Include a polyfill for ES6 Promises (optional) for IE11 and Android browser -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+
     <script type="text/javascript" src="./javascript/headerRenderAndSearch.js"></script>
 </head>
 
@@ -36,7 +41,7 @@
         <div class="col-md-6">
             <div class="top-header-right">
                 <ul>
-                    <li><i class="icon-people icons" aria-hidden="true"></i> Login</li>
+                    <li><a id="loginBtn" href="#"><i class="icon-people icons" aria-hidden="true"></i> Login</a></li>
                     <li><i class="icon-note icons" aria-hidden="true"></i> 早安</li>
                     <li>
                         <div class="dropdown">
@@ -67,7 +72,7 @@
             <!-- Search box Start -->
             <form>
                 <div class="well carousel-search hidden-phone">
-                    <div class="btn">喻翔買給你</div>
+                    <div class="btn"><a href="https://www.facebook.com/profile.php?id=100004679298556">喻翔買給你</a></div>
                     <div class="search">
                         <input type="text" id="headerSearch" placeholder="找甚麼嗎? 問我問我" value="" />
                     </div>
