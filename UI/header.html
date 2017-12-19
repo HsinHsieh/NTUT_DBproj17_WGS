@@ -65,16 +65,22 @@
         </div>
         <div class="col-sm-6">
             <!-- Search box Start -->
-            <form>
+            <form id="searchForm">
                 <div class="well carousel-search hidden-phone">
                     <div class="btn">喻翔買給你</div>
                     <div class="search">
-                        <input type="text" id="headerSearch" placeholder="找甚麼嗎? 問我問我" value="" />
+                        <input type="text" id="headerSearch" placeholder="找甚麼嗎? 問我問我" value="" onkeypress=""/>
                     </div>
                     <div class="btn-group">
                         <button type="button" id="btnSearch" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"> 搜尋 </i></button>
                     </div>
                 </div>
+                <script type="text/javascript">
+                    $("#searchForm").submit(function() {
+                        $("#btnSearch").click();
+                        return false;
+                    });
+                </script>
             </form>
             <!-- Search box End -->
         </div>
