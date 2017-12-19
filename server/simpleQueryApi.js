@@ -37,7 +37,7 @@ module.exports = class {
             var sqlSupplier = " AND " + " `Supplier` LIKE '%" + req.body.Supplier + "%'";
             var sqlCategory = (req.body.Category == '') ? "" : " AND " + " `Category` ='" + req.body.Category + "'";
             var sqlStr = "SELECT *  FROM `product` WHERE" + sqlPID + sqlName + sqlPrice + sqlSupplier + sqlCategory;
-            console.log(sqlStr);
+            // console.log(sqlStr);
             (new sql(sqlStr)).ReturnJson(callback);
         });
     }

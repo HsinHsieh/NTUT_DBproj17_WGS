@@ -17,5 +17,5 @@ function GetCategory() {
 
 $("#btnSearch").click(function() {
     var target = $("#headerSearch").val();
-    window.location = '/search?s=' + target;
+    window.location = '/search?s=' + encodeURIComponent(target);
 });

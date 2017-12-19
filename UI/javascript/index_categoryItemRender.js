@@ -16,13 +16,10 @@ function GetCategory() {
     Get(apiUrl, callback);
 };
 
-function GetItems() {
-    var apiUrl = '/categoryItem/:cate'
+function GetItemsInBlocks(cate) {
+    var apiUrl = '/categoryItem/' + cate;
     var callback = function(msg) {
-        for (var i = 1; i < resObj.length; i++) {
-            resStr += "<li><a data-toggle='tab' href='#" + resObj[i].CAID + "'>" + resObj[i].Category_Name + "</a></li>";
-        }
-        $("#cate-item").html(resStr);
+        $("#" + cate).html(msg);
     }
     Get(apiUrl, callback);
 };
@@ -33,8 +30,10 @@ function GenerateBlocks() {
 
         var resObj = JSON.parse(msg);
         var resStr = "<div id='" + resObj[0].CAID + "' class='tab-pane fade in active'><div class='owl-demo-outer'><div id='owl-demo3' class='deals-wk2'><div id='" + resObj[0].CAID + "items' class='item'></div></div></div></div>";
+        GetItemsInBlocks(resObj[0].CAID);
         for (var i = 1; i < resObj.length; i++) {
-            resStr += "<div id='" + resObj[0].CAID + "' class='tab-pane fade in'><div id='owl-demo13' class='deals-wk2'><div id='" + resObj[0].CAID + "items' class='item'></div></div></div>";
+            resStr += "<div id='" + resObj[i].CAID + "' class='tab-pane fade in'><div id='owl-demo13' class='deals-wk2'><div id='" + resObj[i].CAID + "items' class='item'></div></div></div>";
+            GetItemsInBlocks(resObj[i].CAID);
         }
         $("#contentsForCate").html(resStr);
     }

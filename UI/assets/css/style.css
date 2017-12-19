@@ -776,7 +776,7 @@ a:hover {
 }
 
 .banner-img {
-    background: rgba(0, 0, 0, 0) url("../poster/Mini Metro.jpg") no-repeat scroll 0 0 / cover;
+    background: rgba(0, 0, 0, 0) url("../poster/Mini Metro.jpg") no-repeat scroll 0 0 / contain;
     background-size: contain;
     color: #333e48;
     float: left;
@@ -819,11 +819,11 @@ a:hover {
 }
 
 .banner-img2 {
-    background: rgba(0, 0, 0, 0) url("../poster/Watch_Dogs 2.jpg") no-repeat scroll 0 0 / cover;
+    background: rgba(0, 0, 0, 0) url("../poster/Watch_Dogs 2.jpg") no-repeat scroll 0 0 / contain;
 }
 
 .banner-img3 {
-    background: rgba(0, 0, 0, 0) url("../poster/The Sims 2 Ultimate Edition.jpg") no-repeat scroll 0 0 / cover;
+    background: rgba(0, 0, 0, 0) url("../poster/The Sims 2 Ultimate Edition.jpg") no-repeat scroll 0 0 / contain;
 }
 
 .banner-img4 {
@@ -1694,7 +1694,7 @@ a:hover {
 }
 
 .half-banner1 {
-    background: rgba(0, 0, 0, 0) url("../images/half-banner1.jpg") no-repeat scroll center center / cover;
+    background: rgba(0, 0, 0, 0) url("../poster/banner_call og duty.jpg") no-repeat scroll center center / cover;
     color: rgb(0, 0, 0);
     float: left;
     height: 190px;
@@ -1704,7 +1704,7 @@ a:hover {
 }
 
 .half-banner2 {
-    background: rgba(0, 0, 0, 0) url("../images/half-banner2.jpg") no-repeat scroll center center / cover;
+    background: rgba(0, 0, 0, 0) url("../poster/banner_pubg.jpg") no-repeat scroll center center / cover;
     color: rgb(0, 0, 0);
     float: left;
     height: 190px;
