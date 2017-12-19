@@ -199,6 +199,13 @@ a:hover {
     padding-bottom: 3px;
 }
 
+.well.carousel-search.hidden-phone a.btn {
+    margin: 0;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    color: black;
+}
+
 .well .btn.dropdown-toggle.btn-select {
     background: rgb(245, 245, 245) none repeat scroll 0 0;
     border-radius: 0;
