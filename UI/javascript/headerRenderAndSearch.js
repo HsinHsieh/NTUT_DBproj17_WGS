@@ -1,6 +1,8 @@
 $(document).ready(function() {
     GetCategory();
-
+    // var loginResult = function(msg) {
+    //     swal(msg);
+    // }
 });
 
 function GetCategory() {
@@ -27,14 +29,18 @@ $("#loginBtn").click(function() {
         value: formValues
     } = swal({
         title: 'Login',
-        html: '<input id="acc" type="email" class="swal2-input">' +
-            '<input id="psw" type="password" class="swal2-input">',
+        html: '<input id="acc" type="email" maxlength="20" placeholder="帳 號" value="" class="swal2-input">' +
+            '<input id="psw" type="password"  placeholder="密 碼" value="" class="swal2-input">',
         focusConfirm: true,
         preConfirm: () => {
-            return [
-                $('#acc').val(),
-                $('#psw').val()
-            ]
+            var data = {
+                "account": ($('#acc').val()),
+                "password": ($('#psw').val())
+            }
+            console.log(JSON.stringify(data));
+            Post('/login', data, function(msg) {
+                swal(msg);
+            });
         }
-    })
+    });
 });
