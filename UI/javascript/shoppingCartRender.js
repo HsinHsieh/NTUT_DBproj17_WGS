@@ -18,18 +18,6 @@ function GetInfo() {
     Get(apiUrl, callback);
 }
 
-function PutItems() {
-    var url = '/shopping_cart/add';
-    var data = {
-        pid: 'ACT0000015',
-        customer: 'wasd'
-    }
-    var callback = function(msg) {
-        alert(msg)
-    }
-    Post(url, data, callback);
-}
-
 function GetItems() {
     var url = '/shopping_cart/items';
     var data = {
