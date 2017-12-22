@@ -49,7 +49,7 @@ $(document).ready(function() {
   }
   Get('/admin/api/productCatagory', searchCatagory);
   Get('/admin/api/productEdit/' + OriginalPID, searchDetail);
-  $("#product_add_submit").click(function() {
+  $("#product_edit_submit").click(function() {
     var data = {
       "OriginalPID": (OriginalPID),
       "PID": ($('#productEdit_PID').val()),
