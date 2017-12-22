@@ -1,4 +1,5 @@
 const Product = require('./product')
+const DataBaseController = require('../DB/DatabaseController.js')
 
 module.exports = class {
     constructor(router) {
@@ -9,45 +10,60 @@ module.exports = class {
     }
 
     SetAPI() {
-        this.router.put("/add", function(req, res) {
-            var id = req.body.id;
-            var quantity = req.body.quantity;
-            var product = Product(id, quantity)
-            products_Id.append(product);
-            this.putProiductInfo()
+        this.router.post("/add", function(req, res) {
+            var customer = req.body.customer;
+
+            var command = "SELECT order_main.OID FROM order_main \
+                        WHERE order_main.Status = 0 AND order_main.Customer='" + customer + "'";
+
+
+            var db = DataBaseController.GetDB();
+            var callback = function(error, rows, fields) {
+                if (error)
+                    throw error;
+                var insert = function(error, rows, fields){
+                    command = "INSERT INTO `order_content`(`Item`, `Order_Number`) VALUES ('" + req.body.pid + "','" + rows[0].OID + "')";
+                    db.query(command, function(error, rows, fields) {
+                        if (error)
+                            throw error;
+                    });
+                }
+                if (rows == null) {
+                    command = "INSERT INTO 'order_main' {'Customer','Status'} VALUES ('" + this.customer + "', 0)";
+                    db.query(command,insert);
+                } else {
+                    insert(error, rows, fields);
+                }
+            };
+
+            db.query(command, callback);
             res.send('Product is added to shopping cart');
         });
 
-        this.router.get("/get", function(req, res) {
-            res.send(function() {
-                var result = "<tr><th></th><th>Product name</th> <th>Description</th><th>Price</th><th>Quantity</th><th>Total Price</th><th></th></tr>"
-                for (var i = 0; i < this.productsInfo.length; i++) {
-                    var p = this.products[i];
-                    var pic = "<td><img src='"+ p.pic_url +"' alt='13'></td>";
-                    var name = "<td>"+ p.name + "</td>";
-                    var descript = "<td>" + p.description + "</td>";
-                    var price = "<td><strong>$" + p.price.toString() + "</strong></td>";
-                    var quantity = "<td><input type='number' name='quantity' min='1' max='500' value='" + p.quantity.toString() + "'></td>";
-                    var total = "<td><strong>$" + p.total.toString() + "</strong></td>"
-                    result += pic + name + descript + price + quantity + total
+        this.router.post("/items", function(req, res) {
+            var result = "<tr><th></th><th>Product name</th><th>Price</th><th></th></tr>"
+            var callback = function(error, rows, fields) {
+                if (error)
+                    throw error;
+                for (var i = 0; i < rows.length; i++) {
+                    var p = rows[i];
+                    var pic = "<td><img src='./product_pic/" + p.PID + ".jpg'" +"' alt='幹找不到圖片' style='width:150px; height:240px'></td>";
+                    var name = "<td>"+ p.Product_Name + "</td>";
+                    var price = "<td><strong>$" + p.Price.toString() + "</strong></td>";
+                    result += "<tr>" + pic + name + price;
+                    result += "<td><span class='red'><i class='fa fa-times' aria-hidden='true'></i></span></td></tr>";
                 }
-                return result;
-            });
-        });
-    }
+                res.send(result);
+            };
 
-    putProductInfo() {
-        var index = this.products.length-1;
-        var p = this.products[index]
-        var result = {
-            'pic_url':p.pic_url,
-            'name': p.name,
-            'description': p.description,
-            'price': p.price,
-            'quantity': p.quantity,
-            'total': p.total,
-        };
-        this.productsInfo.append(result);
+            var customer = req.body.customer;
+            var command =  "SELECT product.PID, product.Product_Name, product.Price \
+                            FROM order_main, order_content, product \
+                            WHERE order_content.Order_Number = order_main.OID AND order_content.Item = product.PID \
+                            AND order_main.Customer = 'wasd' AND order_main.Status = 0";
+            var db = DataBaseController.GetDB();
+            db.query(command, callback);
+        });
     }
 
 }
