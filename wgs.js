@@ -55,7 +55,7 @@ app.use('/admin/api', adminApiRouter);
 new ShoppingCart(shoppingCartRouter);
 app.use('/shopping_cart', shoppingCartRouter);
 
-new Login(loginRouter);
+new Login(app, loginRouter);
 app.use('/login', loginRouter);
 
 //main listening process
