@@ -3,15 +3,8 @@ $(document).ready(function() {
     var pid = url.searchParams.get("pid");
 
     GetProductByID(pid);
-
     $(".addtocart2").click(function() {
-        swal({
-            position: 'top-right',
-            type: 'success',
-            title: '你選擇的物品已經加到購物車~',
-            showConfirmButton: false,
-            timer: 1500
-        });
+        CheckLogin();
     });
 });
 
@@ -27,6 +20,30 @@ function GetProductByID(id) {
         $("#supplier").html(product_info["Supplier"]);
         $("#sys_req").html(product_info["System_Requirement"].replace(/(?:\r\n|\r|\n)/g, '<br />'));
         $("#more_description").html("<br/>" + product_info["Product_Description"]);
+    }
+    Get(apiUrl, callback);
+};
+
+function CheckLogin() {
+    var apiUrl = '/login/IsLogined'
+    var callback = function(loginStatus) {
+        if (loginStatus == "false") {
+            swal({
+                position: 'top-right',
+                type: 'warning',
+                title: '請先登入',
+                showConfirmButton: false,
+                timer: 1500
+            });
+        } else {
+            swal({
+                position: 'top-right',
+                type: 'success',
+                title: '你選擇的物品已經加到購物車~',
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
     }
     Get(apiUrl, callback);
 };
