@@ -25,8 +25,6 @@ $(document).ready(function () {
             swal(msg);
             GetInfo();
         }
-        console.log(event);
-        console.log("hIHIHI");
         Post(url, data, callback);
     }
 
