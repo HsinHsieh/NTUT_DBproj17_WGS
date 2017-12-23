@@ -17,11 +17,30 @@ module.exports = class {
       (new sql("SELECT * FROM `category`ORDER BY CAID ASC")).ReturnJson(callback);
       // res.end(JSON.stringify({success:true , data:result}));
     });
+    this.router.get("/mainProductCategory", function(req, res) {
+      var callback = function(msg) {
+        res.send(msg);
+      };
+      var Str = "SELECT product.category,category.Category_Name,count(*) AS CNum FROM product,category WHERE product.Category=category.CAID GROUP BY category";
+      (new sql(Str)).ReturnJson(callback);
+    })
     this.router.get("/mainProductNum", function(req, res) {
       var callback = function(msg) {
         res.send(msg);
       };
       (new sql("SELECT count(*) AS Pnum FROM product")).ReturnJson(callback);
+    });
+    this.router.get("/mainOrderNum", function(req, res) {
+      var callback = function(msg) {
+        res.send(msg);
+      };
+      (new sql("SELECT count(*) AS Onum FROM order_main")).ReturnJson(callback);
+    });
+    this.router.get("/mainCategoryNum", function(req, res) {
+      var callback = function(msg) {
+        res.send(msg);
+      };
+      (new sql("SELECT count(*) AS CAnum FROM category")).ReturnJson(callback);
     });
     this.router.get("/productSupplier", function(req, res) {
       var callback = function(msg) {
