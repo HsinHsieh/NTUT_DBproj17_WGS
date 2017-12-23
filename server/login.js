@@ -60,7 +60,6 @@ module.exports = class {
                         res.locals.username = req.body.account;
                         //設定session
                         req.session.session_id = res.locals.username;
-                        console.log(req.session.session_id);
                         //res.redirect('/');
                         res.send("登入成功");
                         return;

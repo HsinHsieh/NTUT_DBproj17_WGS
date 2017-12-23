@@ -10,6 +10,12 @@ module.exports = class {
     }
 
     SetAPI() {
+        this.router.get("/", function(req, res) {
+            res.sendfile('./UI/shopping-cart.html', function(err) {
+                if (err) res.send(404);
+            });
+        });
+
         this.router.post("/add", function(req, res) {
             var customer = req.body.customer;
 
@@ -21,7 +27,7 @@ module.exports = class {
             var callback = function(error, rows, fields) {
                 if (error)
                     throw error;
-                var insert = function(error, rows, fields){
+                var insert = function(error, rows, fields) {
                     command = "INSERT INTO `order_content`(`Item`, `Order_Number`) VALUES ('" + req.body.pid + "','" + rows[0].OID + "')";
                     db.query(command, function(error, rows, fields) {
                         if (error)
@@ -29,8 +35,8 @@ module.exports = class {
                     });
                 }
                 if (rows == null) {
-                    command = "INSERT INTO 'order_main' {'Customer','Status'} VALUES ('" + this.customer + "', 0)";
-                    db.query(command,insert);
+                    command = "INSERT INTO 'order_main' {'Customer','Status'} VALUES ('" + customer + "', 0)";
+                    db.query(command, insert);
                 } else {
                     insert(error, rows, fields);
                 }
@@ -47,8 +53,8 @@ module.exports = class {
                     throw error;
                 for (var i = 0; i < rows.length; i++) {
                     var p = rows[i];
-                    var pic = "<td><img src='./product_pic/" + p.PID + ".jpg'" +"' alt='幹找不到圖片' style='width:150px; height:240px'></td>";
-                    var name = "<td>"+ p.Product_Name + "</td>";
+                    var pic = "<td><a href='/product?pid=" + p.PID + "'><img src='./product_pic/" + p.PID + ".jpg'" + "' alt='幹找不到圖片' style='width:165px; height:240px'></a></td>";
+                    var name = "<td style='font-size:20px;'>" + p.Product_Name + "</td>";
                     var price = "<td><strong>$" + p.Price.toString() + "</strong></td>";
                     result += "<tr>" + pic + name + price;
                     result += "<td><span class='red'><i class='fa fa-times' aria-hidden='true'></i></span></td></tr>";
@@ -57,7 +63,7 @@ module.exports = class {
             };
 
             var customer = req.body.customer;
-            var command =  "SELECT product.PID, product.Product_Name, product.Price \
+            var command = "SELECT product.PID, product.Product_Name, product.Price \
                             FROM order_main, order_content, product \
                             WHERE order_content.Order_Number = order_main.OID AND order_content.Item = product.PID \
                             AND order_main.Customer = 'wasd' AND order_main.Status = 0";
@@ -65,7 +71,7 @@ module.exports = class {
             db.query(command, callback);
         });
 
-        this.router.post("/total", function(req, res){
+        this.router.post("/total", function(req, res) {
             var command = "SELECT product.Price \
                             FROM product, order_main, order_content \
                             WHERE order_main.Customer='" + req.body.customer + "' \
@@ -79,7 +85,7 @@ module.exports = class {
                     throw error;
                 }
                 var price = 0;
-                for(var i = 0; i < rows.length; i++) {
+                for (var i = 0; i < rows.length; i++) {
                     price += rows[i].Price;
                 }
                 res.send("$" + price.toString())
@@ -93,7 +99,7 @@ module.exports = class {
                         WHERE order_main.Customer='" + req.body.customer + "' AND order_main.Status = 0";
 
             var db = DataBaseController.GetDB();
-            var  clear = function(error, rows, fields) {
+            var clear = function(error, rows, fields) {
                 if (error) {
                     throw error;
                 }
@@ -115,7 +121,7 @@ module.exports = class {
             var db = DataBaseController.GetDB();
 
             var callback = function(error, rows, fields) {
-                if (error){
+                if (error) {
                     throw error;
                 }
                 res.send("Checkout success!")

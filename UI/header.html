@@ -26,8 +26,7 @@
     <!-- Include a polyfill for ES6 Promises (optional) for IE11 and Android browser -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
 
-    <script type="text/javascript" src="./javascript/headerRenderAndSearch.js"></script>
-    <script type="text/javascript" src="./javascript/headerLogin.js"></script>
+    <script type="text/javascript" src="./javascript/headerRenderSearchLogin.js"></script>
     <script type="text/javascript" src="./javascript/Ajax.js"></script>
 </head>
 
@@ -100,9 +99,10 @@
             <!-- cart-menu -->
             <div class="cart-menu">
                 <ul>
-                    <li><a href="#"><i class="icon-heart icons" aria-hidden="true"></i></a><span class="subno">1</span><strong>Your Wishlist</strong></li>
+                    <!-- <li><a href="#"><i class="icon-heart icons" aria-hidden="true"></i></a><span class="subno">1</span><strong>Your Wishlist</strong></li> -->
                     <li class="dropdown"> <a href="#" data-toggle="dropdown" data-hover="dropdown"><i class="icon-basket-loaded icons" aria-hidden="true"></i></a><span class="subno">2</span><strong>Your Cart</strong>
                         <div class="dropdown-menu  cart-outer">
+
                             <div class="cart-content">
                                 <div class="col-sm-4 col-md-4"><img src="assets/images/elec-img4.jpg" alt="13"></div>
                                 <div class="col-sm-8 col-md-8">
@@ -117,10 +117,13 @@
                                         <div class="close">x</div> <strong>1 × $290.00</strong> </div>
                                 </div>
                             </div>
+
                             <div class="total">
                                 <div class="col-md-6 text-left"> <span>Shipping :</span> <strong>Total :</strong> </div>
                                 <div class="col-md-6 text-right"> <strong>$0.00</strong> <strong>$160.00</strong> </div>
-                            </div> <a href="shopping-cart.html" class="cart-btn">VIEW CART </a> <a href="checkout.html" class="cart-btn">CHECKOUT</a> </div>
+                            </div> <a href="/shopping_cart" class="cart-btn">VIEW CART </a>
+                            <a href="checkout.html" class="cart-btn">CHECKOUT</a>
+                        </div>
                     </li>
                 </ul>
             </div>
