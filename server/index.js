@@ -19,7 +19,6 @@ module.exports = class {
         this.router.get("/new_arrival", function(req, res) {
             var callback = function(msg) {
                 res.send(msg);
-                //console.log(req.session);
             };
             (new ItemPreview()).AddItemPreview(callback);
         });

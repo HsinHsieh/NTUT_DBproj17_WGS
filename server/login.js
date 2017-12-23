@@ -22,22 +22,15 @@ module.exports = class {
     }
 
     SetSession() {
-        // var connection = mysql.createConnection({
-        //     host: '140.124.66.13',
-        //     user: 'admin',
-        //     password: '',
-        //     database: 'wgs_session'
-        // });
-
         this.app.use(session({
             key: 'wgs',
             secret: '948794ni',
             store: new MySQLStore({}, this.db),
-            resave: false,
+            resave: true,
             saveUninitialized: false,
             cookie: {
-                maxAge: 300 * 1000 //6 * 600 * 1000
-            } //10分鐘到期*6 = 1hr
+                maxAge: 24 * 6 * 600 * 1000,
+            } //一天到期
         }));
     }
 
@@ -49,28 +42,36 @@ module.exports = class {
         // });
 
         this.router.post("/", function(req, res) {
-            var User = new member();
-            User.GetMemberFromAccount(req.body.account, function(err, results) {
-                if (results == null) {
-                    res.locals.error = '使用者不存在';
-                    res.send('使用者不存在');
-                    return;
-                }
-                if (results.CID != req.body.account || results.Password != req.body.password) {
-                    res.locals.error = '密碼錯誤';
-                    res.send('密碼錯誤');
-                    return;
-                } else {
-                    res.locals.username = req.body.account;
-                    //設定session
-                    req.session.session_id = res.locals.username;
-                    console.log(req.session.session_id);
-                    //res.redirect('/');
-                    res.send("登入成功");
-                    //res.redirect('/');
-                    return;
-                }
-            });
+            if (req.session.session_id) {
+                res.send("你已經登入");
+            } else {
+                var User = new member();
+                User.GetMemberFromAccount(req.body.account, function(err, results) {
+                    if (results == null) {
+                        res.locals.error = '使用者不存在';
+                        res.send('使用者不存在');
+                        return;
+                    }
+                    if (results.CID != req.body.account || results.Password != req.body.password) {
+                        res.locals.error = '密碼錯誤';
+                        res.send('密碼錯誤');
+                        return;
+                    } else {
+                        res.locals.username = req.body.account;
+                        //設定session
+                        req.session.session_id = res.locals.username;
+                        console.log(req.session.session_id);
+                        //res.redirect('/');
+                        res.send("登入成功");
+                        return;
+                    }
+                });
+            }
+        });
+
+        this.router.get("/IsLogined", function(req, res) {
+            if (req.session.session_id) res.send(req.session.session_id);
+            else res.send('false');
         });
     }
 }
