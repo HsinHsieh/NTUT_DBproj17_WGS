@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title></title>
+	<title>NTUT Gamers!!</title>
 	<!-- Latest Bootstrap min CSS -->
 	<link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css">
 	<!-- Dropdownhover CSS -->
@@ -21,26 +21,28 @@
 	<!-- Style CSS -->
 	<link rel="stylesheet" href="assets/css/style.css" type="text/css">
 	<!-- Style CSS -->
-	<link rel="stylesheet" href="assets/css/slider.css" type="text/css">
+	<link rel="stylesheet" href="assets/css/jcarousel.connected-carousels.css" type="text/css">
 	<!--  baguetteBox -->
 	<link rel="stylesheet" href="assets/css/baguetteBox.css">
 	<!-- Owl Carousel Assets -->
 	<link href="assets/owl-carousel/owl.carousel.css" rel="stylesheet">
 	<link href="assets/owl-carousel/owl.theme.css" rel="stylesheet">
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-	<script type="text/javascript" src="./javascript/Ajax.js"></script>
-	<script type="text/javascript" src="./javascript/shoppingCartRender.js"></script>
-
 	<script src="./javascript/sweetalert2/dist/sweetalert2.min.js"></script>
 	<link rel="stylesheet" href="./javascript/sweetalert2/dist/sweetalert2.min.css">
 	<!-- Include a polyfill for ES6 Promises (optional) for IE11 and Android browser -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script type="text/javascript" src="./javascript/productKeysRender.js"></script>
+	<script type="text/javascript" src="./javascript/ajax.js"></script>
 
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif]-->
 </head>
 
 <body>
@@ -58,47 +60,38 @@
 		<div id="header"></div>
 		<!--  /top-header  -->
 	</header>
-	<section class="shopping-cart">
-		<!-- .shopping-cart -->
+	<!-- newsletter -->
+	<section class="grid-shop">
+		<!-- .grid-shop -->
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item"><a href="#">Home</a></li>
-						<li class="breadcrumb-item active">Library</li>
+						<li class="breadcrumb-item active">Keys</li>
 					</ol>
-				</div>
-				<div class="col-md-12">
-					<h2>You cart items</h2>
-					<table id="CartList">
-					</table>
-					<div class="col-sm-6 col-md-6">
-						<a href="#" class="button red">CONTINUE SHOPPING</a>
+					<div class="col-md-12">
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th class="col-xs-2">訂單編號</th>
+									<th class="col-xs-3">商品名稱</th>
+									<th class="col-xs-2">訂購時間</th>
+									<th class="col-xs-3">金鑰</th>
+								</tr>
+							</thead>
+							<tbody class="product_list">
+
+							</tbody>
+						</table>
 					</div>
-					<div class="col-sm-6 col-md-6 text-right">
-						<a href="#" class="button" id="clear">CLEAR SHOPPING CART</a>
-					</div>
-					<div class="col-sm-4 col-md-4">
-						<div class="shipping-outer">
-							<h2>Order</h2>
-							<div class="row">
-								<div class="col-md-12">
-									<ul>
-										<li>Cart Totals: <strong id="total"></strong></li>
-										<li class="text-center">
-											<a href="#" class="redbutton" id="checkout">checkout</a>
-										</li>
-									</ul>
-								</div>
-							</div>
-							<a href="#" class="button2">Redeem code</a>
-						</div>
-					</div>
+
+
+			<!-- right side -->
 				</div>
 			</div>
-
 		</div>
-		<!-- /.shopping-cart -->
+		<!-- /.grid-shop -->
 	</section>
 	<footer>
 		<script>
@@ -125,14 +118,26 @@
 	<!-- Bootstrap Core JavaScript -->
 	<script src="assets/js/bootstrap.min.js"></script>
 	<script src="assets/js/bootstrap-dropdownhover.min.js"></script>
+	<script src="assets/js/incrementing.js"></script>
 	<!-- Plugin JavaScript -->
 	<script src="assets/js/jquery.easing.min.js"></script>
 	<script src="assets/js/wow.min.js"></script>
 	<!-- owl carousel -->
 	<script src="assets/owl-carousel/owl.carousel.js"></script>
 	<!--  Custom Theme JavaScript  -->
-	<script src="assets/js/filter-price.js"></script>
 	<script src="assets/js/custom.js"></script>
+	<!--  jcarousel Theme JavaScript  -->
+	<script type="text/javascript" src="assets/js/jquery.jcarousel.min.js"></script>
+	<script type="text/javascript" src="assets/js/jcarousel.connected-carousels.js"></script>
+	<script type="text/javascript" src="assets/js/jquery.elevatezoom.js"></script>
+	<!-- <script>
+		$('.zoom_01').elevateZoom({
+			zoomType: "inner",
+			cursor: "crosshair",
+			zoomWindowFadeIn: 500,
+			zoomWindowFadeOut: 750
+		});
+	</script> -->
 </body>
 
 </html>

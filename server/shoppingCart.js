@@ -32,11 +32,16 @@ module.exports = class {
                     db.query(command, function(error, rows, fields) {
                         if (error)
                             throw error;
+
                     });
                 }
-                if (rows == null) {
-                    command = "INSERT INTO 'order_main' {'Customer','Status'} VALUES ('" + customer + "', 0)";
-                    db.query(command, insert);
+                if (rows.length == 0) {
+                    command = "INSERT INTO order_main (Customer, Status) VALUES ('" + customer + "', 0)";
+                    db.query(command,  function(error, rows, fields) {
+                        if (error)
+                            throw error;
+
+                    });
                 } else {
                     insert(error, rows, fields);
                 }
