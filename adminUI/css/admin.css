@@ -3,6 +3,7 @@
 }
 .stat_name{
   font-size:16px;
+  font-family: "微軟正黑體";
 }
 .admin_title{
   font-size: 32px;
@@ -10,6 +11,8 @@
 .admin_content{
   font-size:16px;
 }
-.stat_product{
+
+.stat_info{
   font-size: 32px;
+  font-family: "微軟正黑體";
 }

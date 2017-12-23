@@ -28,27 +28,32 @@
 	<div id="header"></div>
 	<!-- /.navbar-collapse -->
 	<script src="./js/ajax.js"></script>
-	<script src="./js/MainRender.js"></script>
+	<script src="./js/index.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 	<section>
 		<div class="container">
 			<div class="jumbotron">
-				<!-- <div class="row">
-				<h3>系統概覽</h3>
-			</div> -->
 				<div class="row">
-					<div class="col-sm-4">
-						<a class="stat-column" href="#">
-						<span class="stat_num">1602</sapn><br>
-						<span class="stat_name">累計交易量</span>
-					</a>
-					</div>
-					<div class="col-sm-4">
-						<a class="stat-column" href="#">
-							<span class="stat_product"></span><br><br>
-							<span class="stat_name">商品數量</span>
+					<div class="col-sm-3">
+						<a class="stat-column" href="/admin/product_search">
+							<div class="stat_product stat_info"></div>
+							<div class="stat_name">商品數量</div>
 						</a>
 					</div>
-					<div class="col-sm-4">
+					<div class="col-sm-3">
+						<a class="stat-column" href="/admin/catagory_edit">
+							<div class="stat_category stat_info"></div>
+							<div class="stat_name">商品分類</div>
+						</a>
+					</div>
+					<div class="col-sm-3">
+						<a class="stat-column" href="#">
+							<div class="stat_order stat_info"></div>
+							<div class="stat_name">累計交易量</div>
+						</a>
+					</div>
+
+					<div class="col-sm-3">
 						<a class="stat-column" href="#">
 						<span class="stat_num">248377</sapn><br>
 						<span class="stat_name">總交易金額</span>
@@ -57,11 +62,26 @@
 				</div>
 			</div>
 		</div>
-		</div>
-		</div>
 	</section>
-
 	<hr>
+
+	<section>
+
+		<div class="container">
+			<div class="col-md-6">
+				<div class="panel panel-primary">
+					<div class="panel-heading">商品分類統計</div>
+					<div class="panel-body">
+						<canvas id="myChart"></canvas>
+
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+
+	</section>
 	<div id="footer"></div>
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
