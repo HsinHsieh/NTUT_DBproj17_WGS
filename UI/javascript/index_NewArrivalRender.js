@@ -1,10 +1,12 @@
 $(document).ready(function() {
     GetNewArrival();
 
-    $(".addbtn").click(function() {
-        alert("已加到購物車!");
-    });
+    $(document).on("click", ".addbtn", Click);
 });
+
+function Click(event) {
+    swal("已加到購物車!");
+}
 
 function GetNewArrival() {
     var apiUrl = '/new_arrival'

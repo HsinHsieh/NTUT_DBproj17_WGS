@@ -4,7 +4,7 @@ $(document).ready(function() {
 
     GetProductByID(pid);
     $(".addtocart2").click(function() {
-        CheckLogin();
+        CheckLoginAndAdd(pid);
     });
 });
 
@@ -24,9 +24,10 @@ function GetProductByID(id) {
     Get(apiUrl, callback);
 };
 
-function CheckLogin() {
+function CheckLoginAndAdd(pid) {
     var apiUrl = '/login/IsLogined'
     var callback = function(loginStatus) {
+        //console.log(loginStatus);
         if (loginStatus == "false") {
             swal({
                 position: 'top-right',
@@ -36,6 +37,7 @@ function CheckLogin() {
                 timer: 1500
             });
         } else {
+            AddToCart(loginStatus, pid);
             swal({
                 position: 'top-right',
                 type: 'success',
@@ -46,4 +48,15 @@ function CheckLogin() {
         }
     }
     Get(apiUrl, callback);
+};
+
+function AddToCart(cid, pid) {
+    var apiUrl = '/shopping_cart/add'
+    data = {
+        "customer": cid,
+        "pid": pid
+    }
+    Post(apiUrl, data, function(msg) {
+        //
+    });
 };

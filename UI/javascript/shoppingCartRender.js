@@ -1,13 +1,32 @@
-$(document).ready(function() {
+$(document).ready(function () {
     GetInfo();
 
-    $("#clear").click(function() {
+    $("#clear").click(function () {
         clear();
     });
 
-    $("#checkout").click(function() {
+    $("#checkout").click(function () {
         checkout();
     });
+
+    $(".e04").on('click', function (event) {
+        alert("HIHIHIHI")
+        cancel();
+    });
+
+    $(document).on("click", ".e04", cancel);
+
+    function cancel(event) {
+        var url = '/shopping_cart/cancel';
+        var data = {
+            OCID: event.target.dataset.ocid,
+        };
+        var callback = function (msg) {
+            swal(msg);
+            GetInfo();
+        }
+        Post(url, data, callback);
+    }
 
     function checkout(){
         var url = '/shopping_cart/checkout';
