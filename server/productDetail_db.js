@@ -1,8 +1,5 @@
 const DataBaseController = require('../DB/DatabaseController.js')
 
-const category_template = "{{Category_Name}}遊戲"
-const product_name_template = " {{Product_Name}} "
-
 module.exports = class {
     constructor(ID) {
         this.id = ID;
