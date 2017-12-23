@@ -2,9 +2,10 @@ const ProductKeys = require('./productKeys_db.js');
 
 module.exports = class {
     constructor(router) {
-        this.router = router
-        this.SetAPI()
-    }
+        this.router = router;
+        this.SetAPI();
+    };
+
     SetAPI() {
         this.router.get("/", function(req, res) {
             res.sendfile('./UI/productKeys.html', function(err) {

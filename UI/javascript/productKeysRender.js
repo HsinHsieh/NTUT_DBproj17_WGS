@@ -23,6 +23,7 @@ function CheckLogin() {
 function GetProductKeys(CID) {
     var apiUrl = '/productKeys/' + CID
     var callback = function(product_keys) {
-
+        console.log(product_keys)
     }
-}
+    Get(apiUrl, callback);
+};

@@ -6,11 +6,13 @@ module.exports = class {
         this.db = DataBaseController.GetDB();
     }
 
-    GetProductInfo(callback){
-        this.db.query("SELECT product.*, category.Category_Name, DATE_FORMAT(product.Launch_Date,'%Y-%m-%d') AS Formated_Date FROM product, category WHERE product.Category = category.CAID AND PID = '" + this.id + "'", function(error, rows, fields) {
+    GetProductKeysInfo(callback){
+        var command = "SELECT `Order_Number`, `Product_Name`, `Order_Time`, `License_Key`, `Key_Used` FROM (`order_content` JOIN `order_main` ON `order_content`.`Order_Number` = `order_main`.`OID`) JOIN `product` ON `order_content`.`Item` = `product`.`PID` WHERE `Order_Number` IN (SELECT `OID` FROM `order_main` WHERE `Customer` = '" + this.id + "')";
+        this.db.query(command, function(error, rows, fields) {
             if (error)
                 throw error;
-            callback(rows[0]);
+            console.log(rows)
+            callback(rows);
         });
     }
 }

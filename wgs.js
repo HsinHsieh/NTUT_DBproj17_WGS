@@ -60,7 +60,7 @@ app.use('/shopping_cart', shoppingCartRouter);
 new Login(app, loginRouter);
 app.use('/login', loginRouter);
 
-new ProductKeys(app, productKeysRouter);
+new ProductKeys(productKeysRouter);
 app.use('/productKeys', productKeysRouter);
 
 //main listening process
