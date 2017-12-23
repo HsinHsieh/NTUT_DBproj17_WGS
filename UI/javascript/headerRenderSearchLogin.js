@@ -1,8 +1,6 @@
 $(document).ready(function() {
     GetCategory();
-    // var loginResult = function(msg) {
-    //     swal(msg);
-    // }
+    CheckLogin();
 });
 
 function GetCategory() {
@@ -24,6 +22,23 @@ $("#btnSearch").click(function() {
         window.location = '/search?s=' + encodeURIComponent(target);
 });
 
+function CheckLogin() {
+    var apiUrl = '/login/IsLogined'
+    var callback = function(loginStatus) {
+        //console.log(loginStatus);
+        if (loginStatus == "false") {
+            $("#loginBtn").show();
+            $("#logoutBtn").hide();
+            $('#hellouser').text("登入或註冊");
+        } else {
+            $("#loginBtn").hide();
+            $("#logoutBtn").show();
+            $('#hellouser').text(loginStatus);
+        }
+    }
+    Get(apiUrl, callback);
+};
+
 $("#loginBtn").click(function() {
     var {
         value: formValues
@@ -40,7 +55,16 @@ $("#loginBtn").click(function() {
             console.log(JSON.stringify(data));
             Post('/login', data, function(msg) {
                 swal(msg);
+                CheckLogin();
             });
         }
     });
+});
+
+$("#logoutBtn").click(function() {
+    Get('/login', function(msg) {
+        swal(msg);
+        CheckLogin();
+    });
+    $('#hellouser').text("登入或註冊");
 });

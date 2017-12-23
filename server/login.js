@@ -17,7 +17,7 @@ module.exports = class {
         this.app = app;
         this.router = router;
         this.db = DataBaseController.GetDB();
-        this.SetAPI();
+        this.SetAPI(this.db);
         this.SetSession();
     }
 
@@ -34,7 +34,7 @@ module.exports = class {
         }));
     }
 
-    SetAPI() {
+    SetAPI(db) {
         // this.router.post(
         //     '/',
         //     Passport.authenticate('local', {session: true}),function(req, res) {
@@ -59,13 +59,19 @@ module.exports = class {
                     } else {
                         res.locals.username = req.body.account;
                         //設定session
-                        req.session.session_id = res.locals.username;
+                        req.session.session_id = req.body.account; //res.locals.username
                         //res.redirect('/');
                         res.send("登入成功");
                         return;
                     }
                 });
             }
+        });
+
+        this.router.get('/', function(req, res) {
+            db.query("DELETE FROM `sessions` WHERE `data` LIKE '%" + req.session.session_id + "%'");
+            req.session.destroy();
+            res.send('你已經登出惹 ㄅㄅ');
         });
 
         this.router.get("/IsLogined", function(req, res) {
