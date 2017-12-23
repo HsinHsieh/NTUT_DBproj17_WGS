@@ -1,5 +1,6 @@
 $(document).ready(function() {
     var url = new URL(window.location.href);
+    $(document).on("click", ".add-btn", ClickAddToCart);
 
     var s = url.searchParams.get("s");
     if (s == null) s = url.searchParams.get("cate");
@@ -25,6 +26,9 @@ function GetItems(s) {
     var apiUrl = '/search/' + s
     var callback = function(msg) {
         $("#itemList").html(msg);
+        if (msg.length == 0) {
+            $("#itemList").text("　　　未找到任何商品");
+        }
     }
     Get(apiUrl, callback);
 };
@@ -33,6 +37,9 @@ function GetItemsInGrid(s) {
     var apiUrl = '/search/GridSearching/' + s
     var callback = function(msg) {
         $("#itemGrid").html(msg);
+        if (msg.length == 0) {
+            $("#itemList").text("　　　未找到任何商品");
+        }
     }
     Get(apiUrl, callback);
 };
@@ -48,4 +55,45 @@ function GetCategory() {
         $("#cate").html(resStr);
     }
     Get(apiUrl, callback);
+};
+
+function ClickAddToCart(event) {
+    CheckLoginAndAdd(event.target.dataset.pid);
+}
+
+function CheckLoginAndAdd(pid) {
+    var apiUrl = '/login/IsLogined'
+    var callback = function(loginStatus) {
+        //console.log(loginStatus);
+        if (loginStatus == "false") {
+            swal({
+                position: 'top-right',
+                type: 'warning',
+                title: '請先登入',
+                showConfirmButton: false,
+                timer: 1500
+            });
+        } else {
+            AddToCart(loginStatus, pid);
+            swal({
+                position: 'top-right',
+                type: 'success',
+                title: '你選擇的物品已經加到購物車~',
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
+    }
+    Get(apiUrl, callback);
+};
+
+function AddToCart(cid, pid) {
+    var apiUrl = '/shopping_cart/add'
+    data = {
+        "customer": cid,
+        "pid": pid
+    }
+    Post(apiUrl, data, function(msg) {
+        //
+    });
 };

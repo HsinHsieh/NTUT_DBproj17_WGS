@@ -1,18 +1,18 @@
-$(document).ready(function () {
+$(document).ready(function() {
     GetInfo();
 
-    $("#clear").click(function () {
+    $("#clear").click(function() {
         clear();
     });
 
-    $("#checkout").click(function () {
+    $("#checkout").click(function() {
         checkout();
     });
 
-    $(".e04").on('click', function (event) {
-        alert("HIHIHIHI")
-        cancel();
-    });
+    // $(".e04").on('click', function (event) {
+    //     alert("HIHIHIHI")
+    //     cancel();
+    // });
 
     $(document).on("click", ".e04", cancel);
 
@@ -21,19 +21,25 @@ $(document).ready(function () {
         var data = {
             OCID: event.target.dataset.ocid,
         };
-        var callback = function (msg) {
-            swal(msg);
+        var callback = function(msg) {
+            swal({
+                position: 'top-right',
+                type: 'success',
+                title: msg,
+                showConfirmButton: false,
+                timer: 1500
+            });
             GetInfo();
         }
         Post(url, data, callback);
     }
 
-    function checkout(){
+    function checkout() {
         var url = '/shopping_cart/checkout';
         var data = {
             customer: 'wasd',
         };
-        var callback = function (msg) {
+        var callback = function(msg) {
             swal(msg);
             GetInfo();
         };
@@ -59,7 +65,7 @@ $(document).ready(function () {
     function GetItems() {
         var url = '/shopping_cart/items';
         var data = {
-            customer:'wasd',
+            customer: 'wasd',
         };
         var callback = function(msg) {
             $("#CartList").html(msg);
