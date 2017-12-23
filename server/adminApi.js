@@ -79,6 +79,13 @@ module.exports = class {
       var Str = "UPDATE `category` SET `CAID`='" + req.body.CAID + "', `Category_Name`='" + req.body.Name + "' WHERE `category`.`CAID`='" + req.body.OriginalCAID + "'";
       (new sql(Str)).ReturnJson(callback);
     });
+    this.router.get("/categoryDelete/:CAID", function(req, res) {
+      var callback = function(msg) {
+        res.send(msg);
+      };
+      var sqlStr = "DELETE FROM `category` WHERE `category`.`CAID`='" + req.params.CAID + "'";
+      (new sql(sqlStr)).ReturnJson(callback);
+    });
     this.router.post("/productAdd/file", upload.single("imagename"), function(req, res, next) {
       var fileFormat = (req.file.originalname).split(".");
       fs.rename('./UI/product_pic/temp', './UI/product_pic/' + req.body.title + "." + fileFormat[fileFormat.length - 1], function(err) {
