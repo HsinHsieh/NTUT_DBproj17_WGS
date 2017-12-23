@@ -47,7 +47,9 @@ module.exports = class {
         });
 
         this.router.post("/items", function(req, res) {
-            var result = "<tr><th></th><th>Product name</th><th>Price</th><th></th></tr>"
+            var result = "<tr><th></th><th>Product name</th><th>Price</th><th>Cancel</th></tr>"
+
+            var customer = req.body.customer;
             var callback = function(error, rows, fields) {
                 if (error)
                     throw error;
@@ -57,16 +59,17 @@ module.exports = class {
                     var name = "<td style='font-size:20px;'>" + p.Product_Name + "</td>";
                     var price = "<td><strong>$" + p.Price.toString() + "</strong></td>";
                     result += "<tr>" + pic + name + price;
-                    result += "<td><span class='red'><i class='fa fa-times' aria-hidden='true'></i></span></td></tr>";
+                    result += "<td ><span class='red'>\
+                                <i class='e04 fa fa-times' aria-hidden='true' data-OCID='" + p.OCID + "'></i>\
+                                </span></td></tr>";
                 }
                 res.send(result);
             };
-
             var customer = req.body.customer;
-            var command = "SELECT product.PID, product.Product_Name, product.Price \
+            var command = "SELECT product.PID, product.Product_Name, product.Price, order_content.OCID \
                             FROM order_main, order_content, product \
                             WHERE order_content.Order_Number = order_main.OID AND order_content.Item = product.PID \
-                            AND order_main.Customer = 'wasd' AND order_main.Status = 0";
+                            AND order_main.Customer = '" + customer + "' AND order_main.Status = 0";
             var db = DataBaseController.GetDB();
             db.query(command, callback);
         });
@@ -126,6 +129,22 @@ module.exports = class {
                 }
                 res.send("Checkout success!")
             }
+
+            db.query(command, callback);
+        });
+
+        this.router.post("/cancel", function(req, res) {
+            var ocid = req.body.OCID;
+            console.log(ocid);
+            var command = "DELETE FROM order_content WHERE order_content.OCID = " + parseInt(ocid);
+
+            var db = DataBaseController.GetDB();
+            var callback = function(error, rows, fields) {
+                if (error) {
+                    throw error;
+                }
+                res.send("item: " + ocid + "is canceled. ")
+            };
 
             db.query(command, callback);
         });
