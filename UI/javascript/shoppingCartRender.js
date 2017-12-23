@@ -1,20 +1,20 @@
-$(document).ready(function () {
+$(document).ready(function() {
     var user;
     CheckLogin(user);
     GetInfo();
 
-    $("#clear").click(function () {
+    $("#clear").click(function() {
         clear();
     });
 
-    $("#checkout").click(function () {
+    $("#checkout").click(function() {
         checkout();
     });
 
-    $(".e04").on('click', function (event) {
-        alert("HIHIHIHI")
-        cancel();
-    });
+    // $(".e04").on('click', function (event) {
+    //     alert("HIHIHIHI")
+    //     cancel();
+    // });
 
     $(document).on("click", ".e04", cancel);
 
@@ -23,19 +23,25 @@ $(document).ready(function () {
         var data = {
             OCID: event.target.dataset.ocid,
         };
-        var callback = function (msg) {
-            swal(msg);
+        var callback = function(msg) {
+            swal({
+                position: 'top-right',
+                type: 'success',
+                title: msg,
+                showConfirmButton: false,
+                timer: 1500
+            });
             GetInfo();
         }
         Post(url, data, callback);
     }
 
-    function checkout(){
+    function checkout() {
         var url = '/shopping_cart/checkout';
         var data = {
             customer: user,
         };
-        var callback = function (msg) {
+        var callback = function(msg) {
             swal(msg);
             GetInfo();
         };
@@ -95,7 +101,7 @@ function CheckLogin(user) {
                 timer: 1500
             });
         } else {
-          user = loginStatus;
+            user = loginStatus;
         }
     }
     Get(apiUrl, callback);

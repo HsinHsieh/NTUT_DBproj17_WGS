@@ -47,19 +47,6 @@
                     <li>
                         <div id="hellouser" href="#"><i class="icon-note icons" aria-hidden="true"></i> </div>
                     </li>
-                    <li>
-                        <div class="dropdown">
-                            <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
-                                個人中心 <i class="icon-plus icons" aria-hidden="true"></i> 
-                             </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">帳戶設定</a></li>
-                                <li><a href="#">個人檔案</a></li>
-                                <li><a href="#">購物車</a></li>
-                                <li><a href="/productKeys">金鑰管理</a></li>
-                            </ul>
-                        </div>
-                    </li>
                 </ul>
             </div>
         </div>
@@ -103,6 +90,18 @@
             <!-- cart-menu -->
             <div class="cart-menu">
                 <ul>
+                    <li id="personalCenter">
+                        <div class="dropdown">
+                            <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" style="font-size:14px;">
+                                <i class="icon-docs icons" aria-hidden="true"></i> 個人中心
+                             </a>
+                            <ul class="dropdown-menu" style="font-size:14px;">
+                                <li><a href="#">帳戶設定</a></li>
+                                <li><a href="#">個人檔案</a></li>
+                                <li><a href="/productKeys">金鑰管理</a></li>
+                            </ul>
+                        </div>
+                    </li>
                     <!-- <li><a href="#"><i class="icon-heart icons" aria-hidden="true"></i></a><span class="subno">1</span><strong>Your Wishlist</strong></li> -->
                     <li class="dropdown"> <a href="#" data-toggle="dropdown" data-hover="dropdown"><i class="icon-basket-loaded icons" aria-hidden="true"></i></a><span class="subno">2</span><strong>Your Cart</strong>
                         <div class="dropdown-menu  cart-outer">

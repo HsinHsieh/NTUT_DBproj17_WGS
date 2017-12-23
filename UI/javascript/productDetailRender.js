@@ -27,7 +27,6 @@ function GetProductByID(id) {
 function CheckLoginAndAdd(pid) {
     var apiUrl = '/login/IsLogined'
     var callback = function(loginStatus) {
-        //console.log(loginStatus);
         if (loginStatus == "false") {
             swal({
                 position: 'top-right',

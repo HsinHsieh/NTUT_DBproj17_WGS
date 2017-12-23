@@ -33,7 +33,7 @@ function CheckLogin() {
         } else {
             $("#loginBtn").hide();
             $("#logoutBtn").show();
-            $('#hellouser').text(loginStatus);
+            $('#hellouser').text("你好!想來點糞game嗎?  " + loginStatus);
         }
     }
     Get(apiUrl, callback);
@@ -66,5 +66,4 @@ $("#logoutBtn").click(function() {
         swal(msg);
         CheckLogin();
     });
-    $('#hellouser').text("登入或註冊");
 });

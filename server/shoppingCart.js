@@ -37,7 +37,7 @@ module.exports = class {
                 }
                 if (rows.length == 0) {
                     command = "INSERT INTO order_main (Customer, Status) VALUES ('" + customer + "', 0)";
-                    db.query(command,  function(error, rows, fields) {
+                    db.query(command, function(error, rows, fields) {
                         if (error)
                             throw error;
 
@@ -65,7 +65,7 @@ module.exports = class {
                     var price = "<td><strong>$" + p.Price.toString() + "</strong></td>";
                     result += "<tr>" + pic + name + price;
                     result += "<td ><span class='red'>\
-                                <i class='e04 fa fa-times' aria-hidden='true' data-OCID='" + p.OCID + "'></i>\
+                                <i class='e04 fa fa-times' aria-hidden='true' style='cursor:pointer;' data-OCID='" + p.OCID + "'></i>\
                                 </span></td></tr>";
                 }
                 res.send(result);
@@ -141,7 +141,6 @@ module.exports = class {
 
         this.router.post("/cancel", function(req, res) {
             var ocid = req.body.OCID;
-            console.log(ocid);
             var command = "DELETE FROM order_content WHERE order_content.OCID = " + parseInt(ocid);
 
             var db = DataBaseController.GetDB();
@@ -149,7 +148,7 @@ module.exports = class {
                 if (error) {
                     throw error;
                 }
-                res.send("item: " + ocid + "is canceled. ")
+                res.send("Canceled")
             };
 
             db.query(command, callback);
