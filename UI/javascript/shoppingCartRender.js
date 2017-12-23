@@ -1,7 +1,6 @@
 $(document).ready(function() {
     var user;
-    CheckLogin(user);
-    GetInfo();
+    CheckLogin();
 
     $("#clear").click(function() {
         clear();
@@ -10,11 +9,6 @@ $(document).ready(function() {
     $("#checkout").click(function() {
         checkout();
     });
-
-    // $(".e04").on('click', function (event) {
-    //     alert("HIHIHIHI")
-    //     cancel();
-    // });
 
     $(document).on("click", ".e04", cancel);
 
@@ -67,11 +61,13 @@ $(document).ready(function() {
     function GetItems() {
         var url = '/shopping_cart/items';
         var data = {
-            customer: user,
+            customer: this.user,
         };
         var callback = function(msg) {
             $("#CartList").html(msg);
         };
+
+        console.log(this.user);
         Post(url, data, callback);
         GetTotal(data);
     }
@@ -86,23 +82,27 @@ $(document).ready(function() {
         Post(url, data, callback);
     }
 
-});
+    function CheckLogin() {
+        var apiUrl = '/login/IsLogined'
+        var callback = function(loginStatus) {
+            //console.log(loginStatus);
+            if (loginStatus == "false") {
+                swal({
+                    position: 'top-right',
+                    type: 'warning',
+                    title: '請先登入',
+                    showConfirmButton: true,
+                    timer: 1500,
+                }).then(function () {
+                    window.location = "/";
+                });
+            } else {
+                this.user = loginStatus;
+                console.log(this.user);
+                GetInfo();
+            }
+        };
+        Get(apiUrl, callback);
+    };
 
-function CheckLogin(user) {
-    var apiUrl = '/login/IsLogined'
-    var callback = function(loginStatus) {
-        //console.log(loginStatus);
-        if (loginStatus == "false") {
-            swal({
-                position: 'top-right',
-                type: 'warning',
-                title: '請先登入',
-                showConfirmButton: false,
-                timer: 1500
-            });
-        } else {
-            user = loginStatus;
-        }
-    }
-    Get(apiUrl, callback);
-};
+});
