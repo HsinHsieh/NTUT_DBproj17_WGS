@@ -1,4 +1,6 @@
 $(document).ready(function() {
+    var user;
+    CheckLogin(user);
     GetInfo();
 
     $("#clear").click(function() {
@@ -37,7 +39,7 @@ $(document).ready(function() {
     function checkout() {
         var url = '/shopping_cart/checkout';
         var data = {
-            customer: 'wasd',
+            customer: user,
         };
         var callback = function(msg) {
             swal(msg);
@@ -49,7 +51,7 @@ $(document).ready(function() {
     function clear() {
         var url = '/shopping_cart/clear';
         var data = {
-            customer: 'wasd'
+            customer: user,
         };
         var callback = function(msg) {
             swal(msg);
@@ -65,7 +67,7 @@ $(document).ready(function() {
     function GetItems() {
         var url = '/shopping_cart/items';
         var data = {
-            customer: 'wasd',
+            customer: user,
         };
         var callback = function(msg) {
             $("#CartList").html(msg);
@@ -85,3 +87,22 @@ $(document).ready(function() {
     }
 
 });
+
+function CheckLogin(user) {
+    var apiUrl = '/login/IsLogined'
+    var callback = function(loginStatus) {
+        //console.log(loginStatus);
+        if (loginStatus == "false") {
+            swal({
+                position: 'top-right',
+                type: 'warning',
+                title: '請先登入',
+                showConfirmButton: false,
+                timer: 1500
+            });
+        } else {
+            user = loginStatus;
+        }
+    }
+    Get(apiUrl, callback);
+};

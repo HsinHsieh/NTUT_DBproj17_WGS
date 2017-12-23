@@ -84,7 +84,8 @@ module.exports = class {
                             FROM product, order_main, order_content \
                             WHERE order_main.Customer='" + req.body.customer + "' \
                                 AND order_content.Order_Number = order_main.OID\
-                                AND product.PID = order_content.Item";
+                                AND product.PID = order_content.Item \
+                                AND order_main.Status = 0";
 
 
             var db = DataBaseController.GetDB();
