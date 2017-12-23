@@ -10,6 +10,7 @@ const AdminApi = require('./server/adminApi.js')
 const SimpleQuery = require('./server/simpleQueryApi.js')
 const ShoppingCart = require('./server/shoppingCart.js')
 const Login = require('./server/login.js')
+const ProductKeys = require('./server/productKeys.js')
 
 //main framwork declare
 var app = express();
@@ -23,6 +24,7 @@ var loginRouter = express.Router();
 var shoppingCartRouter = express.Router();
 var searchListRouter = express.Router();
 var simpleQueryRouter = express.Router();
+var productKeysRouter = express.Router();
 
 //body parser-for POST Info to transfer in http packet
 app.use(bodyParser.json());
@@ -57,6 +59,9 @@ app.use('/shopping_cart', shoppingCartRouter);
 
 new Login(app, loginRouter);
 app.use('/login', loginRouter);
+
+new ProductKeys(app, productKeysRouter);
+app.use('/productKeys', productKeysRouter);
 
 //main listening process
 var server = app.listen(3000, function() {
