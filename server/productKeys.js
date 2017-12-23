@@ -7,7 +7,7 @@ module.exports = class {
     }
     SetAPI() {
         this.router.get("/", function(req, res) {
-            res.sendfile('./UI/productDetail.html', function(err) {
+            res.sendfile('./UI/productKeys.html', function(err) {
                 if (err) res.send(404);
             });
         });
@@ -16,7 +16,7 @@ module.exports = class {
             var callback = function(msg) {
                 res.send(msg);
             };
-            (new ProductKeys(req.params.userid)).GetProductInfo(callback);
+            (new ProductKeys(req.params.userid)).GetProductKeysInfo(callback);
         });
     }
 }
