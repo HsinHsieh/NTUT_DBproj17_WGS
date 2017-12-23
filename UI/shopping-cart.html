@@ -33,6 +33,12 @@
 	<script type="text/javascript" src="./javascript/Ajax.js"></script>
 	<script type="text/javascript" src="./javascript/shoppingCartRender.js"></script>
 
+	<script src="./javascript/sweetalert2/dist/sweetalert2.min.js"></script>
+	<link rel="stylesheet" href="./javascript/sweetalert2/dist/sweetalert2.min.css">
+	<!-- Include a polyfill for ES6 Promises (optional) for IE11 and Android browser -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+
+
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 	<!--[if lt IE 9]>
@@ -75,55 +81,31 @@
 					</div>
 					<div class="col-sm-6 col-md-6 text-right">
 						<a href="#" class="button">UPDATE SHOPPING CART</a>
-						<a href="#" class="button">CLEAR SHOPPING CART</a>
+						<a href="#" class="button" id="clear">CLEAR SHOPPING CART</a>
 					</div>
 					<div class="col-sm-4 col-md-4">
 						<div class="shipping-outer">
-							<h2>Calculate shipping</h2>
+							<h2>Order</h2>
 							<div class="row">
-								<div class="col-md-12 counttry">
-									<div class="lable">Select your Counttry:</div>
-									<input name="counttry" placeholder="United States (USA)" type="text">
-								</div>
-								<div class="col-sm-6 col-md-6">
-									<div class="lable">Select your State:</div>
-									<div class="size State">
-										<div class="select-option">
-											<select>
-                                       <option value="28">28</option>
-                                       <option value="32">32</option>
-                                       <option value="34">34</option>
-                                       <option value="36">36</option>
-                                       <option value="Featured Pots">State / City</option>
-                                    </select>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-6 col-md-6">
-									<div class="lable">Zip Code:</div>
-									<input name="counttry" placeholder="Zip Code" type="text">
-								</div>
-							</div>
-							<a href="#" class="button2">Update Shipping</a>
-						</div>
-					</div>
-					<div class="col-sm-4 col-md-4">
-						<div class="shipping-outer">
-							<h2>Coupon code</h2>
-							<div class="row">
-								<div class="col-md-12">
+								<!-- <div class="col-md-12">
 									<div class="lable">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
 									<input name="counttry" type="text">
-								</div>
+								</div> -->
 								<div class="col-md-12">
-									<div class="lable">Coupon Code:</div>
-									<input name="Coupon Code" placeholder="Coupon Code" type="text">
+									<ul>
+										<!-- <li>Cart Subtotal: <strong>$640.00</strong></li>
+										<li>Shipping and Handling: <strong>$10.00</strong></li> -->
+										<li>Cart Totals: <strong id="total"></strong></li>
+										<li class="text-center">
+											<a href="#" class="redbutton" id="checkout">checkout</a>
+										</li>
+									</ul>
 								</div>
 							</div>
 							<a href="#" class="button2">REdeem code</a>
 						</div>
 					</div>
-					<div class="col-sm-4 col-md-4">
+					<!-- <div class="col-sm-4 col-md-4">
 						<div class="shipping-outer">
 							<h2>Cart totals</h2>
 							<ul>
@@ -136,7 +118,7 @@
 								</li>
 							</ul>
 						</div>
-					</div>
+					</div> -->
 				</div>
 			</div>
 

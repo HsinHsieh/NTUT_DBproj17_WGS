@@ -64,6 +64,65 @@ module.exports = class {
             var db = DataBaseController.GetDB();
             db.query(command, callback);
         });
+
+        this.router.post("/total", function(req, res){
+            var command = "SELECT product.Price \
+                            FROM product, order_main, order_content \
+                            WHERE order_main.Customer='" + req.body.customer + "' \
+                                AND order_content.Order_Number = order_main.OID\
+                                AND product.PID = order_content.Item";
+
+
+            var db = DataBaseController.GetDB();
+            var callback = function(error, rows, rields) {
+                if (error) {
+                    throw error;
+                }
+                var price = 0;
+                for(var i = 0; i < rows.length; i++) {
+                    price += rows[i].Price;
+                }
+                res.send("$" + price.toString())
+            }
+            db.query(command, callback)
+        });
+
+        this.router.post("/clear", function(req, res) {
+            var command = "SELECT order_main.OID\
+                        FROM order_main\
+                        WHERE order_main.Customer='" + req.body.customer + "' AND order_main.Status = 0";
+
+            var db = DataBaseController.GetDB();
+            var  clear = function(error, rows, fields) {
+                if (error) {
+                    throw error;
+                }
+                res.send("Deletion success!");
+            }
+            var callback = function(error, rows, fields) {
+                var delCommand = "DELETE FROM order_content\
+                            WHERE order_content.Order_Number = " + rows[0].OID;
+                db.query(delCommand, clear);
+            }
+
+            db.query(command, callback);
+        });
+
+        this.router.post("/checkout", function(req, res) {
+            var command = "UPDATE order_main \
+                            SET order_main.Status=1 \
+                            WHERE order_main.Customer = '" + req.body.customer + "'";
+            var db = DataBaseController.GetDB();
+
+            var callback = function(error, rows, fields) {
+                if (error){
+                    throw error;
+                }
+                res.send("Checkout success!")
+            }
+
+            db.query(command, callback);
+        });
     }
 
 }
