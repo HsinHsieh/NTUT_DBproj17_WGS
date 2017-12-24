@@ -59,24 +59,22 @@ module.exports = class {
             res.send('Product is added to shopping cart');
         });
 
-        this.router.post("/items", function(req, res) {
-            var result = "<tr><th></th><th>Product name</th><th>Price</th><th>Cancel</th></tr>"
-
+        var GetItemsData = function(req, res) {
             var customer = req.body.customer;
             var callback = function(error, rows, fields) {
                 if (error)
                     throw error;
+                var data = [];
                 for (var i = 0; i < rows.length; i++) {
                     var p = rows[i];
-                    var pic = "<td><a href='/product?pid=" + p.PID + "'><img src='./product_pic/" + p.PID + ".jpg'" + "' alt='幹找不到圖片' style='width:165px; height:240px'></a></td>";
-                    var name = "<td style='font-size:20px;'>" + p.Product_Name + "</td>";
-                    var price = "<td><strong>$" + p.Price.toString() + "</strong></td>";
-                    result += "<tr>" + pic + name + price;
-                    result += "<td ><span class='red'>\
-                                <i class='e04 fa fa-times' aria-hidden='true' style='cursor:pointer;' data-OCID='" + p.OCID + "'></i>\
-                                </span></td></tr>";
+                    var row = {}
+                    row['pic'] = p.PID;
+                    row['name'] = p.Product_Name;
+                    row['price'] = p.Price.toString();
+                    row['ocid'] = p.OCID;
+                    data.push(row);
                 }
-                res.send(result);
+                res.send(data)
             };
             var customer = req.body.customer;
             var command = "SELECT product.PID, product.Product_Name, product.Price, order_content.OCID \
@@ -85,7 +83,11 @@ module.exports = class {
                             AND order_main.Customer = '" + customer + "' AND order_main.Status = 0";
             var db = DataBaseController.GetDB();
             db.query(command, callback);
-        });
+        }
+
+
+        this.router.post("/items", GetItemsData);
+
 
         this.router.post("/total", function(req, res) {
             var command = "SELECT product.Price \

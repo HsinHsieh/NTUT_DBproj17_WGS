@@ -63,11 +63,21 @@ $(document).ready(function() {
         var data = {
             customer: this.user,
         };
-        var callback = function(msg) {
-            $("#CartList").html(msg);
+        var callback = function(data) {
+            var result = "<tr><th></th><th>Product name</th><th>Price</th><th>Cancel</th></tr>"
+            for (var i = 0; i < data.length; i++) {
+                var p = data[i];
+                var pic = "<td><a href='/product?pid=" + p.pic + "'><img src='./product_pic/" + p.pic + ".jpg'" + "' alt='幹找不到圖片' style='width:165px; height:240px'></a></td>";
+                var name = "<td style='font-size:20px;'>" + p.name + "</td>";
+                var price = "<td><strong>$" + p.price + "</strong></td>";
+                result += "<tr>" + pic + name + price;
+                result += "<td ><span class='red'>\
+                            <i class='e04 fa fa-times' aria-hidden='true' style='cursor:pointer;' data-OCID='" + p.ocid + "'></i>\
+                            </span></td></tr>";
+            }
+            $("#CartList").html(result);
         };
 
-        console.log(this.user);
         Post(url, data, callback);
         GetTotal(data);
     }
@@ -85,7 +95,6 @@ $(document).ready(function() {
     function CheckLogin() {
         var apiUrl = '/login/IsLogined'
         var callback = function(loginStatus) {
-            //console.log(loginStatus);
             if (loginStatus == "false") {
                 swal({
                     position: 'top-right',
@@ -98,7 +107,6 @@ $(document).ready(function() {
                 });
             } else {
                 this.user = loginStatus;
-                console.log(this.user);
                 GetInfo();
             }
         };
