@@ -34,6 +34,8 @@ $(document).ready(function() {
         var url = '/shopping_cart/checkout';
         var data = {
             customer: this.user,
+            total: $("#total_price").data('total'),
+            discount: $("#discount_price").data('discount'),
         };
         var callback = function(msg) {
             swal(msg);
@@ -52,10 +54,6 @@ $(document).ready(function() {
             window.location = '/shopping_cart';
         };
         Post(url, data, callback);
-    }
-
-    function GetInfo() {
-        GetItems();
     }
 
     function GetItems() {
@@ -79,17 +77,44 @@ $(document).ready(function() {
         };
 
         Post(url, data, callback);
-        GetTotal(data);
+        GetTotal();
     }
 
-    function GetTotal(data) {
+
+    function GetDiscount() {
+        var url = '/shopping_cart/discount';
+        var data = {
+            customer: this.user,
+        };
+        var callback = function (msg) {
+            var result = "<div id='discount_price' data-discount='" + msg + "'></div> - $" + msg;
+            $("#cart_discount").html(result);
+            GetFinal();
+        };
+
+        Post(url, data, callback);
+    }
+
+    function GetTotal() {
         var url = '/shopping_cart/total';
+        var data = {
+            customer: this.user,
+        };
 
         var callback = function(msg) {
-            $("#total").html(msg);
+            var result = "<div id='total_price' data-total='" + msg + "'></div>$" + msg;
+            $("#total").html(result);
+            GetDiscount();
         }
 
         Post(url, data, callback);
+    }
+
+    function GetFinal() {
+        var total = parseInt($("#total_price").data('total'));
+        var discount = parseInt($("#discount_price").data('discount'));
+        var final = (total - discount).toString();
+        $("#final_price").html(final);
     }
 
     function CheckLogin() {
@@ -107,7 +132,7 @@ $(document).ready(function() {
                 });
             } else {
                 this.user = loginStatus;
-                GetInfo();
+                GetItems();
             }
         };
         Get(apiUrl, callback);

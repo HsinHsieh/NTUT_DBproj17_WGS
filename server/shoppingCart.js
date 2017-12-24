@@ -74,7 +74,7 @@ module.exports = class {
                     row['ocid'] = p.OCID;
                     data.push(row);
                 }
-                res.send(data)
+                res.send(data);
             };
             var customer = req.body.customer;
             var command = "SELECT product.PID, product.Product_Name, product.Price, order_content.OCID \
@@ -88,6 +88,31 @@ module.exports = class {
 
         this.router.post("/items", GetItemsData);
 
+        var calculate = function (customer) {
+            var command = "SELECT product.Price \
+                            FROM product, order_main, order_content \
+                            WHERE order_main.Customer='" + customer + "' \
+                                AND order_content.Order_Number = order_main.OID\
+                                AND product.PID = order_content.Item \
+                                AND order_main.Status = 0";
+            var db = DataBaseController.GetDB();
+            var callback = function(error, rows, rields) {
+                if (error) {
+                    throw error;
+                }
+                var price = 0;
+                for (var i = 0; i < rows.length; i++) {
+                    price += rows[i].Price;
+                }
+                return price;
+            }
+            db.query(command, callback)
+        }
+
+        var GetTotal = function (req, res) {
+            var total = calculate(req.body.customer);
+            res.send("$" + total.toString());
+        }
 
         this.router.post("/total", function(req, res) {
             var command = "SELECT product.Price \
@@ -107,9 +132,26 @@ module.exports = class {
                 for (var i = 0; i < rows.length; i++) {
                     price += rows[i].Price;
                 }
-                res.send("$" + price.toString())
+                res.send(price.toString());
             }
             db.query(command, callback)
+        });
+
+        this.router.post("/discount", function (req, res) {
+            var command = "SELECT event.Discount_Rate, event.Event_Catagory, product.Price\
+                            FROM event, order_main, order_content, product\
+                            WHERE order_main.Customer = '" + req.body.customer + "' AND order_content.Order_Number = order_main.OID AND \
+                                product.PID = order_content.Item AND product.Category = event.Event_Catagory";
+
+            var db = DataBaseController.GetDB();
+            var discount = 0;
+            var callback = function(error, rows, fields) {
+                for (var i = 0; i < rows.length; i++) {
+                    discount += (1 - rows[i].Discount_Rate) * rows[i].Price;
+                }
+                res.send(Math.round(discount).toString());
+            };
+            db.query(command, callback);
         });
 
         this.router.post("/clear", function(req, res) {
@@ -135,8 +177,11 @@ module.exports = class {
 
         this.router.post("/checkout", function(req, res) {
             var command = "UPDATE order_main \
-                            SET order_main.Status=1 \
-                            WHERE order_main.Customer = '" + req.body.customer + "'";
+                            SET order_main.Status=1 , order_main.Discount = "
+                                + req.body.discount + ", order_main.Total_Price = "
+                                + req.body.total + "\
+                            WHERE order_main.Customer = '" + req.body.customer +
+                            "' AND order_main.Status = 0";
             var db = DataBaseController.GetDB();
 
             var callback = function(error, rows, fields) {
@@ -145,7 +190,6 @@ module.exports = class {
                 }
                 res.send("Checkout success!")
             }
-
             db.query(command, callback);
         });
 
