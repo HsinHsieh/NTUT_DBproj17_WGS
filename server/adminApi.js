@@ -146,5 +146,45 @@ module.exports = class {
       (new sql(sqlStr)).ReturnJson(callback);
 
     });
+    this.router.post("/orderSearch", function(req, res) {
+      var callback = function(msg) {
+        res.send(msg);
+      };
+      var sqlStr = "";
+      var sqlOID = (req.body.OID == '') ? '' : (" `OID` = '" + req.body.OID + "'");
+      var sqlCID = (req.body.CID == '') ? '' : (" `Customer` = '" + req.body.CID + "'");
+      var sqlStatus = (req.body.Status == '') ? '' : (" `Status` = '" + req.body.Status + "'");
+      var sqlDate = (req.body.Date == '') ? '' : (" `Order_Time` = '" + req.body.Date + "'");
+      var sqlPrice = (req.body.Price_low == '') ? '' : (" `Total_Price` BETWEEN " + req.body.Price_low + " AND " + req.body.Price_up);
+      sqlStr += sqlOID;
+      sqlStr += (sqlStr == '' || sqlCID == '') ? (sqlCID) : (" AND " + sqlCID);
+      sqlStr += (sqlStr == '' || sqlStatus == '') ? (sqlStatus) : (" AND " + sqlStatus);
+      sqlStr += (sqlStr == '' || sqlDate == '') ? (sqlDate) : (" AND " + sqlDate);
+      sqlStr += (sqlStr == '' || sqlPrice == '') ? (sqlPrice) : (" AND " + sqlPrice);
+      var sqlOrder = " ORDER BY `OID` DESC";
+      sqlStr = "SELECT *  FROM `order_main` " + ((sqlStr == '') ? '' : ("WHERE" + sqlStr + sqlOrder));
+      (new sql(sqlStr)).ReturnJson(callback);
+    });
+    this.router.get("/orderEditMain/:OID", function(req, res) {
+      var callback = function(msg) {
+        res.send(msg);
+      };
+      var sqlStr = "SELECT DISTINCT * FROM `order_main` WHERE `order_main`.`OID`='" + req.params.OID + "'";
+      (new sql(sqlStr)).ReturnJson(callback);
+    });
+    this.router.get("/orderEditContent/:OID", function(req, res) {
+      var callback = function(msg) {
+        res.send(msg);
+      };
+      var sqlStr = "SELECT DISTINCT `order_content`.*,`product`.`Price` FROM `order_content`,`product` WHERE `order_content`.`Order_Number`='" + req.params.OID + "' AND `product`.`PID`=`order_content`.`Item` ORDER BY `order_content`.`OCID` ASC";
+      (new sql(sqlStr)).ReturnJson(callback);
+    });
+    this.router.get("/orderDelete/:OID", function(req, res) {
+      var callback = function(msg) {
+        res.send(msg);
+      };
+      var sqlStr = "DELETE FROM `order_main` WHERE `order_main`.`OID`='" + req.params.OID + "'";
+      (new sql(sqlStr)).ReturnJson(callback);
+    });
   }
 }
