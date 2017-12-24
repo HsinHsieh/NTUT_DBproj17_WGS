@@ -26,7 +26,7 @@
 		});
 	</script>
 	<script src="./js/ajax.js"></script>
-	<script src="./js/product_edit.js"></script>
+	<script src="./js/order_edit.js"></script>
 	<div id="header"></div>
 	<!-- /.navbar-collapse -->
 	<section>
@@ -43,67 +43,66 @@
 	<section>
 		<div class="row">
 			<div class="col-md-8 col-md-offset-2">
-				<div class="col-md-6">
-					<div class="productEditPic"> </div>
-				</div>
 				<div class="form-group col-md-6">
 					<label for="Name">訂單編號</label>
-					<input type="text" class="form-control" id="productEdit_PID" placeholder="遊戲編號" readonly>
+					<input type="text" class="form-control" id="orderEdit_OID" placeholder="你看不到我" readonly>
 
 				</div>
 				<!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
 
 				<div class="form-group col-md-6">
-					<label for="Name">遊戲名稱</label>
-					<input type="text" class="form-control" id="productEdit_name" placeholder="請輸入商品名稱">
+					<label for="Name">客戶編號</label>
+					<input type="text" class="form-control" id="orderEdit_customer" placeholder="你看不到我" readonly>
 					<!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
 				</div>
 				<div class="form-group col-md-6">
-					<label for="Name">遊戲價格</label>
-					<input type="text" class="form-control" id="productEdit_price" placeholder="請輸入整數$">
+					<label for="Name">訂單折扣</label>
+					<input type="text" class="form-control" id="orderEdit_discount" placeholder="請輸入整數$">
 					<!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
 				</div>
 
 				<div class="form-group col-md-6">
-					<label for="exampleFormControlSelect1">商品分類</label>
-					<select class="form-control" id="productEdit_category">
+					<label for="exampleFormControlSelect1">訂單狀態</label>
+					<select class="form-control" id="orderEdit_status">
                 <option value=""></option>
+								<option value="0">未結帳</option>
+								<option value="1">已付款</option>
               </select>
 				</div>
 				<div class="form-group col-md-6">
-					<label for="Name">供應商</label>
-					<input type="text" class="form-control" id="productEdit_supplier" placeholder="遊戲廠商">
+					<label for="Name">總金額</label>
+					<input type="text" class="form-control" id="orderEdit_price" placeholder="你看不到我" readonly>
 					<!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
 				</div>
 				<div class="form-group col-md-6">
-					<label for="Name">上市日期</label>
-					<input type="text" class="form-control" id="productEdit_date" placeholder="遊戲廠商">
+					<label for="Name">下定時間</label>
+					<input type="text" class="form-control" id="orderEdit_date" placeholder="你看不到我" readonly>
 					<!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
 				</div>
-				<div class="form-group col-md-6">
-					<form class="uploadImage" enctype="multipart/form-data" action="/admin/api/productEdit/file" method="POST">
-						<label for="imagename">商品圖片上傳</label>
-						<input type="file" name="imagename" id="imagename">
-					</form>
-				</div>
-				<div class="form-group col-md-12">
-					<label for="Product_Description">商品描述</label>
-					<textarea class="form-control" id="productEdit_description" type="text" placeholder="Enter here" rows="8"></textarea>
-				</div>
-				<div class="form-group col-md-12">
-					<label for="System_Requirement">系統需求</label>
-					<textarea class="form-control" id="productEdit_requirement" type="text" placeholder="Enter here" rows="8"></textarea>
-				</div>
-
-				<button class="btn btn-primary btn-lg pull-right" id="product_edit_submit">送出</button>
-
-
+				<button class="btn btn-primary btn-lg pull-right" id="order_edit_submit">送出</button>
 			</div>
 		</div>
 	</section>
-
 	<section>
-		<div class="modal fade" id="productEditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th scope="col">#</th>
+							<th scope="col">品項</th>
+							<th scope="col">單價</th>
+							<th scope="col">金鑰查詢</th>
+							<th scope="col">刪除</th>
+						</tr>
+					</thead>
+					<tbody class="orderContent_list"></tbody>
+				</table>
+			</div>
+		</div>
+	</section>
+	<!-- <section>
+		<div class="modal fade" id="orderEditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content productEditModalBody">
 					<div class="modal-header">
@@ -115,7 +114,7 @@
 				</div>
 			</div>
 		</div>
-	</section>
+	</section> -->
 	<hr>
 	<div id="footer"></div>
 

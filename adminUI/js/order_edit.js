@@ -2,13 +2,7 @@
 $(document).ready(function() {
   var url = new URL(window.location.href);
   var OriginalOID = url.searchParams.get("OID");
-  // var searchCatagory = function(msg) {
-  //   var resObj = JSON.parse(msg);
-  //   for (var i = 0; i < Object.keys(resObj).length; i++) {
-  //     var resStr = "<option value=" + resObj[i].CAID + ">" + resObj[i].CAID + resObj[i].Category_Name + "</option>";
-  //     $("#productEdit_category").append(resStr);
-  //   }
-  // }
+  var tempPrice;
   // var searchID = function(msg) {
   //   var resObj = JSON.parse(msg);
   //   var pid = $('productEdit_PID').val();
@@ -34,58 +28,71 @@ $(document).ready(function() {
   //   });
   //
   // }
-  var searchDetail = function(msg) {
+  var searchOrderMain = function(msg) {
     var resObj = JSON.parse(msg);
-    $('#productEdit_PID').val(resObj[0].PID);
-    $('#productEdit_name').val(resObj[0].Product_Name);
-    $('#productEdit_price').val(resObj[0].Price);
-    $('#productEdit_supplier').val(resObj[0].Supplier);
-    $('#productEdit_category').val(resObj[0].Category);
-    $('#productEdit_description').val(resObj[0].Product_Description);
-    $('#productEdit_requirement').val(resObj[0].System_Requirement);
-    $('#productEdit_date').val(resObj[0].Launch_Date);
-    var PicStr = "<img src=\"/product_pic/" + resObj[0].PID + ".jpg\" alt=\"NO PICTURE\" class=\"img-thumbnail\">"
-    $('.productEditPic').html(PicStr);
+    $('#orderEdit_OID').val(resObj[0].OID);
+    $('#orderEdit_customer').val(resObj[0].Customer);
+    $('#orderEdit_discount').val(resObj[0].Discount);
+    $('#orderEdit_status').val(resObj[0].Status);
+    $('#orderEdit_price').val(resObj[0].Total_Price);
+    $('#orderEdit_date').val(resObj[0].Order_Time);
   }
-  Get('/admin/api/productCatagory', searchCatagory);
-  Get('/admin/api/orderEdit/' + OriginalOID, searchDetail);
-  $("#product_edit_submit").click(function() {
-    var data = {
-      "OriginalPID": (OriginalPID),
-      "PID": ($('#productEdit_PID').val()),
-      "Name": ($('#productEdit_name').val()),
-      "Price": ($('#productEdit_price').val()),
-      "Supplier": ($('#productEdit_supplier').val()),
-      "Category": ($('#productEdit_category').val()),
-      "Description": ($('#productEdit_description').val()),
-      "Requirement": ($('#productEdit_requirement').val()),
-      "Date": ($('#productEdit_date').val()),
-    };
-    $('.uploadImage').ajaxSubmit({
-      data: {
-        originalname: data.OriginalPID,
-        newname: data.PID,
-        picture: ($('#imagename').val())
-      },
-      contentType: 'application/json',
-      success: function(response) {
-        console.log('image uploaded and form submitted');
-      }
-    });
-    Post('/admin/api/productEdit', data, addResult);
-  });
-  $("#productEdit_category").change(function() {
-    var pid = $('#productEdit_PID').val();
-    var str = ($('#productEdit_category').val()) + pid.substr(-7);
-    $('#productEdit_PID').val(str);
-    // $('#productEdit_PID').attr('disabled', true);
-    // $('#productEdit_name').attr('disabled', true);
-    // $('#productEdit_price').attr('disabled', true);
-    // $('#productEdit_supplier').attr('disabled', true);
-    // $('#productEdit_description').attr('disabled', true);
-    // $('#productEdit_Requirement').attr('disabled', true);
-    // $('#productEdit_date').attr('disabled', true);
-
-  });
+  var contentRow = function(msg) {
+    var resStr = "";
+    var resObj = JSON.parse(msg);
+    //$("#productSearch_catagory").reset();
+    tempPrice = 0
+    for (var i = 0; i < Object.keys(resObj).length; i++) {
+      resStr += "'<tr><th scope='row'>" + (i + 1) + "</th><td><a href='/admin/product_edit?PID=" + resObj[i].Item + "' target='_blank' >" + resObj[i].Item + "</a></th><td>" + resObj[i].Price + "</td><td><button class='btn btn-warning' type='button' name='button' onclick='javascript:location.href=\"./order_edit?OID=" + resObj[i].OCID + "\"'>金鑰查詢</button></td><td><button class='btn btn-danger' type='button' id='orderCDeleteButton' data-toggle=\"modal\" data-target=\"#orderCDeleteModal \"data-OCID=\"" + resObj[i].OCID + "\">刪除</button></td></tr>";
+      tempPrice += resObj[i].Price;
+    }
+    $(".orderContent_list").html(resStr);
+    calculatePrice();
+  }
+  var calculatePrice = function() {
+    $("#orderEdit_price").val(tempPrice - $("#orderEdit_discount").val());
+  }
+  $("#orderEdit_discount").change(calculatePrice);
+  // Get('/admin/api/productCatagory', searchCatagory);
+  Get('/admin/api/orderEditMain/' + OriginalOID, searchOrderMain);
+  Get('/admin/api/orderEditContent/' + OriginalOID, contentRow);
+  // $("#product_edit_submit").click(function() {
+  //   var data = {
+  //     "OriginalPID": (OriginalPID),
+  //     "PID": ($('#productEdit_PID').val()),
+  //     "Name": ($('#productEdit_name').val()),
+  //     "Price": ($('#productEdit_price').val()),
+  //     "Supplier": ($('#productEdit_supplier').val()),
+  //     "Category": ($('#productEdit_category').val()),
+  //     "Description": ($('#productEdit_description').val()),
+  //     "Requirement": ($('#productEdit_requirement').val()),
+  //     "Date": ($('#productEdit_date').val()),
+  //   };
+  //   $('.uploadImage').ajaxSubmit({
+  //     data: {
+  //       originalname: data.OriginalPID,
+  //       newname: data.PID,
+  //       picture: ($('#imagename').val())
+  //     },
+  //     contentType: 'application/json',
+  //     success: function(response) {
+  //       console.log('image uploaded and form submitted');
+  //     }
+  //   });
+  //   Post('/admin/api/productEdit', data, addResult);
+  // });
+  // $("#productEdit_category").change(function() {
+  //   var pid = $('#productEdit_PID').val();
+  //   var str = ($('#productEdit_category').val()) + pid.substr(-7);
+  //   $('#productEdit_PID').val(str);
+  //   // $('#productEdit_PID').attr('disabled', true);
+  //   // $('#productEdit_name').attr('disabled', true);
+  //   // $('#productEdit_price').attr('disabled', true);
+  //   // $('#productEdit_supplier').attr('disabled', true);
+  //   // $('#productEdit_description').attr('disabled', true);
+  //   // $('#productEdit_Requirement').attr('disabled', true);
+  //   // $('#productEdit_date').attr('disabled', true);
+  //
+  // });
 
 });

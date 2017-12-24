@@ -40,6 +40,11 @@
 
 	</section>
 	<section>
+		<div class="col-md-8 col-md-offset-2">
+			<div class="operationResult"></div>
+		</div>
+	</section>
+	<section>
 		<div class="row">
 			<div class="col-md-8 col-md-offset-2">
 				<div class="well">
@@ -110,7 +115,23 @@
 			</div>
 		</div>
 	</section>
-
+	<section>
+		<div class="modal fade" id="orderDeleteModal" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title" id="orderDeleteTitle">刪除訂單</h4>
+					</div>
+					<div class="modal-body" id="orderDeleteBody"></div>
+					<div class="modal-footer" id="orderAddFooter">
+						<input type='hidden' name='originalcaid' id='order_delete_oid' value=''>
+						<button class='btn btn-danger btn-lg pull-right' id='order_delete_submit'>確定</button>
+						<button type='button' class='btn btn-default btn-lg' data-dismiss='modal'>取消</button></div>
+				</div>
+			</div>
+		</div>
+	</section>
 
 
 	<hr>

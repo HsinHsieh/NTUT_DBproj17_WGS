@@ -4,10 +4,32 @@ $(document).ready(function() {
     var resObj = JSON.parse(msg);
     //$("#productSearch_catagory").reset();
     for (var i = 0; i < Object.keys(resObj).length; i++) {
-      resStr += "'<tr><th scope='row'>" + (i + 1) + "</th><td>" + resObj[i].OID + "</td><td>" + resObj[i].Customer + "</td><td>" + resObj[i].Total_Price + "</td><td>" + resObj[i].Status + "</td><td>" + resObj[i].Order_Time + "</td><td><button class='btn btn-primary' type='button' name='button' onclick='javascript:location.href=\"./order_edit?OID=" + resObj[i].OID + "\"'>編輯</button></td><td><button class='btn btn-danger' type='button' id='productDeleteButton' data-toggle=\"modal\" data-target=\"#productDeleteModal \"data-OID=\"" + resObj[i].PID + "\">刪除</button></td></tr>";
+      resStr += "'<tr><th scope='row'>" + (i + 1) + "</th><td>" + resObj[i].OID + "</td><td>" + resObj[i].Customer + "</td><td>" + resObj[i].Total_Price + "</td><td>" + ((resObj[i].Status == 0) ? "未結帳" : "已付款") + "</td><td>" + resObj[i].Order_Time + "</td><td><button class='btn btn-primary' type='button' name='button' onclick='javascript:location.href=\"./order_edit?OID=" + resObj[i].OID + "\"'>編輯</button></td><td><button class='btn btn-danger' type='button' id='orderDeleteButton' data-toggle=\"modal\" data-target=\"#orderDeleteModal \"data-OID=\"" + resObj[i].OID + "\">刪除</button></td></tr>";
     }
     $(".order_list").html(resStr);
   }
+
+  var orderFetch = function() {
+    var data = {
+      "OID": ($('#orderSearch_OID').val()),
+      "CID": ($('#orderSearch_CID').val()),
+      "Status": ($('#orderSearch_status').val()),
+      "Price_low": ($('#orderSearch_price_low').val()),
+      "Price_up": ($('#orderSearch_price_up').val()),
+      "Date": ($('#orderSearch_date').val()),
+    };
+    Post('/admin/api/orderSearch', data, orderRow);
+  }
+  $("#orderSearch").click(orderFetch);
+  $("#filterClear").click(function() {
+    $('#orderSearch_OID').val("");
+    $('#orderSearch_CID').val("");
+    $('#orderSearch_status').val("");
+    $('#orderSearch_price_up').val("");
+    $('#orderSearch_price_low').val("");
+    $('#orderSearch_date').val("");
+  });
+
   // var searchCatagory = function(msg) {
   //   var resObj = JSON.parse(msg);
   //   for (var i = 0; i < Object.keys(resObj).length; i++) {
@@ -22,75 +44,35 @@ $(document).ready(function() {
   //     $("#productSearch_supplier").append(resStr);
   //   }
   // }
-  // var productDelete = function(msg) {
-  //   var resObj = JSON.parse(msg);
-  //   var Str = "商品編號：" + resObj[0].PID + "<br>商品名稱：" + resObj[0].Product_Name + "<br>供應商：" + resObj[0].Supplier + "<br>上市日期：" + resObj[0].Launch_Date;
-  //   $('.productDeleteContent').html(Str);
-  //   var PicStr = "<img src=\"/product_pic/" + resObj[0].PID + ".jpg\" alt=\"NO PICTURE\" class=\"img-thumbnail\">"
-  //   $('.productDeletePic').html(PicStr);
-  // }
-  // var productDeleteResult = function(msg) {
-  //   resObj = JSON.parse(msg);
-  //   if ('errno' in resObj) {
-  //     $('#productDeleteModalTitle').html("操作結果");
-  //     $('#productDeleteModalBody').html("刪除作業失敗!!錯誤代碼：" + resObj.errno);
-  //     $('#productDeleteModalFooter').html("<button type=\"button\" class=\"btn btn-success\" data-dismiss=\"modal\">確認</button>")
-  //
-  //   } else {
-  //     $('#productDeleteModalTitle').html("操作結果");
-  //     $('#productDeleteModalBody').html("刪除作業完成");
-  //     $('#productDeleteModalFooter').html("<button type=\"button\" class=\"btn btn-success\" data-dismiss=\"modal\">確認</button>")
-  //
-  //   }
-  // }
-  var orderFetch = function() {
-    var data = {
-      "OID": ($('#orderSearch_OID').val()),
-      "CID": ($('#orderSearch_CID').val()),
-      "Status": ($('#orderSearch_status').val()),
-      "Price_low": ($('#orderSearch_price_low').val()),
-      "Price_up": ($('#orderSearch_price_up').val()),
-      "Date": ($('#orderSearch_date').val()),
-    };
-    Post('/admin/api/orderSearch', data, orderRow);
-  }
-  // var productDeleteModalSet = function() {
-  //   $('#productDeleteModalTitle').html("是否確認刪除以下產品?");
-  //   $('#productDeleteModalBody').html("	<div class=\"row\"><div class=\"col-md-6\"><div class=\"productDeleteContent\"></div></div><div class=\"col-md-6\"><div class=\"productDeletePic\"> </div></div></div>");
-  //   $('#productDeleteModalFooter').html("");
-  //   $('#productDeleteModalFooter').append("<input type=\"hidden\" id=\"productDeletePID\" value=\"\"><button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">取消</button><button type=\"button\" class=\"btn btn-danger productDeleteConfirm\">確認</button>")
-  // }
+
+
   // Get('/admin/api/productCatagory', searchCatagory);
   // Get('/admin/api/productSupplier', searchSupplier);
-  // $('.productDeleteConfirm').click(function() {
-  //   Get('/admin/api/prouctDelete/' + $('#productDeletePID').val(), productDeleteResult);
-  // })
-  $("#orderSearch").click(orderFetch);
-  $("#filterClear").click(function() {
-    $('#orderSearch_OID').val("");
-    $('#orderSearch_CID').val("");
-    $('#orderSearch_status').val("");
-    $('#orderSearch_price_up').val("");
-    $('#orderSearch_price_low').val("");
-    $('#orderSearch_date').val("");
+
+
+  var deleteResult = function(msg) {
+    var resObj = JSON.parse(msg);
+    if ('errno' in resObj) {
+      $('.operationResult').html("<div class='alert alert-danger alert-dismissible'><div id='alertContent'>" + '刪除作業失敗!!<br>錯誤代碼：' + resObj.errno + '<br>錯誤訊息：' + resObj.sqlMessage + "</div><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a></div>")
+      // $('#alertContent').html('刪除作業失敗!!<br>錯誤代碼：' + resObj.errno + '<br>錯誤訊息：' + resObj.sqlMessage);
+    } else {
+      $('.operationResult').html("<div class='alert alert-success alert-dismissible'><div id='alertContent'>操作完成!!</div><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a></div>")
+    }
+    $('.alert').alert();
+  }
+
+  $('#orderDeleteModal').on('show.bs.modal', function(event) {
+    var button = $(event.relatedTarget)
+    var oid = button.data('oid');
+    var modal = $(this);
+    var content = "是否確認刪除訂單<a href='/admin/order_edit?OID=" + oid + "' target='_blank' >" + oid + "</a>";
+    $('#orderDeleteBody').html(content);
+    $("#order_delete_oid").val(oid);
   });
-
-  // $('#productDeleteModal').on('show.bs.modal', function(event) {
-  //   var button = $(event.relatedTarget)
-  //   var pid = button.data('pid')
-  //   var modal = $(this)
-  //   $('#productDeletePID').val(pid);
-  //   Get('/admin/api/productEdit/' + pid, productDelete);
-  //   //modal.find('.modal-title').text('刪除商品' + pid)
-  //   //modal.find('.modal-body input').val(pid)
-  // });
-  // $('#productDeleteModal').on('hidden.bs.modal', function(event) {
-  //   productFetch();
-  //   productDeleteModalSet();
-  //   $('.productDeleteConfirm').click(function() {
-  //     Get('/admin/api/prouctDelete/' + $('#productDeletePID').val(), productDeleteResult);
-  //   })
-  // })
-
-
+  $('#order_delete_submit').click(function() {
+    var oid = $('#order_delete_oid').val()
+    console.log(oid);
+    Get('/admin/api/orderDelete/' + oid, deleteResult);
+    $('#orderDeleteModal').modal('hide');
+  });
 });
