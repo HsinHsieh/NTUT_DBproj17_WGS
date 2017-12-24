@@ -25,6 +25,8 @@
 			$("#footer").load("footer.html");
 		});
 	</script>
+	<script src="./js/ajax.js"></script>
+	<script src="./js/order_search.js"></script>
 	<div id="header"></div>
 	<!-- /.navbar-collapse -->
 	<section>
@@ -41,50 +43,45 @@
 		<div class="row">
 			<div class="col-md-8 col-md-offset-2">
 				<div class="well">
-					<h3>商品查詢</h3>
+					<h3>訂單查詢</h3>
 					<div class="row">
 						<div class="col-md-12">
-							<form class="" action="index.html" method="post">
+							<div class="form-row">
+								<div class="form-group col-md-4">
+									<label for="Name">訂單編號</label>
+									<input type="text" class="form-control" id="orderSearch_OID" placeholder="請輸入訂單編號">
+									<!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+								</div>
+
+								<div class="form-group col-md-4">
+									<label for="Name">客戶ID</label>
+									<input type="text" class="form-control" id="orderSearch_CID" placeholder="請輸入客戶ID">
+									<!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+								</div>
+								<div class="form-group col-md-4">
+									<label for="exampleFor">訂單狀態</label>
+									<select class="form-control" id="orderSearch_status">
+												<option value=""></option>
+												<option value="0">未結帳</option>
+												<option value="1">已付款</option>
+										</select>
+								</div>
 								<div class="form-row">
-									<div class="form-group col-md-4">
-										<label for="Name">商品編號</label>
-										<input type="text" class="form-control" id="product_CID" placeholder="遊戲編號">
-										<!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+									<div class="form-group col-md-3">
+										<label for="Name">訂單總金額價格</label>
+										<input type="text" class="form-control" id="orderSearch_price_low" placeholder="請輸入金額下限">
 									</div>
-
-									<div class="form-group col-md-4">
-										<label for="Name">遊戲名稱</label>
-										<input type="text" class="form-control" id="product_name" placeholder="請輸入商品名稱">
-										<!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+									<div class="form-group col-md-3">
+										<label for="Name"> </label>
+										<input type="text" class="form-control" id="orderSearch_price_up" placeholder="請輸入金額上限">
 									</div>
-									<div class="form-group col-md-4">
-										<label for="Name">供應商</label>
-										<input type="text" class="form-control" id="product_supplier" placeholder="遊戲廠商">
-										<!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
-									</div>
-									<div class="form-row">
-										<div class="form-group col-md-3">
-											<label for="Name">遊戲價格</label>
-											<input type="text" class="form-control" id="product_price_upbound" placeholder="請輸入價格下限">
-										</div>
-										<div class="form-group col-md-3">
-											<label for="Name"> </label>
-											<input type="text" class="form-control" id="product_price_lowbound" placeholder="請輸入價格上限">
-										</div>
-									</div>
-									<div class="form-group col-md-6">
-										<label for="exampleFormControlSelect1">商品分類</label>
-										<select class="form-control" id="product_catagory">
-			                <option>我是分類1</option>
-			                <option>我是分類2</option>
-			                <option>我是分類3</option>
-			                <option>我是分類4</option>
-			                <option>我是分類5</option>
-			              </select>
-									</div>
-									<button class="btn btn-primary btn-lg pull-right" type="submit">查詢</button>
-
-							</form>
+								</div>
+								<div class="form-group col-md-6">
+									<label for="Name">訂單成立時間</label>
+									<input type="text" class="form-control" id="orderSearch_date" placeholder="YYYY-MM-DD">
+								</div>
+								<button class="btn btn-primary btn-lg pull-right" id="orderSearch">查詢</button>
+								<button class="btn btn-warning btn-lg pull-right" id="filterClear">清除</button>
 							</div>
 						</div>
 					</div>
@@ -99,43 +96,16 @@
 					<thead>
 						<tr>
 							<th scope="col">#</th>
-							<th scope="col">商品編號</th>
-							<th scope="col">商品名稱</th>
-							<th scope="col">供應商</th>
-							<th scope="col">價格</th>
+							<th scope="col">訂單編號</th>
+							<th scope="col">客戶名稱</th>
+							<th scope="col">總金額</th>
+							<th scope="col">狀態</th>
+							<th scope="col">下定時間</th>
 							<th scope="col">編輯</th>
 							<th scope="col">刪除</th>
 						</tr>
 					</thead>
-					<tbody class="product_list">
-						<tr>
-							<th scope="row">1</th>
-							<td>ACT0000007</td>
-							<td>Grand Theft Auto V</td>
-							<td>Rockstar Games</td>
-							<td>1944</td>
-							<td><button class="btn btn-primary" type="button" name="button" onclick="location.href='product_edit.html'">編輯</button></td>
-							<td><button class="btn btn-danger" type="button" name="button">刪除</button></td>
-						</tr>
-						<tr>
-							<th scope="row">2</th>
-							<td>ACT0000015</td>
-							<td>Watch_Dogs 2</td>
-							<td>Ubisoft</td>
-							<td>1619</td>
-							<td><button class="btn btn-primary" type="button" name="button" onclick="location.href='product_edit.html'">編輯</button></td>
-							<td><button class="btn btn-danger" type="button" name="button">刪除</button></td>
-						</tr>
-						<tr>
-							<th scope="row">3</th>
-							<td>AVG0000083</td>
-							<td>Don't Starve</td>
-							<td>Klei Entertainment</td>
-							<td>268</td>
-							<td><button class="btn btn-primary" type="button" name="button" onclick="location.href='product_edit.html'">編輯</button></td>
-							<td><button class="btn btn-danger" type="button" name="button">刪除</button></td>
-						</tr>
-					</tbody>
+					<tbody class="order_list"></tbody>
 				</table>
 			</div>
 		</div>

@@ -146,5 +146,31 @@ module.exports = class {
       (new sql(sqlStr)).ReturnJson(callback);
 
     });
+    this.router.post("/orderSearch", function(req, res) {
+      var callback = function(msg) {
+        res.send(msg);
+      };
+      var sqlStr = "";
+      var sqlOID = (req.body.OID == '') ? '' : (" `OID` = '" + req.body.OID + "'");
+      var sqlCID = (req.body.CID == '') ? '' : (" `Customer` = '" + req.body.CID + "'");
+      var sqlStatus = (req.body.Status == '') ? '' : (" `Status` = '" + req.body.Status + "'");
+      var sqlDate = (req.body.Date == '') ? '' : (" `Order_Time` = '" + req.body.Date + "'");
+      var sqlPrice = (req.body.Price_low == '') ? '' : (" `Total_Price` BETWEEN " + req.body.Price_low + " AND " + req.body.Price_up);
+      sqlStr += sqlOID;
+      sqlStr += (sqlStr == '' || sqlCID == '') ? (sqlCID) : (" AND " + sqlCID);
+      sqlStr += (sqlStr == '' || sqlStatus == '') ? (sqlStatus) : (" AND " + sqlStatus);
+      sqlStr += (sqlStr == '' || sqlDate == '') ? (sqlDate) : (" AND " + sqlDate);
+      sqlStr += (sqlStr == '' || sqlPrice == '') ? (sqlPrice) : (" AND " + sqlPrice);
+      var sqlOrder = " ORDER BY `OID` DESC";
+      sqlStr = "SELECT *  FROM `order_main` " + ((sqlStr == '') ? '' : ("WHERE" + sqlStr + sqlOrder));
+      (new sql(sqlStr)).ReturnJson(callback);
+    });
+    this.router.get("/orderEdit/:OID", function(req, res) {
+      var callback = function(msg) {
+        res.send(msg);
+      };
+      var sqlStr = "SELECT DISTINCT * FROM `product` WHERE `product`.`OID`='" + req.params.OID + "'";
+      (new sql(sqlStr)).ReturnJson(callback);
+    });
   }
 }
