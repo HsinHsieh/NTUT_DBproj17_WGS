@@ -26,7 +26,9 @@ function GetProductKeys(CID) {
         // console.log(product_keys)
         for (var i = 0; i < Object.keys(product_keys).length; i++) {
           if (product_keys[i].Key_Used == 0){
-              product_keys[i].Key_Status = "<button class='btn btn-primary btn-block' type='button' name='button' onclick='RevealProductKey()'>啟用金鑰</button>"
+
+              product_keys[i].Key_Status = "<button class='btn btn-primary btn-block' type='button' name='button' onclick='RevealProductKey(\"" + product_keys[i].OCID + "\")'>啟用金鑰</button>"
+              console.log(product_keys[i].Key_Status);
           }
           else {
               product_keys[i].Key_Status = "<p class='form-control' align='center'>" + product_keys[i].License_Key + "</p>"
@@ -41,7 +43,17 @@ function GetProductKeys(CID) {
     Get(apiUrl, callback);
 };
 
-function RevealProductKey(){
-  $("#key_status").hide();
-  console.log("Revealed")
+function RevealProductKey(_ocid){
+    var apiUrl = '/productKeys/reveal';
+    var data = {
+        ocid : _ocid,
+    };
+    $("#key_status .btn").html("啟用中...");
+    var callback = function(key) {
+        console.log(key);
+        $("#key_status").html("<p class='form-control' align='center'>" + key + "</p>")
+    };
+    // $("#key_status .btn").hide();
+    // console.log("Revealed")
+    Post(apiUrl, data, callback);
 };
