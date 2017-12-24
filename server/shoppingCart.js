@@ -40,8 +40,16 @@ module.exports = class {
                     db.query(command, function(error, rows, fields) {
                         if (error)
                             throw error;
-
                     });
+
+                    command = "SELECT order_main.OID FROM order_main \
+                                WHERE order_main.Status = 0 AND order_main.Customer='" + customer + "'";
+                    var callback = function(error, rows, fields) {
+                        if (error)
+                            throw error;
+                        insert(error, rows, fields);
+                    }
+                    db.query(command, callback);
                 } else {
                     insert(error, rows, fields);
                 }
