@@ -42,6 +42,12 @@ module.exports = class {
       };
       (new sql("SELECT count(*) AS CAnum FROM category")).ReturnJson(callback);
     });
+    this.router.get("/mainOrderSum", function(req, res) {
+      var callback = function(msg) {
+        res.send(msg);
+      };
+      (new sql("SELECT SUM(order_main.Total_Price) AS OSum from order_main")).ReturnJson(callback);
+    });
     this.router.get("/productSupplier", function(req, res) {
       var callback = function(msg) {
         res.send(msg);

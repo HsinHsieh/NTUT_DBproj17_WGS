@@ -78,5 +78,27 @@ module.exports = class {
             if (req.session.session_id) res.send(req.session.session_id);
             else res.send('false');
         });
+
+        this.router.post("/ifMemberExist", function(req, res) {
+            var User = new member();
+            User.GetMemberFromAccount(req.body.email, function(err, results) {
+                if (results == null) {
+                    res.send("false")
+                } else {
+                    res.send("true");
+                }
+            });
+        });
+
+        this.router.post("/Register", function(req, res) {
+            var User = new member();
+            User.MemberRegister(req.body, function(err, results) {
+                if (err) {
+                    res.send("failed")
+                } else {
+                    res.send("successed");
+                }
+            });
+        });
     }
 }
