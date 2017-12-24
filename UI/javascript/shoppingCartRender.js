@@ -25,7 +25,7 @@ $(document).ready(function() {
                 showConfirmButton: false,
                 timer: 1500
             });
-            GetInfo();
+            window.location = '/shopping_cart';
         }
         Post(url, data, callback);
     }
@@ -33,23 +33,23 @@ $(document).ready(function() {
     function checkout() {
         var url = '/shopping_cart/checkout';
         var data = {
-            customer: user,
+            customer: this.user,
         };
         var callback = function(msg) {
             swal(msg);
-            GetInfo();
+            window.location = '/';
         };
-        Post(url, data);
+        Post(url, data, callback);
     }
 
     function clear() {
         var url = '/shopping_cart/clear';
         var data = {
-            customer: user,
+            customer: this.user,
         };
         var callback = function(msg) {
             swal(msg);
-            GetInfo();
+            window.location = '/shopping_cart';
         };
         Post(url, data, callback);
     }
