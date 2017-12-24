@@ -63,7 +63,9 @@ $("#loginBtn").click(function() {
 
 $("#logoutBtn").click(function() {
     Get('/login', function(msg) {
-        swal(msg);
-        CheckLogin();
+        swal(msg).then(function() {
+            CheckLogin();
+            window.location.reload();
+        });
     });
 });
