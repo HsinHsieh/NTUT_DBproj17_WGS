@@ -216,5 +216,37 @@ module.exports = class {
       var sqlStr = "DELETE FROM `order_content` WHERE `order_content`.`OCID`='" + req.params.OCID + "'";
       (new sql(sqlStr)).ReturnJson(callback);
     });
+    this.router.post("/keySearch", function(req, res) {
+      var callback = function(msg) {
+        res.send(msg);
+      };
+      var sqlStr = "";
+      var sqlOID = (req.body.OID == '') ? '' : (" `order_main`.`OID`= '" + req.body.OID + "'");
+      var sqlCID = (req.body.CID == '') ? '' : (" `order_main`.`Customer` = '" + req.body.CID + "'");
+      var sqlStatus = (req.body.Status == '') ? '' : (" `order_content`.`Key_Used`= '" + req.body.Status + "'");
+      sqlStr += sqlOID;
+      sqlStr += (sqlStr == '' || sqlCID == '') ? (sqlCID) : (" AND " + sqlCID);
+      sqlStr += (sqlStr == '' || sqlStatus == '') ? (sqlStatus) : (" AND " + sqlStatus);
+      var sqlOrder = " ORDER BY `order_main`.`OID` DESC";
+      sqlStr = "SELECT order_content.*,order_main.Customer FROM order_content,order_main WHERE order_content.Order_Number=order_main.OID" + ((sqlStr == '') ? '' : (" AND" + sqlStr + sqlOrder));
+      (new sql(sqlStr)).ReturnJson(callback);
+    });
+    this.router.get("/keyActivate/:OCID", function(req, res) {
+      var callback = function(msg) {
+        res.send(msg);
+      };
+      var sqlStr = "UPDATE `order_content` SET `Key_Used` = '1' WHERE `order_content`.`OCID` = '" + req.params.OCID + "'";
+      console.log(sqlStr);
+      (new sql(sqlStr)).ReturnJson(callback);
+    });
+    this.router.get("/keyDeactivate/:OCID", function(req, res) {
+      var callback = function(msg) {
+        res.send(msg);
+      };
+      var sqlStr = "UPDATE `order_content` SET `Key_Used` = '0' WHERE `order_content`.`OCID` = '" + req.params.OCID + "'";
+      console.log(sqlStr);
+      (new sql(sqlStr)).ReturnJson(callback);
+    });
+
   }
 }
