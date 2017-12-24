@@ -12,6 +12,11 @@ $(document).ready(function() {
     var resObj = JSON.parse(msg);
     $(".stat_category").html(resObj[0].CAnum);
   }
+  var OrderSum = function(msg) {
+    var resObj = JSON.parse(msg);
+    console.log(resObj[0]);
+    $(".stat_sum").html(resObj[0].OSum);
+  }
   var ShowCategoryChart = function(msg) {
     var resObj = JSON.parse(msg);
     var category = resObj.map(function(a) {
@@ -53,4 +58,5 @@ $(document).ready(function() {
   Get('/admin/api/mainProductNum', ProductNum);
   Get('/admin/api/mainOrderNum', OrderNum);
   Get('/admin/api/mainCategoryNum', CategoryNum);
+  Get('/admin/api/mainOrderSum', OrderSum);
 });
