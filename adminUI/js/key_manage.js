@@ -5,7 +5,7 @@ $(document).ready(function() {
     var resStr = "";
     $(".key_list").html(" ");
     for (var i = 0; i < Object.keys(resObj).length; i++) {
-      resStr += "<tr><th scope='row'>" + (i + 1) + "</th><td>" + resObj[i].Order_Number + "</td><td>" + resObj[i].Customer + "</td><td>" + resObj[i].Item + "</td><td>" + resObj[i].License_Key;
+      resStr += "<tr><th scope='row'>" + (i + 1) + "</th><td><a href='/admin/order_edit?OID=" + resObj[i].Order_Number + "' target='_blank'>" + resObj[i].Order_Number + "</a></td><td>" + resObj[i].Customer + "</td><td><a href='/admin/product_edit?PID=" + resObj[i].Item + "' target='_blank'>" + resObj[i].Item + "</a></td><td>" + resObj[i].License_Key;
       if (resObj[i].Key_Used == 1) {
         resStr += "</td><td><button class='btn btn-default keyUsed' type='button' name='button'   data-ocid='" + resObj[i].OCID + "'>已使用</button></td>";
       } else {
@@ -20,6 +20,7 @@ $(document).ready(function() {
     var data = {
       "OID": ($('#keySearch_OID').val()),
       "CID": ($('#keySearch_CID').val()),
+      "PID": ($('#keySearch_PID').val()),
       "Status": ($('#keySearch_status').val()),
     };
     Post('/admin/api/keySearch', data, keyRow);
@@ -31,6 +32,7 @@ $(document).ready(function() {
   $("#filterClear").click(function() {
     $('#keySearch_OID').val("");
     $('#keySearch_CID').val("");
+    $('#keySearch_PID').val("");
     $('#keySearch_status').val("");
     keyFetch();
   })

@@ -223,9 +223,11 @@ module.exports = class {
       var sqlStr = "";
       var sqlOID = (req.body.OID == '') ? '' : (" `order_main`.`OID`= '" + req.body.OID + "'");
       var sqlCID = (req.body.CID == '') ? '' : (" `order_main`.`Customer` = '" + req.body.CID + "'");
+      var sqlPID = (req.body.PID == '') ? '' : (" `order_content`.`Item` = '" + req.body.PID + "'");
       var sqlStatus = (req.body.Status == '') ? '' : (" `order_content`.`Key_Used`= '" + req.body.Status + "'");
       sqlStr += sqlOID;
       sqlStr += (sqlStr == '' || sqlCID == '') ? (sqlCID) : (" AND " + sqlCID);
+      sqlStr += (sqlStr == '' || sqlPID == '') ? (sqlPID) : (" AND " + sqlPID);
       sqlStr += (sqlStr == '' || sqlStatus == '') ? (sqlStatus) : (" AND " + sqlStatus);
       var sqlOrder = " ORDER BY `order_main`.`OID` DESC";
       sqlStr = "SELECT order_content.*,order_main.Customer FROM order_content,order_main WHERE order_content.Order_Number=order_main.OID" + ((sqlStr == '') ? '' : (" AND" + sqlStr + sqlOrder));
