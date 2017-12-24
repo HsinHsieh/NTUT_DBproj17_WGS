@@ -39,7 +39,11 @@
 		</div>
 
 	</section>
-
+	<section>
+		<div class="col-md-8 col-md-offset-2">
+			<div class="operationResult"></div>
+		</div>
+	</section>
 	<section>
 		<div class="row">
 			<div class="col-md-8 col-md-offset-2">
@@ -101,20 +105,61 @@
 			</div>
 		</div>
 	</section>
-	<!-- <section>
+	<section>
 		<div class="modal fade" id="orderEditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
 			<div class="modal-dialog" role="document">
-				<div class="modal-content productEditModalBody">
+				<div class="modal-content orderEditModalBody">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						<h4 class="modal-title" id="productEditModalTitle"></h4>
+						<h4 class="modal-title" id="orderEditModalTitle"></h4>
 					</div>
-					<div class="modal-body" id="productEditModalBody"></div>
-					<div class="modal-footer" id="productEditModalFooter"></div>
+					<div class="modal-body" id="orderEditModalBody"></div>
+					<div class="modal-footer" id="orderEditModalFooter"></div>
 				</div>
 			</div>
 		</div>
-	</section> -->
+		<div class="modal fade" id="orderContentAddModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content orderContentAddModalBody">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title" id="orderContentAddModalTitle">新增品項</h4>
+					</div>
+					<div class="modal-body" id="orderContentAddModalBody">
+						請輸入商品編號 : <br>
+						<input type="text" class="form-control" id="order_content_Item" placeholder="自動完成模組待開發">
+					</div>
+					<div class="modal-footer" id="orderContentAddModalFooter">
+						<button class='btn btn-success btn-lg pull-right' id='order_content_submit'>確定</button>
+						<button type='button' class='btn btn-default btn-lg' data-dismiss='modal'>取消</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="orderContentDeleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content orderContentDeleteModalBody">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title" id="orderContentDeleteModalTitle">新增品項</h4>
+					</div>
+					<div class="modal-body" id="orderContentDeleteModalBody"></div>
+					<div class="modal-footer" id="orderContentDeleteModalFooter">
+						<input type='hidden' name='originalcaid' id='order_content_delete_ocid' value=''>
+						<button class='btn btn-success btn-lg pull-right' id='order_content_delete_confirm'>確定</button>
+						<button type='button' class='btn btn-default btn-lg' data-dismiss='modal'>取消</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section>
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2">
+				<button class="btn btn-success btn-lg pull-right" id="order_content_add" data-toggle="modal" data-target="#orderContentAddModal">新增項目</button>
+			</div>
+		</div>
+	</section>
 	<hr>
 	<div id="footer"></div>
 

@@ -2,6 +2,23 @@ $(document).ready(function() {
     var user;
     CheckLogin();
 
+    $("#header_checkout").click(function () {
+        checkout();
+    });
+
+    function checkout() {
+        var url = '/shopping_cart/checkout';
+        var data = {
+            customer: this.user,
+        };
+        var callback = function (msg) {
+            swal(msg);
+            GetItems();
+            window.location = '/';
+        }
+        Post(url, data, callback);
+    }
+
     function CheckLogin() {
         var apiUrl = '/login/IsLogined'
         var callback = function(loginStatus) {
@@ -32,12 +49,19 @@ $(document).ready(function() {
                            </div>";
             }
             $("#HeaderCart").html(result);
+            GetTotal();
         };
         Post(url, data, callback)
     };
 
     function GetTotal() {
         var url = '/shopping_cart/total';
-        var callback
+        var data = {
+            customer: this.user,
+        };
+        var callback = function (msg) {
+            $("#header_cart_total").html(msg);
+        };
+        Post(url, data, callback)
     }
 });

@@ -105,17 +105,20 @@
                         </div>
                     </li>
                     <!-- <li><a href="#"><i class="icon-heart icons" aria-hidden="true"></i></a><span class="subno">1</span><strong>Your Wishlist</strong></li> -->
-                    <li class="dropdown"> <a href="#" data-toggle="dropdown" data-hover="dropdown"><i class="icon-basket-loaded icons" aria-hidden="true"></i></a><span class="subno">2</span><strong>Your Cart</strong>
+                    <li class="dropdown"> <a href="#" data-toggle="dropdown" data-hover="dropdown"><i class="icon-basket-loaded icons" aria-hidden="true"></i></a>
+                        <!-- <span class="subno" id="size">2</span> -->
+                        <strong>Your Cart</strong>
                         <div class="dropdown-menu  cart-outer">
                             <div id="HeaderCart">
 
                             </div>
 
                             <div class="total">
-                                <div class="col-md-6 text-left"> <span>Shipping :</span> <strong>Total :</strong> </div>
-                                <div class="col-md-6 text-right"> <strong>$0.00</strong> <strong>$160.00</strong> </div>
-                            </div> <a href="/shopping_cart" class="cart-btn">VIEW CART </a>
-                            <a href="checkout.html" class="cart-btn">CHECKOUT</a>
+                                <div class="col-md-6 text-left"> <span>Discount :</span> <strong>Total :</strong> </div>
+                                <div class="col-md-6 text-right"> <strong>$0.00</strong> <strong id="header_cart_total"></strong> </div>
+                            </div>
+                            <a href="/shopping_cart" class="cart-btn">VIEW CART </a>
+                            <a class="cart-btn" id="header_checkout">CHECKOUT</a>
                         </div>
                     </li>
                 </ul>
@@ -135,10 +138,6 @@
                         <li class="all-departments dropdown"> <a href="index.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span>Categories</span> <i class="fa fa-bars" aria-hidden="true"></i> </a>
                             <ul class="dropdown-menu dropdownhover-bottom" id="cateMenu" role="menu"></ul>
                         </li>
-                        <!-- <li><a href="index.html">Home</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                        <li><a href="shopping-cart.html">Shopping-cart</a></li>
-                        <li><a href="checkout.html">Checkout</a></li> -->
                     </ul>
                     <!-- /.navbar-collapse -->
                 </div>
