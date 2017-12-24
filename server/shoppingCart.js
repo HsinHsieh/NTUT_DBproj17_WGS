@@ -138,10 +138,10 @@ module.exports = class {
         });
 
         this.router.post("/discount", function (req, res) {
-            var command = "SELECT event.Discount_Rate, event.Event_Catagory, product.Price\
+            var command = "SELECT event.Discount_Rate, event.Event_Category, product.Price\
                             FROM event, order_main, order_content, product\
                             WHERE order_main.Customer = '" + req.body.customer + "' AND order_content.Order_Number = order_main.OID AND \
-                                product.PID = order_content.Item AND product.Category = event.Event_Catagory";
+                                product.PID = order_content.Item AND product.Category = event.Event_Category";
 
             var db = DataBaseController.GetDB();
             var discount = 0;
