@@ -186,5 +186,29 @@ module.exports = class {
       var sqlStr = "DELETE FROM `order_main` WHERE `order_main`.`OID`='" + req.params.OID + "'";
       (new sql(sqlStr)).ReturnJson(callback);
     });
+    this.router.post("/orderEdit", function(req, res) {
+      var callback = function(msg) {
+        res.send(msg);
+      };
+      var Str = "UPDATE `order_main` SET `Customer` = '" + req.body.Customer + "', `Discount` = '" + req.body.Discount + "', `Status` = '" + req.body.Status + "', `Total_Price` = '" + req.body.Price;
+      var Str2 = "' WHERE `order_main`.`OID` = '" + req.body.OID + "'";
+      console.log(Str + Str2);
+      (new sql(Str + Str2)).ReturnJson(callback);
+    });
+    this.router.post("/orderContentAdd", function(req, res) {
+      var callback = function(msg) {
+        res.send(msg);
+      };
+      //console.log(sqlStr);
+      var Str = " INSERT INTO `order_content` (`OCID`, `Item`, `Order_Number`, `License_Key`, `Key_Used`) VALUES (NULL, '" + req.body.Item + "', '" + req.body.OID + "', '', '0')";
+      (new sql(Str)).ReturnJson(callback);
+    });
+    this.router.get("/orderContentDelete/:OCID", function(req, res) {
+      var callback = function(msg) {
+        res.send(msg);
+      };
+      var sqlStr = "DELETE FROM `order_content` WHERE `order_content`.`OCID`='" + req.params.OCID + "'";
+      (new sql(sqlStr)).ReturnJson(callback);
+    });
   }
 }

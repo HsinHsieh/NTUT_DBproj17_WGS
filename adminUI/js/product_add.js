@@ -12,7 +12,7 @@ $(document).ready(function() {
 
     if ('errno' in resObj) {
       $('#productAddModalTitle').html("操作結果");
-      $('#productAddModalBody').html("刪除作業失敗!!<br>錯誤代碼：" + resObj.errno + "<br>錯誤訊息：" + resObj.sqlMessage);
+      $('#productAddModalBody').html("上架作業失敗!!<br>錯誤代碼：" + resObj.errno + "<br>錯誤訊息：" + resObj.sqlMessage);
       $('#productAddModalFooter').html("<button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" onClick=\"window.location.reload()\">再試一次</button><button type=\"button\" class=\"btn btn-danger\" data-dismiss=\"modal\"  onclick=\"location.href = '/admin';\">確認</button>")
 
     } else {

@@ -8,7 +8,6 @@ $(document).ready(function() {
     }
     $(".order_list").html(resStr);
   }
-
   var orderFetch = function() {
     var data = {
       "OID": ($('#orderSearch_OID').val()),
@@ -56,7 +55,7 @@ $(document).ready(function() {
       $('.operationResult').html("<div class='alert alert-danger alert-dismissible'><div id='alertContent'>" + '刪除作業失敗!!<br>錯誤代碼：' + resObj.errno + '<br>錯誤訊息：' + resObj.sqlMessage + "</div><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a></div>")
       // $('#alertContent').html('刪除作業失敗!!<br>錯誤代碼：' + resObj.errno + '<br>錯誤訊息：' + resObj.sqlMessage);
     } else {
-      $('.operationResult').html("<div class='alert alert-success alert-dismissible'><div id='alertContent'>操作完成!!</div><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a></div>")
+      $('.operationResult').html("<div class='alert alert-success alert-dismissible'><div id='alertContent'>刪除作業完成!!</div><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a></div>")
     }
     $('.alert').alert();
   }
@@ -70,9 +69,12 @@ $(document).ready(function() {
     $("#order_delete_oid").val(oid);
   });
   $('#order_delete_submit').click(function() {
-    var oid = $('#order_delete_oid').val()
-    console.log(oid);
+    var oid = $('#order_delete_oid').val();
     Get('/admin/api/orderDelete/' + oid, deleteResult);
+    orderFetch();
     $('#orderDeleteModal').modal('hide');
   });
+  $('#orderDeleteModal').on('hidden.bs.modal', function(event) {
+    orderFetch();
+  })
 });
