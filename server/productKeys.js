@@ -5,7 +5,7 @@ const DataBaseController = require('../DB/DatabaseController.js')
 function generateKey(){
   var key = keygen._({
       forceUppercase: true,
-      length: 20
+      length: 15
   });
   var output = [key.slice(0, 5), key.slice(5, 10), key.slice(10, 15), key.slice(15, 20)].join('-');
   return output;
