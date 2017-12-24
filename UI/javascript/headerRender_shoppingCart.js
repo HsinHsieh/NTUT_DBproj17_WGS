@@ -10,6 +10,8 @@ $(document).ready(function() {
         var url = '/shopping_cart/checkout';
         var data = {
             customer: this.user,
+            total: $("#header_total_price").data('total'),
+            discount: $("#header_discount_price").data('discount'),
         };
         var callback = function (msg) {
             swal(msg);
@@ -60,8 +62,30 @@ $(document).ready(function() {
             customer: this.user,
         };
         var callback = function (msg) {
-            $("#header_cart_total").html(msg);
+            var result = "<div id='header_total_price' data-total='" + msg + "'></div>$" + msg;
+            $("#header_cart_total").html(result);
+            GetDiscount();
         };
-        Post(url, data, callback)
+        Post(url, data, callback);
+    };
+
+    function GetDiscount() {
+        var url = '/shopping_cart/discount';
+        var data = {
+            customer: this.user,
+        };
+        var callback = function (msg) {
+            var result = "<div id='header_discount_price' data-discount='" + msg + "'></div> - $" + msg;
+            $("#header_cart_discount").html(result);
+            GetFinal();
+        };
+        Post(url, data, callback);
+    };
+
+    function GetFinal() {
+        var total = parseInt($("#header_total_price").data('total'));
+        var discount = parseInt($("#header_discount_price").data('discount'));
+        var final = (total - discount).toString();
+        $("#header_cart_final").html(final);
     }
 });
