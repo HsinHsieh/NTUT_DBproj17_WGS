@@ -1,6 +1,6 @@
 // const product_search_row = "'<tr><th scope='row'>1</th<td>ACT0000007</td><td>{{Product_Name}}</td><td>{{Category}}</td><td>{{Price}}</td><td><button class='btn btn-primary' type='button' name='button' onclick='location.href='product_edit.html''>編輯</button></td><td><button class='btn btn-danger' type='button' name='button'>刪除</button></td></tr>"
 $(document).ready(function() {
-  var searchCatagory = function(msg) {
+  var searchCategory = function(msg) {
     var resObj = JSON.parse(msg);
     $(".product_list").html(" ");
     for (var i = 0; i < Object.keys(resObj).length; i++) {
@@ -19,7 +19,7 @@ $(document).ready(function() {
     }
     $('.alert').alert();
   }
-  Get('/admin/api/productCatagory', searchCatagory);
+  Get('/admin/api/productCategory', searchCategory);
   $('#categoryEditModal').on('show.bs.modal', function(event) {
     var button = $(event.relatedTarget)
     var caid = button.data('caid');
@@ -38,8 +38,8 @@ $(document).ready(function() {
     $("#category_delete_caid").val(caid);
   });
   $('#categoryAddModal').on('show.bs.modal', function(event) {
-    $('#catagory_add_CAID').val("");
-    $('#catagory_add_name').val("");
+    $('#category_add_CAID').val("");
+    $('#category_add_name').val("");
   });
   $('#category_add_submit').click(function() {
     var data = {
@@ -47,7 +47,7 @@ $(document).ready(function() {
       "Name": ($('#category_add_name').val()),
     };
     Post('/admin/api/categoryAdd', data, addResult);
-    Get('/admin/api/productCatagory', searchCatagory);
+    Get('/admin/api/productCategory', searchCategory);
     $('#categoryAddModal').modal('hide');
   });
   $('#category_edit_submit').click(function() {
@@ -57,13 +57,13 @@ $(document).ready(function() {
       "OriginalCAID": ($('#category_edit_originalcaid').val()),
     };
     Post('/admin/api/categoryEdit', data, addResult);
-    Get('/admin/api/productCatagory', searchCatagory);
+    Get('/admin/api/productCategory', searchCategory);
     $('#categoryEditModal').modal('hide');
   });
   $('#category_delete_submit').click(function() {
     var caid = $('#category_delete_caid').val()
     Get('/admin/api/categoryDelete/' + caid, addResult);
-    Get('/admin/api/productCatagory', searchCatagory);
+    Get('/admin/api/productCategory', searchCategory);
     $('#categoryDeleteModal').modal('hide');
   });
 });

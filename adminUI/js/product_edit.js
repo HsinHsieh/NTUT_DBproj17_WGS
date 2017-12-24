@@ -2,7 +2,7 @@
 $(document).ready(function() {
   var url = new URL(window.location.href);
   var OriginalPID = url.searchParams.get("PID");
-  var searchCatagory = function(msg) {
+  var searchCategory = function(msg) {
     var resObj = JSON.parse(msg);
     for (var i = 0; i < Object.keys(resObj).length; i++) {
       var resStr = "<option value=" + resObj[i].CAID + ">" + resObj[i].CAID + resObj[i].Category_Name + "</option>";
@@ -47,7 +47,7 @@ $(document).ready(function() {
     var PicStr = "<img src=\"/product_pic/" + resObj[0].PID + ".jpg\" alt=\"NO PICTURE\" class=\"img-thumbnail\">"
     $('.productEditPic').html(PicStr);
   }
-  Get('/admin/api/productCatagory', searchCatagory);
+  Get('/admin/api/productCategory', searchCategory);
   Get('/admin/api/productEdit/' + OriginalPID, searchDetail);
   $("#product_edit_submit").click(function() {
     var data = {

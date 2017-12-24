@@ -10,7 +10,7 @@ module.exports = class {
     this.SetAPI();
   }
   SetAPI() {
-    this.router.get("/productCatagory", function(req, res) {
+    this.router.get("/productCategory", function(req, res) {
       var callback = function(msg) {
         res.send(msg);
       };
@@ -238,7 +238,6 @@ module.exports = class {
         res.send(msg);
       };
       var sqlStr = "UPDATE `order_content` SET `Key_Used` = '1' WHERE `order_content`.`OCID` = '" + req.params.OCID + "'";
-      console.log(sqlStr);
       (new sql(sqlStr)).ReturnJson(callback);
     });
     this.router.get("/keyDeactivate/:OCID", function(req, res) {
@@ -246,9 +245,42 @@ module.exports = class {
         res.send(msg);
       };
       var sqlStr = "UPDATE `order_content` SET `Key_Used` = '0' WHERE `order_content`.`OCID` = '" + req.params.OCID + "'";
+      (new sql(sqlStr)).ReturnJson(callback);
+    });
+    this.router.get("/eventCategory", function(req, res) {
+      var callback = function(msg) {
+        res.send(msg);
+      };
+      (new sql("SELECT DISTINCT `event`.`Event_Category` FROM `event` ORDER BY `event`.`Event_Category` ASC")).ReturnJson(callback);
+    });
+    this.router.post("/eventSearch", function(req, res) {
+      var callback = function(msg) {
+        res.send(msg);
+      };
+      var sqlStr = "";
+      var sqlEID = (req.body.EID == '') ? '' : (" `EID` = '" + req.body.EID + "'");
+      var sqlName = (req.body.Name == '') ? '' : (" `Event_Name` = '" + req.body.Name + "'");
+      var sqlTarget = (req.body.Target == '') ? '' : (" `Target` = '" + req.body.Target + "'");
+      var sqlDiscount = (req.body.Discount == '') ? '' : (" `Discount_Rate` LIKE '%" + req.body.Discount + "%'");
+      var sqlCategory = (req.body.Category == '') ? '' : (" `Event_Category` LIKE '%" + req.body.Category + "%'");
+      var sqlDate = (req.body.Date_start == '') ? '' : (" `Start_Date` BETWEEN '" + req.body.Date_start + "' AND '" + req.body.Date_end + "'");
+      sqlStr += sqlEID;
+      sqlStr += (sqlStr == '' || sqlName == '') ? (sqlName) : (" AND " + sqlName);
+      sqlStr += (sqlStr == '' || sqlTarget == '') ? (sqlTarget) : (" AND " + sqlTarget);
+      sqlStr += (sqlStr == '' || sqlDiscount == '') ? (sqlDiscount) : (" AND " + sqlDiscount);
+      sqlStr += (sqlStr == '' || sqlCategory == '') ? (sqlCategory) : (" AND " + sqlCategory);
+      sqlStr += (sqlStr == '' || sqlDate == '') ? (sqlDate) : (" AND " + sqlDate);
+      var sqlOrder = " ORDER BY `EID` DESC";
+      sqlStr = "SELECT *  FROM `event` " + ((sqlStr == '') ? '' : ("WHERE" + sqlStr + sqlOrder));
       console.log(sqlStr);
       (new sql(sqlStr)).ReturnJson(callback);
     });
-
+    this.router.get("/eventDelete/:EID", function(req, res) {
+      var callback = function(msg) {
+        res.send(msg);
+      };
+      var sqlStr = "DELETE FROM `event` WHERE `event`.`EID`='" + req.params.EID + "'";
+      (new sql(sqlStr)).ReturnJson(callback);
+    });
   }
 }

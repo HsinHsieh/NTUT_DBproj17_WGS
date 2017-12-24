@@ -26,59 +26,67 @@
 		});
 	</script>
 	<script src="./js/ajax.js"></script>
-	<script src="./js/product_search.js"></script>
+	<script src="./js/event_search.js"></script>
 	<div id="header"></div>
 	<!-- /.navbar-collapse -->
 	<section>
 		<div class="row">
 			<div class="col-md-8 col-md-offset-2">
 				<div class="well">
-					<span class="admin_title">商品查詢修改</span>
+					<span class="admin_title">活動查詢修改</span>
 				</div>
 			</div>
 		</div>
-
+	</section>
+	<section>
+		<div class="col-md-8 col-md-offset-2">
+			<div class="operationResult"></div>
+		</div>
 	</section>
 	<section>
 		<div class="row">
 			<div class="col-md-8 col-md-offset-2">
 				<div class="well">
-					<h3>商品查詢</h3>
+					<h3>活動查詢</h3>
 					<div class="row">
 						<div class="form-group col-md-4">
-							<label for="Name">商品編號</label>
-							<input type="text" class="form-control" id="productSearch_PID" placeholder="遊戲編號" value="">
+							<label for="Name">活動編號</label>
+							<input type="text" class="form-control" id="eventSearch_EID" placeholder="活動ID" value="">
 							<!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
 						</div>
 						<div class="form-group col-md-4">
-							<label for="Name">遊戲名稱</label>
-							<input type="text" class="form-control" id="productSearch_name" placeholder="請輸入商品名稱" value="">
+							<label for="Name">活動名稱</label>
+							<input type="text" class="form-control" id="eventSearch_name" placeholder="請輸入活動名稱" value="">
 							<!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
 						</div>
 						<div class="form-group col-md-4">
-							<label for="exampleFormControlSelect1">商品分類</label>
-							<select class="form-control" id="productSearch_category">
+							<label for="exampleFormControlSelect1">適用對象</label>
+							<select class="form-control" id="eventSearch_target">
 									<option value=""></option>
 							</select>
 						</div>
 
 						<div class="form-row">
-							<div class="form-group col-md-3">
-								<label for="Name">遊戲價格</label>
-								<input type="text" class="form-control" id="productSearch_price_low" placeholder="請輸入價格下限" value="">
+							<div class="form-group col-md-2">
+								<label for="Name">活動開始期間</label>
+								<input type="text" class="form-control" id="eventSearch_date_start" placeholder="請輸入開始時間YYYY-MM-DD" value="">
 							</div>
-							<div class="form-group col-md-3">
+							<div class="form-group col-md-2">
 								<label for="Name"> </label>
-								<input type="text" class="form-control" id="productSearch_price_up" placeholder="請輸入價格上限" value="">
+								<input type="text" class="form-control" id="eventSearch_date_end" placeholder="請輸入結束時間YYYY-MM-DD" value="">
+							</div>
+							<div class="form-group col-md-2">
+								<label for="Name">折扣</label>
+								<input type="text" class="form-control" id="eventSearch_discount" placeholder="0-1間的小數" value="">
 							</div>
 							<div class="form-group col-md-6">
-								<label for="exampleFor">供應商</label>
-								<select class="form-control" id="productSearch_supplier">
+								<label for="exampleFormControlSelect1">活動分類</label>
+								<select class="form-control" id="eventSearch_category">
 										<option value=""></option>
 								</select>
 							</div>
 						</div>
-						<button class="btn btn-primary btn-lg pull-right" id="productSearch">查詢</button>
+						<button class="btn btn-primary btn-lg pull-right" id="eventSearch">查詢</button>
 						<button class="btn btn-warning btn-lg pull-right" id="filterClear">清除</button>
 					</div>
 				</div>
@@ -93,15 +101,16 @@
 					<thead>
 						<tr>
 							<th class="col-xs-1">#</th>
-							<th class="col-xs-2">商品編號</th>
-							<th class="col-xs-3">商品名稱</th>
-							<th class="col-xs-3">供應商</th>
-							<th class="col-xs-1">價格</th>
+							<th class="col-xs-3">活動名稱</th>
+							<th class="col-xs-1">開始日期</th>
+							<th class="col-xs-1">結束日期</th>
+							<th class="col-xs-1">適用對象</th>
+							<th class="col-xs-1">折扣</th>
 							<th class="col-xs-1">編輯</th>
 							<th class="col-xs-1">刪除</th>
 						</tr>
 					</thead>
-					<tbody class="product_list">
+					<tbody class="event_list">
 
 					</tbody>
 				</table>
@@ -109,28 +118,18 @@
 		</div>
 	</section>
 	<section>
-		<div class="modal fade" id="productDeleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+		<div class="modal fade" id="eventDeleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
 			<div class="modal-dialog" role="document">
-				<div class="modal-content productDeleteModalBody">
+				<div class="modal-content eventDeleteModalBody">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						<h4 class="modal-title" id="productDeleteModalTitle">是否確認刪除以下產品?</h4>
+						<h4 class="modal-title" id="eventDeleteModalTitle">刪除確認</h4>
 					</div>
-					<div class="modal-body" id="productDeleteModalBody">
-
-						<div class="row">
-							<div class="col-md-6">
-								<div class="productDeleteContent"></div>
-							</div>
-							<div class="col-md-6">
-								<div class="productDeletePic"> </div>
-							</div>
-						</div>
-					</div>
-					<div class="modal-footer" id="productDeleteModalFooter">
-						<input type="hidden" id="productDeletePID" value="">
+					<div class="modal-body" id="eventDeleteModalBody"></div>
+					<div class="modal-footer" id="eventDeleteModalFooter">
+						<input type="hidden" id="category_delete_eid" value="">
 						<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-						<button type="button" class="btn btn-danger productDeleteConfirm">確認</button>
+						<button type="button" class="btn btn-danger" id="event_delete_submit">確認</button>
 					</div>
 				</div>
 			</div>
