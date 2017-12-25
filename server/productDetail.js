@@ -5,6 +5,7 @@ module.exports = class {
         this.router = router
         this.SetAPI()
     }
+
     SetAPI() {
         this.router.get("/", function(req, res) {
             res.sendfile('./UI/productDetail.html', function(err) {
@@ -17,6 +18,13 @@ module.exports = class {
                 res.send(msg);
             };
             (new ProductDetail(req.params.id)).GetProductInfo(callback);
+        });
+
+        this.router.get("/Comment/:id", function(req, res) {
+            var callback = function(msg) {
+                res.send(msg);
+            };
+            (new ProductDetail(req.params.id)).GetCommentInfo(callback);
         });
     }
 }
