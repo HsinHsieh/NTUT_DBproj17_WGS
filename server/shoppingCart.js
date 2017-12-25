@@ -171,8 +171,8 @@ module.exports = class {
                     res.send("");
                 }
                 else {
-                    var delCommand = "DELETE FROM order_content\
-                                WHERE order_content.Order_Number = " + rows[0].OID;
+                    var delCommand = "DELETE FROM order_main\
+                                WHERE order_main.OID = " + rows[0].OID;
                     db.query(delCommand, clear);
                 }
             }

@@ -50,8 +50,10 @@ $(document).ready(function() {
             customer: this.user,
         };
         var callback = function(msg) {
-            swal(msg);
-            window.location = '/shopping_cart';
+            if (msg != "") {
+                window.location = '/shopping_cart';
+                swal(msg);
+            }
         };
         Post(url, data, callback);
     }
