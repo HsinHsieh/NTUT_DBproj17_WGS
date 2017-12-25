@@ -141,7 +141,7 @@ module.exports = class {
             var command = "SELECT event.Discount_Rate, event.Event_Category, product.Price\
                             FROM event, order_main, order_content, product\
                             WHERE order_main.Customer = '" + req.body.customer + "' AND order_content.Order_Number = order_main.OID AND \
-                                product.PID = order_content.Item AND product.Category = event.Event_Category AND order_main.Status = 0";
+                                product.PID = order_content.Item AND product.Category = event.Target AND order_main.Status = 0";
 
             var db = DataBaseController.GetDB();
             var discount = 0;
