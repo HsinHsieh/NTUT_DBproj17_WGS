@@ -104,18 +104,6 @@
             <!-- cart-menu -->
             <div class="cart-menu">
                 <ul>
-                    <li id="personalCenter" style="display: none;">
-                        <div class="dropdown">
-                            <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" style="font-size:14px;">
-                                <i class="icon-docs icons" aria-hidden="true"></i> 個人中心
-                             </a>
-                            <ul class="dropdown-menu" style="font-size:14px;">
-                                <li><a href="#">帳戶設定</a></li>
-                                <li><a href="#">個人檔案</a></li>
-                                <li><a onclick="MustLogin('/productKeys')">我的金鑰</a></li>
-                            </ul>
-                        </div>
-                    </li>
                     <!-- <li><a href="#"><i class="icon-heart icons" aria-hidden="true"></i></a><span class="subno">1</span><strong>Your Wishlist</strong></li> -->
                     <li class="dropdown"> <a id="header_cart_btn" href="#" data-toggle="dropdown" onclick="MustLogin()"><i class="icon-basket-loaded icons" aria-hidden="true"></i></a>
                         <!-- <span class="subno" id="size">2</span> -->
@@ -129,7 +117,7 @@
                                 <div class="col-md-6 text-left"> <strong>Cart Total:</strong> <strong>Discount :</strong> <strong>Total: </strong> </div>
                                 <div class="col-md-6 text-right"> <strong id="header_cart_total"></strong> <strong id="header_cart_discount"></strong><strong id="header_cart_final"> </strong></div>
                             </div>
-                            <a onclick="MustLogin('/shopping_cart')" class="cart-btn">VIEW CART </a>
+                            <a href="/shopping_cart" class="cart-btn">VIEW CART </a>
                             <a class="cart-btn" id="header_checkout">CHECKOUT</a>
                         </div>
                     </li>
