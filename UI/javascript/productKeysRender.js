@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    CheckLogin();
+    CheckLoginFirst();
 
     $(document).on("click", ".btn.btn-primary.btn-block", function(event){
         var apiUrl = '/productKeys/reveal';
@@ -15,16 +15,40 @@ $(document).ready(function() {
     })
 });
 
-function CheckLogin() {
+function CheckLoginFirst() {
     var apiUrl = '/login/IsLogined'
     var callback = function(loginStatus) {
         if (loginStatus == "false") {
             swal({
-                position: 'top-right',
                 type: 'warning',
                 title: '請先登入',
                 showConfirmButton: false,
                 timer: 1500
+            }).then(function() {
+                var {
+                    value: formValues
+                } = swal({
+                    title: 'Login',
+                    html: '<input id="acc" type="email" maxlength="20" placeholder="帳 號(Email)" value="" class="swal2-input">' +
+                        '<input id="psw" type="password"  placeholder="密 碼" value="" class="swal2-input">',
+                    focusConfirm: true,
+                    preConfirm: () => {
+                        var data = {
+                            "account": ($('#acc').val()),
+                            "password": ($('#psw').val())
+                        }
+                        Post('/login', data, function(msg) {
+                            swal(msg).then(function(){
+                                if (msg == "登入成功"){
+                                    location.reload();
+                                }
+                                else {
+                                    window.location = '/';
+                                }
+                            });
+                        });
+                    }
+                });
             });
         } else {
             GetProductKeys(loginStatus)
@@ -36,7 +60,6 @@ function CheckLogin() {
 function GetProductKeys(CID) {
     var apiUrl = '/productKeys/' + CID
     var callback = function(product_keys) {
-        // console.log(product_keys)
         for (var i = 0; i < Object.keys(product_keys).length; i++) {
           if (product_keys[i].Key_Used == 0)
               product_keys[i].Key_Status = "<button class='btn btn-primary btn-block' type='button' name='button' data-ocid='" + product_keys[i].OCID + "'>啟用金鑰</button>"
