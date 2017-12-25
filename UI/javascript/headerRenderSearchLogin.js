@@ -30,7 +30,7 @@ function CheckLogin() {
             $("#loginBtn").show();
             $("#registerBtn").show();
             $("#logoutBtn").hide();
-            $('#hellouser').text("登入或註冊");
+            $('#hellouser').text("請登入或註冊");
         } else {
             $("#loginBtn").hide();
             $("#registerBtn").hide();

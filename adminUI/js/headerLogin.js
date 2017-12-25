@@ -14,6 +14,7 @@ function LoginRequest() {
             '<input id="psw" type="password"  placeholder="密 碼" value="" class="swal2-input">',
         focusConfirm: false,
         allowOutsideClick: false,
+        allowEscapeKey: false,
         preConfirm: () => {
             var data = {
                 "account": ($('#acc').val()),

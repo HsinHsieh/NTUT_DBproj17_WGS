@@ -105,6 +105,8 @@ module.exports = class {
 
 
         this.router.post("/loginAdmin", function(req, res) {
+            //解決admin 和 UI session衝突
+            db.query("DELETE FROM `sessions` WHERE `data` LIKE '%" + req.session.session_id + "%' OR  `data` LIKE '%" + req.session.sessionAdmin_id + "%'");
             var User = new member();
             User.IsAdminMember(req.body.account, function(err, results) {
                 if (results == null) {
@@ -128,6 +130,7 @@ module.exports = class {
         });
 
         this.router.get("/IsLoginedAdmin", function(req, res) {
+            //console.log(req.session.sessionAdmin_id);
             if (req.session.sessionAdmin_id) res.send(req.session.sessionAdmin_id);
             else res.send('false');
         });
