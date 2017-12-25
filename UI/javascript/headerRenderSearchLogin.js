@@ -30,12 +30,33 @@ function CheckLogin() {
             $("#loginBtn").show();
             $("#registerBtn").show();
             $("#logoutBtn").hide();
+            $("#personalCenter").hide();
             $('#hellouser').text("登入或註冊");
         } else {
             $("#loginBtn").hide();
             $("#registerBtn").hide();
             $("#logoutBtn").show();
+            $("#personalCenter").show();
             $('#hellouser').text("你好!想來點糞game嗎?  " + loginStatus);
+        }
+    }
+    Get(apiUrl, callback);
+};
+
+function MustLogin() {
+    var apiUrl = '/login/IsLogined'
+    var callback = function(loginStatus) {
+        //console.log(loginStatus);
+        if (loginStatus == "false") {
+            $("#HeaderCartDropdown").hide();
+            swal({
+                type: 'warning',
+                title: '請先登入',
+                showConfirmButton: false,
+                timer: 1500
+            });
+        } else {
+            $("#HeaderCartDropdown").show();
         }
     }
     Get(apiUrl, callback);

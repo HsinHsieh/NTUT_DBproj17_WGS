@@ -24,31 +24,8 @@ function CheckLoginFirst() {
                 title: '請先登入',
                 showConfirmButton: false,
                 timer: 1500
-            }).then(function() {
-                var {
-                    value: formValues
-                } = swal({
-                    title: 'Login',
-                    html: '<input id="acc" type="email" maxlength="20" placeholder="帳 號(Email)" value="" class="swal2-input">' +
-                        '<input id="psw" type="password"  placeholder="密 碼" value="" class="swal2-input">',
-                    focusConfirm: true,
-                    preConfirm: () => {
-                        var data = {
-                            "account": ($('#acc').val()),
-                            "password": ($('#psw').val())
-                        }
-                        Post('/login', data, function(msg) {
-                            swal(msg).then(function(){
-                                if (msg == "登入成功"){
-                                    location.reload();
-                                }
-                                else {
-                                    window.location = '/';
-                                }
-                            });
-                        });
-                    }
-                });
+            }).then(function(){
+                window.location = "/";
             });
         } else {
             GetProductKeys(loginStatus)

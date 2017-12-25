@@ -92,7 +92,7 @@
             <!-- cart-menu -->
             <div class="cart-menu">
                 <ul>
-                    <li id="personalCenter">
+                    <li id="personalCenter" style="display: none;">
                         <div class="dropdown">
                             <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" style="font-size:14px;">
                                 <i class="icon-docs icons" aria-hidden="true"></i> 個人中心
@@ -105,10 +105,10 @@
                         </div>
                     </li>
                     <!-- <li><a href="#"><i class="icon-heart icons" aria-hidden="true"></i></a><span class="subno">1</span><strong>Your Wishlist</strong></li> -->
-                    <li class="dropdown"> <a id="header_cart_btn" href="#" data-toggle="dropdown" data-hover="dropdown"><i class="icon-basket-loaded icons" aria-hidden="true"></i></a>
+                    <li class="dropdown"> <a id="header_cart_btn" href="#" data-toggle="dropdown" data-hover="dropdown" onclick="MustLogin()"><i class="icon-basket-loaded icons" aria-hidden="true"></i></a>
                         <!-- <span class="subno" id="size">2</span> -->
                         <strong>Your Cart</strong>
-                        <div class="dropdown-menu  cart-outer">
+                        <div id="HeaderCartDropdown" class="dropdown-menu cart-outer"  style="display: none;">
                             <div id="HeaderCart">
 
                             </div>
