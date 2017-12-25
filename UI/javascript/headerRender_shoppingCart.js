@@ -19,7 +19,7 @@ $(document).ready(function() {
         };
         var callback = function (msg) {
             swal(msg);
-            //GetItems();
+            GetItems();
             window.location = '/';
         }
         Post(url, data, callback);
@@ -31,7 +31,7 @@ $(document).ready(function() {
             if (loginStatus == "false")
                 return
             this.user = loginStatus;
-            //GetItems();
+            GetItems();
         };
         Get(apiUrl, callback);
     };
