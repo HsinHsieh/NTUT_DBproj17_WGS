@@ -2,6 +2,10 @@ $(document).ready(function() {
     var user;
     CheckLogin();
 
+    $("#header_cart_btn").click(function () {
+        GetItems();
+    });
+
     $("#header_checkout").click(function () {
         checkout();
     });
@@ -15,7 +19,7 @@ $(document).ready(function() {
         };
         var callback = function (msg) {
             swal(msg);
-            GetItems();
+            //GetItems();
             window.location = '/';
         }
         Post(url, data, callback);
@@ -27,7 +31,7 @@ $(document).ready(function() {
             if (loginStatus == "false")
                 return
             this.user = loginStatus;
-            GetItems();
+            //GetItems();
         };
         Get(apiUrl, callback);
     };
