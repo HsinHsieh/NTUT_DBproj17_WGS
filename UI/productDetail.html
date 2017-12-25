@@ -114,8 +114,8 @@
 										<li class="yellow-color"><i class="fa fa-star" aria-hidden="true"></i></li>
 										<li class="yellow-color"><i class="fa fa-star" aria-hidden="true"></i></li>
 										<li><i class="fa fa-star" aria-hidden="true"></i></li>
-										<li><a href="#">10 review(s)</a></li>
-										<li><a href="#"> Add your review</a></li>
+										<li><a class="comment" id="comment_num" href="#">10 comment(s)</a></li>
+										<li><a id="add_comment" href="#"> Add your comment</a></li>
 									</ul>
 								</div>
 								<p>
@@ -161,7 +161,7 @@
 						<ul>
 							<li class="active"><a data-toggle="tab" href="#home">DESCRIPTION</a></li>
 							<li><a data-toggle="tab" href="#menu1">SYSTEM REQUIREMENT</a></li>
-							<li><a data-toggle="tab" href="#menu2">REVIEWS</a></li>
+							<li><a class="comment" data-toggle="tab" href="#menu2">COMMENTS</a></li>
 						</ul>
 					</div>
 					<div class="tab-content">
@@ -172,7 +172,34 @@
 							<p id="sys_req"></p>
 						</div>
 						<div id="menu2" class="tab-pane fade">
-							<p id="review"></p>
+							<!--p id="comment"-->
+							<section class="grid-shop">
+								<!-- .grid-shop -->
+								<div class="container">
+									<div class="row">
+										<div class="col-md-12">
+											<div class="col-md-12">
+												<table class="table table-striped">
+													<thead>
+														<tr>
+															<th class="col-xs-1">Author</th>
+															<th class="col-xs-1">Grade</th>
+															<th class="col-xs-6">Comment</th>
+															<th class="col-xs-2">Date</th>
+														</tr>
+													</thead>
+													<tbody class="comment_list">
+
+													</tbody>
+												</table>
+											</div>
+											<!-- right side -->
+										</div>
+									</div>
+								</div>
+								<!-- /.grid-shop -->
+							</section>
+							<!--/p-->
 						</div>
 					</div>
 				</div>
@@ -216,6 +243,8 @@
 	<script src="assets/owl-carousel/owl.carousel.js"></script>
 	<!--  Custom Theme JavaScript  -->
 	<script src="assets/js/custom.js"></script>
+	<!-- Jquery Cookie Plugin  -->
+	<script src="assets/js/jquery.cookie.js"></script>
 	<!--  jcarousel Theme JavaScript  -->
 	<script type="text/javascript" src="assets/js/jquery.jcarousel.min.js"></script>
 	<script type="text/javascript" src="assets/js/jcarousel.connected-carousels.js"></script>

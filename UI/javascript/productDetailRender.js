@@ -3,6 +3,8 @@ $(document).ready(function() {
     var pid = url.searchParams.get("pid");
 
     GetProductByID(pid);
+    GetCommentByID(pid);
+
     $(".addtocart2").click(function() {
         CheckLoginAndAdd(pid);
     });
@@ -23,6 +25,21 @@ function GetProductByID(id) {
     }
     Get(apiUrl, callback);
 };
+function GetCommentByID(id) {
+    var apiUrl = '/product/Comment/' + id
+    var callback = function(comment) {
+        var resStr = "";
+        for (var i = 0; i < Object.keys(comment).length; i++) {
+          resStr += "<tr><td><p class='form-control-static'>" + comment[i].Customer + "</p></td> \
+                         <td><p class='form-control-static'>" + comment[i].Grade + "</p></td> \
+                         <td><p class='form-control-static'>" + comment[i].Comment_Text + "</p></td> \
+                         <td><p class='form-control-static'>" + comment[i].Comment_Time + "</p></td></tr>";
+        }
+        $(".comment_list").html(resStr);
+    }
+    Get(apiUrl, callback);
+};
+
 
 function CheckLoginAndAdd(pid) {
     var apiUrl = '/login/IsLogined'
