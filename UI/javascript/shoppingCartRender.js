@@ -24,8 +24,9 @@ $(document).ready(function() {
                 title: msg,
                 showConfirmButton: false,
                 timer: 1500
+            }).then(function() {
+                window.location = '/shopping_cart';
             });
-            window.location = '/shopping_cart';
         }
         Post(url, data, callback);
     }
@@ -38,8 +39,9 @@ $(document).ready(function() {
             discount: $("#discount_price").data('discount'),
         };
         var callback = function(msg) {
-            swal(msg);
-            window.location = '/';
+            swal(msg).then(function() {
+                window.location = '/';
+            });
         };
         Post(url, data, callback);
     }
@@ -50,8 +52,9 @@ $(document).ready(function() {
             customer: this.user,
         };
         var callback = function(msg) {
-            swal(msg);
-            window.location = '/shopping_cart';
+            swal(msg).then(function() {
+                window.location = '/shopping_cart';
+            });
         };
         Post(url, data, callback);
     }
@@ -86,7 +89,7 @@ $(document).ready(function() {
         var data = {
             customer: this.user,
         };
-        var callback = function (msg) {
+        var callback = function(msg) {
             var result = "<div id='discount_price' data-discount='" + msg + "'></div> - $" + msg;
             $("#cart_discount").html(result);
             GetFinal();
@@ -127,7 +130,7 @@ $(document).ready(function() {
                     title: '請先登入',
                     showConfirmButton: true,
                     timer: 1500,
-                }).then(function () {
+                }).then(function() {
                     window.location = "/";
                 });
             } else {
