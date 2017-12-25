@@ -48,7 +48,7 @@ $("#loginBtn").click(function() {
         title: 'Login',
         html: '<input id="acc" type="email" maxlength="20" placeholder="帳 號(Email)" value="" class="swal2-input">' +
             '<input id="psw" type="password"  placeholder="密 碼" value="" class="swal2-input">',
-        focusConfirm: true,
+        focusConfirm: false,
         preConfirm: () => {
             var data = {
                 "account": ($('#acc').val()),

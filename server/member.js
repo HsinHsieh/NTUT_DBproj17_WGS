@@ -15,6 +15,15 @@ module.exports = class {
             });
     }
 
+    IsAdminMember(account, callback) {
+        this.db.query(
+            "SELECT * FROM member WHERE CID = '" + account + "' AND Type = 2;",
+            function(err, result, fields) {
+                //console.log(result[0]);
+                callback(err, result[0]);
+            });
+    }
+
     MemberRegister(RegisterData, callback) {
         var command = "INSERT INTO `member` (`CID`, `Password`, `Type`, `First_Name`, `Last_Name`,`Phone`, `Gender`) VALUES ('" + RegisterData.CID + "','" + RegisterData.Password +
             "','1','" + RegisterData.First_Name + "','" + RegisterData.Last_Name + "','" + RegisterData.Phone + "','" + RegisterData.Gender + "')";
