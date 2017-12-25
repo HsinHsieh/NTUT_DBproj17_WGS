@@ -2,6 +2,10 @@ $(document).ready(function() {
     var user;
     CheckLogin();
 
+    $("#header_cart_btn").click(function () {
+        GetItems();
+    });
+
     $("#header_checkout").click(function () {
         checkout();
     });

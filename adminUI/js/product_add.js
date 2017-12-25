@@ -1,6 +1,6 @@
 // const product_search_row = "'<tr><th scope='row'>1</th<td>ACT0000007</td><td>{{Product_Name}}</td><td>{{Category}}</td><td>{{Price}}</td><td><button class='btn btn-primary' type='button' name='button' onclick="location.href=">編輯</button></td><td><button class='btn btn-danger' type='button' name='button'>刪除</button></td></tr>"
 $(document).ready(function() {
-  var searchCatagory = function(msg) {
+  var searchCategory = function(msg) {
     var resObj = JSON.parse(msg);
     for (var i = 0; i < Object.keys(resObj).length; i++) {
       var resStr = "<option value=" + resObj[i].CAID + ">" + resObj[i].CAID + resObj[i].Category_Name + "</option>";
@@ -32,7 +32,7 @@ $(document).ready(function() {
     str = str.substr(-7);
     $('#productAdd_PID').val(pid + str);
   }
-  Get('/admin/api/productCatagory', searchCatagory);
+  Get('/admin/api/productCategory', searchCategory);
   $("#product_add_submit").click(function() {
     var data = {
       "PID": ($('#productAdd_PID').val()),

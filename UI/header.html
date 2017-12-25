@@ -45,9 +45,21 @@
                 <ul>
                     <li><a id="loginBtn" href="#"><i class="icon-people icons" aria-hidden="true"></i> Login</a></li>
                     <li><a id="registerBtn" href="#"><i class="icon-people icons" aria-hidden="true"></i> Register</a></li>
-                    <li><a id="logoutBtn" href="#"><i class="icon-people icons" aria-hidden="true"></i> Logout</a></li>
+                    <li><a id="logoutBtn" href="#" style="display: none;"><i class="icon-people icons" aria-hidden="true"></i> Logout</a></li>
                     <li>
-                        <div id="hellouser" href="#"><i class="icon-note icons" aria-hidden="true"></i> </div>
+                        <div id="hellouser" href="#"></div>
+                    </li>
+                    <li>
+                        <div class="dropdown">
+                            <a id="personalCenter" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" style="font-size:14px; color: white; display: none;">
+                                <i class="icon-docs icons" aria-hidden="true"></i> 個人中心
+                            </a>
+                            <ul class="dropdown-menu dropdownhover-bottom" style="font-size:14px; min-width: 200px;">
+                                <li><a href="#">帳戶設定</a></li>
+                                <li><a href="#">個人檔案</a></li>
+                                <li><a href="/productKeys">我的金鑰</a></li>
+                            </ul>
+                        </div>
                     </li>
                 </ul>
             </div>
@@ -58,11 +70,11 @@
 <section class="top-md-menu">
     <div class="container">
         <div class="col-sm-3">
-            <div class="logo">
+            <div class="logo" style="margin-left:20px;">
                 <a href="/">
                     <h6><img src="assets/images/logo.png" alt="logo" /></h6>
+                    <h6>按我回首頁</h6>
                 </a>
-
             </div>
         </div>
         <div class="col-sm-6">
@@ -92,23 +104,11 @@
             <!-- cart-menu -->
             <div class="cart-menu">
                 <ul>
-                    <li id="personalCenter">
-                        <div class="dropdown">
-                            <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" style="font-size:14px;">
-                                <i class="icon-docs icons" aria-hidden="true"></i> 個人中心
-                             </a>
-                            <ul class="dropdown-menu" style="font-size:14px;">
-                                <li><a href="#">帳戶設定</a></li>
-                                <li><a href="#">個人檔案</a></li>
-                                <li><a href="/productKeys">金鑰管理</a></li>
-                            </ul>
-                        </div>
-                    </li>
                     <!-- <li><a href="#"><i class="icon-heart icons" aria-hidden="true"></i></a><span class="subno">1</span><strong>Your Wishlist</strong></li> -->
-                    <li class="dropdown"> <a href="#" data-toggle="dropdown" data-hover="dropdown"><i class="icon-basket-loaded icons" aria-hidden="true"></i></a>
+                    <li class="dropdown"> <a id="header_cart_btn" href="#" data-toggle="dropdown" onclick="MustLogin()"><i class="icon-basket-loaded icons" aria-hidden="true"></i></a>
                         <!-- <span class="subno" id="size">2</span> -->
                         <strong>Your Cart</strong>
-                        <div class="dropdown-menu  cart-outer">
+                        <div id="HeaderCartDropdown" class="dropdown-menu cart-outer"  style="display: none;">
                             <div id="HeaderCart">
 
                             </div>

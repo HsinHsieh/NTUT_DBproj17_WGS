@@ -9,11 +9,11 @@ $(document).ready(function() {
     }
     $(".product_list").html(resStr);
   }
-  var searchCatagory = function(msg) {
+  var searchCategory = function(msg) {
     var resObj = JSON.parse(msg);
     for (var i = 0; i < Object.keys(resObj).length; i++) {
       var resStr = "<option value=" + resObj[i].CAID + ">" + resObj[i].CAID + resObj[i].Category_Name + "</option>";
-      $("#productSearch_catagory").append(resStr);
+      $("#productSearch_category").append(resStr);
     }
   }
   var searchSupplier = function(msg) {
@@ -51,7 +51,7 @@ $(document).ready(function() {
       "Supplier": ($('#productSearch_supplier').val()),
       "Price_low": ($('#productSearch_price_low').val()),
       "Price_up": ($('#productSearch_price_up').val()),
-      "Category": ($('#productSearch_catagory').val()),
+      "Category": ($('#productSearch_category').val()),
     };
     Post('/admin/api/productSearch', data, productRow);
   }
@@ -61,7 +61,7 @@ $(document).ready(function() {
     $('#productDeleteModalFooter').html("");
     $('#productDeleteModalFooter').append("<input type=\"hidden\" id=\"productDeletePID\" value=\"\"><button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">取消</button><button type=\"button\" class=\"btn btn-danger productDeleteConfirm\">確認</button>")
   }
-  Get('/admin/api/productCatagory', searchCatagory);
+  Get('/admin/api/productCategory', searchCategory);
   Get('/admin/api/productSupplier', searchSupplier);
   $('.productDeleteConfirm').click(function() {
     Get('/admin/api/prouctDelete/' + $('#productDeletePID').val(), productDeleteResult);
@@ -73,7 +73,7 @@ $(document).ready(function() {
     $('#productSearch_supplier').val("");
     $('#productSearch_price_low').val("");
     $('#productSearch_price_up').val("");
-    $('#productSearch_catagory').val("");
+    $('#productSearch_category').val("");
   });
   $('#productDeleteModal').on('show.bs.modal', function(event) {
     var button = $(event.relatedTarget)

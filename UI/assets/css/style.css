@@ -466,6 +466,11 @@ a:hover {
     color: #b11e22;
 }
 
+.dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0;
+ }
+
 .main-memu-socail>ul {
     float: right;
     margin-right: 30px;

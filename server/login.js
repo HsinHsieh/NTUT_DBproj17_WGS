@@ -69,7 +69,8 @@ module.exports = class {
         });
 
         this.router.get('/', function(req, res) {
-            db.query("DELETE FROM `sessions` WHERE `data` LIKE '%" + req.session.session_id + "%'");
+            //console.log(req.session.session_id + "++" + req.session.sessionAdmin_id);
+            db.query("DELETE FROM `sessions` WHERE `data` LIKE '%" + req.session.session_id + "%' OR  `data` LIKE '%" + req.session.sessionAdmin_id + "%'");
             req.session.destroy();
             res.send('你已經登出惹 ㄅㄅ');
         });
@@ -99,6 +100,39 @@ module.exports = class {
                     res.send("successed");
                 }
             });
+        });
+
+
+
+        this.router.post("/loginAdmin", function(req, res) {
+            //解決admin 和 UI session衝突
+            db.query("DELETE FROM `sessions` WHERE `data` LIKE '%" + req.session.session_id + "%' OR  `data` LIKE '%" + req.session.sessionAdmin_id + "%'");
+            var User = new member();
+            User.IsAdminMember(req.body.account, function(err, results) {
+                if (results == null) {
+                    res.locals.error = '管理員不存在';
+                    res.send('管理員不存在 重新登入或滾');
+                    return;
+                }
+                if (results.CID != req.body.account || results.Password != req.body.password) {
+                    res.locals.error = '密碼錯誤';
+                    res.send('密碼錯誤');
+                    return;
+                } else {
+                    res.locals.username = req.body.account;
+                    //設定session
+                    req.session.sessionAdmin_id = req.body.account; //res.locals.username
+                    //res.redirect('/');
+                    res.send("管理員登入成功");
+                    return;
+                }
+            })
+        });
+
+        this.router.get("/IsLoginedAdmin", function(req, res) {
+            //console.log(req.session.sessionAdmin_id);
+            if (req.session.sessionAdmin_id) res.send(req.session.sessionAdmin_id);
+            else res.send('false');
         });
     }
 }

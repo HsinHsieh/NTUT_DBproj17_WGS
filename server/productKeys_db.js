@@ -1,5 +1,14 @@
 const DataBaseController = require('../DB/DatabaseController.js')
 
+// function generateKey(){
+//   var key = keygen._({
+//       forceUppercase: true,
+//       length: 20
+//   });
+//   var output = [key.slice(0, 5), key.slice(5, 10), key.slice(10, 15), key.slice(15, 20)].join('-');
+//   return output;
+// }
+
 module.exports = class {
     constructor(userID) {
         this.id = userID;
@@ -7,7 +16,7 @@ module.exports = class {
     }
 
     GetProductKeysInfo(callback){
-        var command = "SELECT `Order_Number`, `Product_Name`, DATE_FORMAT(Order_Time,'%Y-%m-%d %k:%i:%s') AS Formated_Order_Time, `License_Key`, `Key_Used` \
+        var command = "SELECT `Order_Number`, `OCID`, `Product_Name`, DATE_FORMAT(Order_Time,'%Y-%m-%d %k:%i:%s') AS Formated_Order_Time, `License_Key`, `Key_Used` \
                        FROM (`order_content` \
                                 JOIN `order_main` ON `order_content`.`Order_Number` = `order_main`.`OID`) \
                                 JOIN `product` ON `order_content`.`Item` = `product`.`PID` \

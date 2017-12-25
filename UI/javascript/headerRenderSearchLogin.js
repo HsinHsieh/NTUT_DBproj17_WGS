@@ -30,12 +30,33 @@ function CheckLogin() {
             $("#loginBtn").show();
             $("#registerBtn").show();
             $("#logoutBtn").hide();
-            $('#hellouser').text("登入或註冊");
+            $("#personalCenter").hide();
+            $('#hellouser').text("請登入或註冊");
         } else {
             $("#loginBtn").hide();
             $("#registerBtn").hide();
             $("#logoutBtn").show();
+            $("#personalCenter").show();
             $('#hellouser').text("你好!想來點糞game嗎?  " + loginStatus);
+        }
+    }
+    Get(apiUrl, callback);
+};
+
+function MustLogin() {
+    var apiUrl = '/login/IsLogined'
+    var callback = function(loginStatus) {
+        //console.log(loginStatus);
+        if (loginStatus == "false") {
+            $("#HeaderCartDropdown").hide();
+            swal({
+                type: 'warning',
+                title: '請先登入',
+                showConfirmButton: false,
+                timer: 1500
+            });
+        } else {
+            $("#HeaderCartDropdown").show();
         }
     }
     Get(apiUrl, callback);
@@ -46,9 +67,9 @@ $("#loginBtn").click(function() {
         value: formValues
     } = swal({
         title: 'Login',
-        html: '<input id="acc" type="email" maxlength="20" placeholder="帳 號" value="" class="swal2-input">' +
+        html: '<input id="acc" type="email" maxlength="20" placeholder="帳 號(Email)" value="" class="swal2-input">' +
             '<input id="psw" type="password"  placeholder="密 碼" value="" class="swal2-input">',
-        focusConfirm: true,
+        focusConfirm: false,
         preConfirm: () => {
             var data = {
                 "account": ($('#acc').val()),
