@@ -116,7 +116,7 @@ $(document).ready(function() {
     function GetFinal() {
         var total = parseInt($("#total_price").data('total'));
         var discount = parseInt($("#discount_price").data('discount'));
-        var final = (total - discount).toString();
+        var final = "$" + (total - discount).toString();
         $("#final_price").html(final);
     }
 

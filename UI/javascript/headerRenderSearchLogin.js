@@ -57,6 +57,7 @@ function MustLogin() {
             });
         } else {
             $("#HeaderCartDropdown").show();
+            GetItems();
         }
     }
     Get(apiUrl, callback);
