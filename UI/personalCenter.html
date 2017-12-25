@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>NTUT Gamers!!</title>
+	<!-- Latest Bootstrap min CSS -->
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css">
+	<!-- Dropdownhover CSS -->
+	<link rel="stylesheet" href="assets/css/bootstrap-dropdownhover.min.css" type="text/css">
+	<!-- latest fonts awesome -->
+	<link rel="stylesheet" href="assets/font/css/font-awesome.min.css" type="text/css">
+	<!-- simple line fonts awesome -->
+	<link rel="stylesheet" href="assets/simple-line-icon/css/simple-line-icons.css" type="text/css">
+	<!-- stroke-gap-icons -->
+	<link rel="stylesheet" href="assets/stroke-gap-icons/stroke-gap-icons.css" type="text/css">
+	<!-- Animate CSS -->
+	<link rel="stylesheet" href="assets/css/animate.min.css" type="text/css">
+	<!-- Style CSS -->
+	<link rel="stylesheet" href="assets/css/style.css" type="text/css">
+	<!-- Style CSS -->
+	<link rel="stylesheet" href="assets/css/jcarousel.connected-carousels.css" type="text/css">
+	<!--  baguetteBox -->
+	<link rel="stylesheet" href="assets/css/baguetteBox.css">
+	<!-- Owl Carousel Assets -->
+	<link href="assets/owl-carousel/owl.carousel.css" rel="stylesheet">
+	<link href="assets/owl-carousel/owl.theme.css" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+	<script src="./javascript/sweetalert2/dist/sweetalert2.min.js"></script>
+	<link rel="stylesheet" href="./javascript/sweetalert2/dist/sweetalert2.min.css">
+	<!-- Include a polyfill for ES6 Promises (optional) for IE11 and Android browser -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+
+	<script type="text/javascript" src="./javascript/personalCenterRender.js"></script>
+	<script type="text/javascript" src="./javascript/ajax.js"></script>
+
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif]-->
+</head>
+
+<body>
+	<!--  Preloader  -->
+	<div id="preloader">
+		<div id="loading"> </div>
+	</div>
+	<header class="header2">
+		<!--  top-header  -->
+		<script>
+			$(function() {
+				$("#header").load("header.html");
+			});
+		</script>
+		<div id="header"></div>
+		<!--  /top-header  -->
+	</header>
+	<!-- newsletter -->
+	<section class="grid-shop">
+		<!-- .grid-shop -->
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item"><a href="/">Home</a></li>
+						<li class="breadcrumb-item active">個人中心</li>
+					</ol>
+					<div class="col-sm-3 col-md-3">
+						<div class="weight">
+							<div class="title">
+								<h2>目錄</h2>
+							</div>
+							<div class="product-categories">
+								<ul>
+									<li><a href="#">個人資料  <span><i class="fa fa-angle-right" aria-hidden="true"></i></span></a></li>
+									<li><a href="#">我的訂單   <span><i class="fa fa-angle-right" aria-hidden="true"></i></span></a></li>
+									<li><a href="#">...  <span><i class="fa fa-angle-right" aria-hidden="true"></i></span></a></li>
+									<li><a href="#">...  <span><i class="fa fa-angle-right" aria-hidden="true"></i></span></a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+
+					<!-- right side -->
+					<div id="contentsForPersonal" class="col-sm-9 col-md-9">
+
+					</div>
+					<script>
+						$(function() {
+							$("#contentsForPersonal").load("personalCenter/myfile.html");
+						});
+					</script>
+				</div>
+			</div>
+		</div>
+		<!-- /.grid-shop -->
+	</section>
+	<footer>
+		<script>
+			$(function() {
+				$("#footer").load("footer.html");
+			});
+		</script>
+		<div id="footer"></div>
+		<!--  /top-header  -->
+	</footer>
+	<!-- sticky-socia -->
+	<aside id="sticky-social">
+		<ul>
+			<li><a href="#" class="fa fa-facebook" target="_blank"><span><i class="fa fa-facebook" aria-hidden="true"></i> Facebook</span></a></li>
+			<li><a href="#" class="fa fa-twitter" target="_blank"><span><i class="fa fa-twitter" aria-hidden="true"></i> Twitter</span></a></li>
+			<li><a href="#" class="fa fa-rss" target="_blank"><span><i class="fa fa-rss" aria-hidden="true"></i> RSS</span></a></li>
+			<li><a href="#" class="fa fa-pinterest-p" target="_blank"><span><i class="fa fa-pinterest-p" aria-hidden="true"></i> Pinterest</span></a></li>
+			<li><a href="#" class="fa fa-share-alt" target="_blank"><span><i class="fa fa-share-alt" aria-hidden="true"></i> Flickr</span></a></li>
+		</ul>
+	</aside>
+	<!-- /sticky-socia -->
+	<p id="back-top"> <a href="#top"><i class="fa fa-chevron-up" aria-hidden="true"></i></a> </p>
+	<script src="assets/js/jquery.js"></script>
+	<!-- Bootstrap Core JavaScript -->
+	<script src="assets/js/bootstrap.min.js"></script>
+	<script src="assets/js/bootstrap-dropdownhover.min.js"></script>
+	<script src="assets/js/incrementing.js"></script>
+	<!-- Plugin JavaScript -->
+	<script src="assets/js/jquery.easing.min.js"></script>
+	<script src="assets/js/wow.min.js"></script>
+	<!-- owl carousel -->
+	<script src="assets/owl-carousel/owl.carousel.js"></script>
+	<!--  Custom Theme JavaScript  -->
+	<script src="assets/js/custom.js"></script>
+	<!--  jcarousel Theme JavaScript  -->
+	<script type="text/javascript" src="assets/js/jquery.jcarousel.min.js"></script>
+	<script type="text/javascript" src="assets/js/jcarousel.connected-carousels.js"></script>
+	<script type="text/javascript" src="assets/js/jquery.elevatezoom.js"></script>
+
+</body>
+
+</html>

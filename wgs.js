@@ -11,6 +11,7 @@ const SimpleQuery = require('./server/simpleQueryApi.js')
 const ShoppingCart = require('./server/shoppingCart.js')
 const Login = require('./server/login.js')
 const ProductKeys = require('./server/productKeys.js')
+const PersonalCenter = require('./server/personalCenter.js')
 
 //main framwork declare
 var app = express();
@@ -25,6 +26,7 @@ var shoppingCartRouter = express.Router();
 var searchListRouter = express.Router();
 var simpleQueryRouter = express.Router();
 var productKeysRouter = express.Router();
+var personalCenterRouter = express.Router();
 
 //body parser-for POST Info to transfer in http packet
 app.use(bodyParser.json());
@@ -33,7 +35,7 @@ app.use(bodyParser.urlencoded({
 }));
 //static route-front and end
 app.use('/admin', express.static('adminUI'));
-app.use('/', express.static('UI'))
+app.use('/', express.static('UI'));
 
 //router-sub directory separation
 new Index(indexRouter);
@@ -60,8 +62,12 @@ app.use('/shopping_cart', shoppingCartRouter);
 new Login(app, loginRouter);
 app.use('/login', loginRouter);
 
+new PersonalCenter(personalCenterRouter);
+app.use('/personal', personalCenterRouter);
+
 new ProductKeys(productKeysRouter);
 app.use('/productKeys', productKeysRouter);
+
 
 //main listening process
 var server = app.listen(3000, function() {
