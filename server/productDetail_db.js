@@ -17,7 +17,10 @@ module.exports = class {
     }
 
     GetCommentInfo(callback){
-        this.db.query("SELECT * FROM `comment` ORDER BY `Comment_Time` DESC", function(error, rows, fields) {
+        this.db.query("SELECT *, DATE_FORMAT(Comment_Time,'%Y-%m-%d %k:%i:%s') AS Comment_Time \
+                       FROM `comment` \
+                       WHERE `Product` = '" + this.id + "' \
+                       ORDER BY `Comment_Time` DESC", function(error, rows, fields) {
             if (error)
                 throw error;
             callback(rows);
