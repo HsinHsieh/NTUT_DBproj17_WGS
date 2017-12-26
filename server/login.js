@@ -48,7 +48,7 @@ module.exports = class {
             if (req.session.sessionAdmin_id) {
                 res.send("Admin登入中\n請先登出Admin");
             } else if (req.session.session_id) {
-                res.send("你已經登入!\n 一台電腦中一個瀏覽器僅能有一個使用者");
+                res.send("你已經登入!\n一台電腦中一個瀏覽器僅能有一個使用者");
             } else {
                 var User = new member();
                 User.GetMemberFromAccount(req.body.account, function(err, results) {
