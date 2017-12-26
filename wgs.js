@@ -12,6 +12,7 @@ const ShoppingCart = require('./server/shoppingCart.js')
 const Login = require('./server/login.js')
 const ProductKeys = require('./server/productKeys.js')
 const PersonalCenter = require('./server/personalCenter.js')
+const AddComment = require('./server/addcomment.js')
 
 //main framwork declare
 var app = express();
@@ -27,6 +28,7 @@ var searchListRouter = express.Router();
 var simpleQueryRouter = express.Router();
 var productKeysRouter = express.Router();
 var personalCenterRouter = express.Router();
+var addCommentRouter = express.Router();
 
 //body parser-for POST Info to transfer in http packet
 app.use(bodyParser.json());
@@ -67,6 +69,9 @@ app.use('/personal', personalCenterRouter);
 
 new ProductKeys(productKeysRouter);
 app.use('/productKeys', productKeysRouter);
+
+new AddComment(addCommentRouter);
+app.use('/addcomment', addCommentRouter);
 
 
 //main listening process

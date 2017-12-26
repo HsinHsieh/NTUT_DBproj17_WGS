@@ -22,6 +22,7 @@ function GetProductByID(id) {
         $("#supplier").html(product_info["Supplier"]);
         $("#sys_req").html(product_info["System_Requirement"].replace(/(?:\r\n|\r|\n)/g, '<br />'));
         $("#more_description").html("<br/>" + product_info["Product_Description"]);
+        $("#add_comment").attr("href", "../addcomment?pid=" + product_info["PID"]);
     }
     Get(apiUrl, callback);
 };

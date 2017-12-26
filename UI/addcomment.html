@@ -1,0 +1,227 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<!-- Latest Bootstrap min CSS -->
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css">
+	<!-- Dropdownhover CSS -->
+	<link rel="stylesheet" href="assets/css/bootstrap-dropdownhover.min.css" type="text/css">
+	<!-- latest fonts awesome -->
+	<link rel="stylesheet" href="assets/font/css/font-awesome.min.css" type="text/css">
+	<!-- simple line fonts awesome -->
+	<link rel="stylesheet" href="assets/simple-line-icon/css/simple-line-icons.css" type="text/css">
+	<!-- stroke-gap-icons -->
+	<link rel="stylesheet" href="assets/stroke-gap-icons/stroke-gap-icons.css" type="text/css">
+	<!-- Animate CSS -->
+	<link rel="stylesheet" href="assets/css/animate.min.css" type="text/css">
+	<!-- Style CSS -->
+	<link rel="stylesheet" href="assets/css/style.css" type="text/css">
+	<!-- Style CSS -->
+	<link rel="stylesheet" href="assets/css/slider.css" type="text/css">
+	<!--  baguetteBox -->
+	<link rel="stylesheet" href="assets/css/baguetteBox.css">
+	<!-- Owl Carousel Assets -->
+	<link href="assets/owl-carousel/owl.carousel.css" rel="stylesheet">
+	<link href="assets/owl-carousel/owl.theme.css" rel="stylesheet">
+
+	<script type="text/javascript" src="./javascript/ajax.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script type="text/javascript" src="./javascript/productDetailRender.js"></script>
+
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif]-->
+</head>
+
+<body>
+	<!--  Preloader  -->
+	<div id="preloader">
+		<div id="loading"> </div>
+	</div>
+	<header class="header2">
+		<!--  top-header  -->
+		<script>
+			$(function() {
+				$("#header").load("header.html");
+			});
+		</script>
+		<div id="header"></div>
+		<!--  /top-header  -->
+	</header>
+	<section class="shopping-cart">
+		<!-- .shopping-cart -->
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item"><a href="#">Home</a></li>
+						<li class="breadcrumb-item active">Library</li>
+					</ol>
+				</div>
+				<div class="col-md-6 contact-info">
+					<div class="contact-form">
+						<form id="form1" name="form1" action="" method="get" id="commentform" class="comment-form">
+							<div class="row">
+								<div class="col-md-12">
+									<div class="contact-bg">
+										<h2>Contact Us</h2>
+										<p>請將您的寶貴意見以填寫表單方式送出<br>我們將<u><b>不會</b></u>有專人為您解決問題</p>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="lable">Name <span>*</span></div>
+									<p class="comment-form-author"><input id="author" name="author" value="" size="30" type="text"></p>
+								</div>
+								<div class="col-md-6">
+									<div class="lable">Email <span>*</span></div>
+									<p class="comment-form-email"><input id="email" name="email" value="" size="30" type="text"></p>
+								</div>
+								<div class="col-md-12">
+									<div class="lable">Comments <span>*</span></div>
+									<p class="comment-form-comment"><textarea id="comment" name="comment" cols="45" rows="8" placeholder="Comment" aria-required="true"></textarea></p>
+								</div>
+								<div class="col-md-12">
+									<p class="form-submit"><input name="submit" id="submit" class="btn btn-secondary" value="send messages" type="submit" onclick="clickContackSubmit()"> </p>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="col-md-6 contact-info">
+
+					<div class="col-md-12">
+						<div class="contact-bg">
+							<h2 id="product_name">Product_Name</h2>
+						</div>
+					</div>
+
+					<div class="product-pic">
+						<!-- product gallery -->
+							<div class="stage">
+								<div class="carousel carousel-stage" height="450" style="text-align: center;">
+									<img id="product_pic" style="height: 450px; width:auto;" alt="GG！找不到圖片" />
+								</div>
+							</div>
+						<!-- / product gallery -->
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<!-- /.shopping-cart -->
+	</section>
+	<footer>
+		<script>
+			$(function() {
+				$("#footer").load("footer.html");
+			});
+		</script>
+		<div id="footer"></div>
+		<!--  /top-header  -->
+	</footer>
+	<!-- sticky-socia -->
+	<aside id="sticky-social">
+		<ul>
+			<li><a href="#" class="fa fa-facebook" target="_blank"><span><i class="fa fa-facebook" aria-hidden="true"></i> Facebook</span></a></li>
+			<li><a href="#" class="fa fa-twitter" target="_blank"><span><i class="fa fa-twitter" aria-hidden="true"></i> Twitter</span></a></li>
+			<li><a href="#" class="fa fa-rss" target="_blank"><span><i class="fa fa-rss" aria-hidden="true"></i> RSS</span></a></li>
+			<li><a href="#" class="fa fa-pinterest-p" target="_blank"><span><i class="fa fa-pinterest-p" aria-hidden="true"></i> Pinterest</span></a></li>
+			<li><a href="#" class="fa fa-share-alt" target="_blank"><span><i class="fa fa-share-alt" aria-hidden="true"></i> Flickr</span></a></li>
+		</ul>
+	</aside>
+	<!-- /sticky-socia -->
+	<p id="back-top"> <a href="#top"><i class="fa fa-chevron-up" aria-hidden="true"></i></a> </p>
+	<script src="assets/js/jquery.js"></script>
+	<!-- Bootstrap Core JavaScript -->
+	<script src="assets/js/bootstrap.min.js"></script>
+	<script src="assets/js/bootstrap-dropdownhover.min.js"></script>
+	<!-- Plugin JavaScript -->
+	<script src="assets/js/jquery.easing.min.js"></script>
+	<script src="assets/js/wow.min.js"></script>
+	<!-- owl carousel -->
+	<script src="assets/owl-carousel/owl.carousel.js"></script>
+	<!--  Custom Theme JavaScript  -->
+	<script src="assets/js/filter-price.js"></script>
+	<script src="assets/js/custom.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCO2fJ8DfdyKRIvmxp96MAG6BeNiCX27lQ"></script>
+
+	<script type="text/javascript">
+		// When the window has finished loading create our google map below
+		google.maps.event.addDomListener(window, 'load', init);
+
+		function init() {
+			// Basic options for a simple Google Map
+			// For more options see: https://developers.google.com/maps/documentation/javascript/reference#MapOptions
+			var mapOptions = {
+				// How zoomed in you want the map to start at (always required)
+				zoom: 15,
+				scrollwheel: false,
+				// The latitude and longitude to center the map (always required)
+				center: new google.maps.LatLng(25.042235, 121.535425), // Taipei
+
+				// How you would like to style the map.
+				// This is where you would paste any style found on Snazzy Maps.
+				styles:[
+				  {
+				    "featureType": "administrative.land_parcel",
+				    "elementType": "labels",
+				    "stylers": [
+				      {
+				        "visibility": "off"
+				      }
+				    ]
+				  },
+				  {
+				    "featureType": "poi.business",
+				    "stylers": [
+				      {
+				        "visibility": "off"
+				      }
+				    ]
+				  },
+				  {
+				    "featureType": "poi.park",
+				    "elementType": "labels.text",
+				    "stylers": [
+				      {
+				        "visibility": "off"
+				      }
+				    ]
+				  },
+				  {
+				    "featureType": "road.local",
+				    "elementType": "labels",
+				    "stylers": [
+				      {
+				        "visibility": "off"
+				      }
+				    ]
+				  }
+				]
+			};
+
+			// Get the HTML DOM element that will contain your map
+			// We are using a div with id="map" seen below in the <body>
+			var mapElement = document.getElementById('map');
+
+			// Create the Google Map using our element and options defined above
+			var map = new google.maps.Map(mapElement, mapOptions);
+
+			// Let's also add a marker while we're at it
+			var marker = new google.maps.Marker({
+				position: new google.maps.LatLng(25.042235, 121.535425),
+				map: map,
+				title: 'Snazzy!'
+			});
+		}
+	</script>
+</body>
+
+</html>
