@@ -35,11 +35,13 @@ module.exports = class {
     }
 
     SetAPI(db) {
-        // this.router.post(
-        //     '/',
-        //     Passport.authenticate('local', {session: true}),function(req, res) {
-        //         res.send('User' + req.user.acc.toString());
-        // });
+        this.router.get("/memberData", function(req, res) {
+            var callback = function(err, msg) {
+                if (err) res.send(404);
+                res.send(msg);
+            };
+            (new member()).GetMemberFromAccount(req.session.session_id, callback);
+        });
 
         this.router.post("/", function(req, res) {
             if (req.session.session_id) {
@@ -102,6 +104,27 @@ module.exports = class {
             });
         });
 
+        this.router.post("/modifyData", function(req, res) {
+            var User = new member();
+            User.MemberModify(req.body, function(err, results) {
+                if (err) {
+                    res.send("failed")
+                } else {
+                    res.send("successed");
+                }
+            });
+        });
+
+        this.router.post("/modifyPsw", function(req, res) {
+            var User = new member();
+            User.MemberPswModify(req.body, function(err, results) {
+                if (err) {
+                    res.send("failed")
+                } else {
+                    res.send("successed");
+                }
+            });
+        });
 
 
         this.router.post("/loginAdmin", function(req, res) {

@@ -35,4 +35,28 @@ module.exports = class {
                 callback(err, result);
             });
     }
+
+    MemberModify(Data, callback) {
+        var command = "UPDATE `member` SET `First_Name` = '" + Data.First_Name + "', `Last_Name` = '" + Data.Last_Name +
+            "', `Email` = '" + Data.Email + "', `Phone` = '" + Data.Phone + "', `Gender` = '" + Data.Gender + "', `Address` = '" + Data.Adress +
+            "', `Birthday` = '" + Data.Birthday + "' WHERE `member`.`CID` = '" + Data.CID + "';";
+        //console.log(command);
+        this.db.query(
+            command,
+            function(err, result, fields) {
+                //console.log(result[0]);
+                callback(err, result);
+            });
+    }
+
+    MemberPswModify(Data, callback) {
+        var command = "UPDATE `member` SET `Password` = '" + Data.Password + "' WHERE `member`.`CID` = '" + Data.CID + "';";
+        //console.log(command);
+        this.db.query(
+            command,
+            function(err, result, fields) {
+                //console.log(result[0]);
+                callback(err, result);
+            });
+    }
 }
