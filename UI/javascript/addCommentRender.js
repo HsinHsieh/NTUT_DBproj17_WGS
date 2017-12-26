@@ -3,7 +3,6 @@ $(document).ready(function() {
     var pid = url.searchParams.get("pid");
 
     GetProductByID(pid);
-    GetCommentByID(pid);
 });
 
 function GetProductByID(id) {
@@ -11,8 +10,6 @@ function GetProductByID(id) {
     var callback = function(product_info) {
         $("#product_pic").attr("src", "./product_pic/" + product_info["PID"] + ".jpg");
         $("#product_name").html(product_info["Product_Name"]);
-        $("#sys_req").html(product_info["System_Requirement"].replace(/(?:\r\n|\r|\n)/g, '<br />'));
-        $("#more_description").html("<br/>" + product_info["Product_Description"]);
     }
     Get(apiUrl, callback);
 };

@@ -1,4 +1,4 @@
-const ProductDetail = require('./productDetail_db.js');
+const Comment = require('./addcomment_db.js')
 
 module.exports = class {
 
@@ -18,14 +18,14 @@ module.exports = class {
         var callback = function(msg) {
             res.send(msg);
         };
-        (new ProductDetail(req.params.id)).GetProductInfo(callback);
+        (new Comment(req.params.id)).GetProductName(callback);
     });
 
-    this.router.get("/Comment/:id", function(req, res) {
+    this.router.post("/submitcomment", function(req, res) {
       var callback = function(msg) {
         res.send(msg);
       };
-      (new ProductDetail(req.params.id)).GetCommentInfo(callback);
+      (new Comment(res.body.id)).GetCommentInfo(callback);
     });
   }
 }
