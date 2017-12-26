@@ -5,6 +5,14 @@ $(document).ready(function() {
 
     $(document).on("click", "#modifyBtn", modifyBtnHandle);
     $(document).on("click", "#pswBtn", pswBtnHandle);
+
+    $('#myfile').click(function() {
+        $("#contentsForPersonal").load("../personalCenter/myfile.html");
+    });
+    $('#historyOrder').click(function() {
+        $("#contentsForPersonal").load("../personalCenter/historyOrder.html");
+    });
+
 });
 
 function modifyBtnHandle() {
