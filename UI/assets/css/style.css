@@ -2650,6 +2650,11 @@ ul {
     color: #333e48;
 }
 
+.breadcrumb-item>a:hover {
+    color: #B11E22;
+    text-decoration: underline;
+}
+
 .breadcrumb>li+li::before {
     color: #333e48;
 }
@@ -2925,6 +2930,11 @@ ul {
     padding-left: 10px;
     text-align: center;
     color: #333E48;
+}
+
+.star2 a.comment:hover {
+    color: #B11E22;
+    text-decoration: underline;
 }
 
 .pro-text-outer.list-pro-text h4 {

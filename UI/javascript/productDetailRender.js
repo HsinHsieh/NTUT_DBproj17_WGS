@@ -3,11 +3,20 @@ $(document).ready(function() {
     var pid = url.searchParams.get("pid");
 
     GetProductByID(pid);
+    GetCommentCount(pid);
 
     $(".addtocart2").click(function() {
         CheckLoginAndAdd(pid);
     });
 });
+
+function GetCommentCount(id) {
+  var apiUrl = '/product/Comment/' + id
+    var callback = function (num) {
+        $("#comment_count").html(num.length + " comment(s)");
+    };
+    Get(apiUrl, callback);
+};
 
 function GetProductByID(id) {
     var apiUrl = '/product/' + id
