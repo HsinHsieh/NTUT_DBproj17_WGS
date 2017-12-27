@@ -43,7 +43,7 @@ $(document).ready(function() {
     $('#productEdit_category').val(resObj[0].Category);
     $('#productEdit_description').val(resObj[0].Product_Description);
     $('#productEdit_requirement').val(resObj[0].System_Requirement);
-    $('#productEdit_date').val(resObj[0].Launch_Date);
+    $('#productEdit_date').val(resObj[0].Launch_DateF);
     var PicStr = "<img src=\"/product_pic/" + resObj[0].PID + ".jpg\" alt=\"NO PICTURE\" class=\"img-thumbnail\">"
     $('.productEditPic').html(PicStr);
   }

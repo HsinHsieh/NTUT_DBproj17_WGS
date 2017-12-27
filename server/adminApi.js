@@ -110,7 +110,7 @@ module.exports = class {
       var callback = function(msg) {
         res.send(msg);
       };
-      var sqlStr = "SELECT DISTINCT * FROM `product` WHERE `product`.`PID`='" + req.params.PID + "'";
+      var sqlStr = "SELECT DISTINCT * ,DATE_FORMAT(Launch_Date,'%Y-%m-%d') AS Launch_DateF FROM `product` WHERE `product`.`PID`='" + req.params.PID + "'";
       (new sql(sqlStr)).ReturnJson(callback);
     });
     this.router.post("/categoryAdd", function(req, res) {
@@ -294,8 +294,8 @@ module.exports = class {
       sqlStr += (sqlStr == '' || sqlCategory == '') ? (sqlCategory) : (" AND " + sqlCategory);
       sqlStr += (sqlStr == '' || sqlDate == '') ? (sqlDate) : (" AND " + sqlDate);
       var sqlOrder = " ORDER BY `EID` DESC";
-      sqlStr = "SELECT *  FROM `event` " + ((sqlStr == '') ? '' : ("WHERE" + sqlStr + sqlOrder));
-      console.log(sqlStr);
+      sqlStr = "SELECT * ,DATE_FORMAT(Start_Date,'%Y-%m-%d') AS Start_DateF,DATE_FORMAT(End_Date,'%Y-%m-%d') AS End_DateF FROM `event` " + ((sqlStr == '') ? '' : ("WHERE" + sqlStr + sqlOrder));
+      // sqlStr = "SELECT * ,DATE_FORMAT(Start_Date,'%Y-%m-%d %k:%i:%s') AS Start_DateF FROM `event` " + ((sqlStr == '') ? '' : ("WHERE" + sqlStr + sqlOrder));
       (new sql(sqlStr)).ReturnJson(callback);
     });
     this.router.get("/eventDelete/:EID", function(req, res) {
@@ -317,7 +317,7 @@ module.exports = class {
       var callback = function(msg) {
         res.send(msg);
       };
-      var sqlStr = "SELECT DISTINCT * FROM `event` WHERE `event`.`EID`='" + req.params.EID + "'";
+      var sqlStr = "SELECT DISTINCT * ,DATE_FORMAT(Start_Date,'%Y-%m-%d') AS Start_DateF,DATE_FORMAT(End_Date,'%Y-%m-%d') AS End_DateF FROM `event` WHERE `event`.`EID`='" + req.params.EID + "'";
       (new sql(sqlStr)).ReturnJson(callback);
     });
     this.router.post("/eventEdit", function(req, res) {
