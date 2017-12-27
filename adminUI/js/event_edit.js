@@ -19,8 +19,6 @@ $(document).ready(function() {
     }
 
   };
-  $("#eventEdit_category").easyAutocomplete(categoryAutoComplete);
-
   var searchTarget = function(msg) {
     var resObj = JSON.parse(msg);
     for (var i = 0; i < Object.keys(resObj).length; i++) {
@@ -74,6 +72,6 @@ $(document).ready(function() {
 
     Post('/admin/api/eventEdit', data, addResult);
   });
-
+  $("#eventEdit_category").easyAutocomplete(categoryAutoComplete);
 
 });

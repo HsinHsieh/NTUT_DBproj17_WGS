@@ -47,8 +47,6 @@ $(document).ready(function() {
     var PicStr = "<img src=\"/product_pic/" + resObj[0].PID + ".jpg\" alt=\"NO PICTURE\" class=\"img-thumbnail\">"
     $('.productEditPic').html(PicStr);
   }
-  Get('/admin/api/productCategory', searchCategory);
-  Get('/admin/api/productEdit/' + OriginalPID, searchDetail);
   $("#product_edit_submit").click(function() {
     var data = {
       "OriginalPID": (OriginalPID),
@@ -87,5 +85,6 @@ $(document).ready(function() {
     // $('#productEdit_date').attr('disabled', true);
 
   });
-
+  Get('/admin/api/productCategory', searchCategory);
+  Get('/admin/api/productEdit/' + OriginalPID, searchDetail);
 });

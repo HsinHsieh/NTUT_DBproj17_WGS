@@ -45,9 +45,6 @@ $(document).ready(function() {
     }
     $('.alert').alert();
   }
-
-  Get('/admin/api/productCategory', searchTarget);
-  Get('/admin/api/eventCategory', searchCategory);
   $("#eventSearch").click(eventFetch);
   $("#filterClear").click(function() {
     $('#eventSearch_EID').val("");
@@ -66,7 +63,6 @@ $(document).ready(function() {
     $('#eventDeleteModalBody').html("確認刪除活動" + eid + "?");
     $('#category_delete_eid').val(eid);
   });
-
   $('#event_delete_submit').click(function() {
     var eid = $('#category_delete_eid').val();
     Get('/admin/api/eventDelete/' + eid, Result);
@@ -74,5 +70,6 @@ $(document).ready(function() {
     eventFetch();
     Get('/admin/api/eventCategory', searchCategory);
   });
-
+  Get('/admin/api/productCategory', searchTarget);
+  Get('/admin/api/eventCategory', searchCategory);
 });

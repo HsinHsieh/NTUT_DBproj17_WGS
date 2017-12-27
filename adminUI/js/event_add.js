@@ -17,7 +17,6 @@ $(document).ready(function() {
     }
 
   };
-  $("#eventAdd_category").easyAutocomplete(categoryAutoComplete);
   var searchCategory = function(msg) {
     var resObj = JSON.parse(msg);
     for (var i = 0; i < Object.keys(resObj).length; i++) {
@@ -62,5 +61,5 @@ $(document).ready(function() {
     };
     Post('/admin/api/eventAdd', data, addResult);
   });
-
+  $("#eventAdd_category").easyAutocomplete(categoryAutoComplete);
 });
