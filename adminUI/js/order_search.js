@@ -1,4 +1,22 @@
 $(document).ready(function() {
+  var memberAutoComplete = {
+    url: "api/memberInOrderSearch",
+    getValue: "CID",
+    list: {
+      match: {
+        enabled: true
+      }
+    },
+
+    template: {
+      type: "custom",
+      method: function(value, item) {
+        return value + " | " + item.First_Name + item.Last_Name;
+      }
+    }
+
+  };
+  $("#orderSearch_CID").easyAutocomplete(memberAutoComplete);
   var orderRow = function(msg) {
     var resStr = "";
     var resObj = JSON.parse(msg);

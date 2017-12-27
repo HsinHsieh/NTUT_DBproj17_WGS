@@ -17,6 +17,7 @@ module.exports = class {
       (new sql("SELECT * FROM `category`ORDER BY CAID ASC")).ReturnJson(callback);
       // res.end(JSON.stringify({success:true , data:result}));
     });
+
     this.router.get("/mainProductCategory", function(req, res) {
       var callback = function(msg) {
         res.send(msg);
@@ -53,6 +54,28 @@ module.exports = class {
         res.send(msg);
       };
       (new sql("SELECT DISTINCT Supplier FROM `product`ORDER BY Supplier ASC")).ReturnJson(callback);
+    });
+
+    this.router.get("/memberInOrderSearch", function(req, res) {
+      var callback = function(msg) {
+        res.send(msg);
+      };
+      (new sql("SELECT DISTINCT `CID`,`First_Name`,`Last_Name` FROM `member`,`order_main` WHERE `member`.`CID`=`order_main`.`Customer` ORDER BY CID ASC")).ReturnJson(callback);
+      // res.end(JSON.stringify({success:true , data:result}));
+    });
+    this.router.get("/productInOrderSearch", function(req, res) {
+      var callback = function(msg) {
+        res.send(msg);
+      };
+      (new sql("SELECT DISTINCT `PID`,`Product_Name` FROM `product`,`order_content` WHERE `product`.`PID`=`order_content`.`Item`  ORDER BY PID ASC")).ReturnJson(callback);
+      // res.end(JSON.stringify({success:true , data:result}));
+    });
+    this.router.get("/productAllSearch", function(req, res) {
+      var callback = function(msg) {
+        res.send(msg);
+      };
+      (new sql("SELECT DISTINCT `PID`,`Product_Name` FROM `product` ORDER BY PID ASC")).ReturnJson(callback);
+      // res.end(JSON.stringify({success:true , data:result}));
     });
     this.router.post("/productSearch", function(req, res) {
       var callback = function(msg) {
