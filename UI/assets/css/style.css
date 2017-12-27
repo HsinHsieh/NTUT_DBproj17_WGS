@@ -2918,6 +2918,11 @@ ul {
     display: inline;
     color: #dfdfdf;
 }
+.star2 li.comment-author {
+    color: #555555;
+
+    margin-right : 10px;
+}
 
 .star2 li.yellow-color {
     color: #ffc600;
@@ -5696,4 +5701,39 @@ blockquote {
     padding-right: 50px;
     padding-bottom: 0px;
     padding-left: 50px;
+}
+
+.reviews {
+  color: #555;
+  font-weight: bold;
+  margin: 10px auto 10px;
+}
+
+.comment-body {
+  position: relative;
+}
+
+.comment-date {
+  position: absolute;
+  right: 25px;
+  top: 25px;
+}
+
+.comment-date li {
+  padding: 0;
+}
+
+.comment-date li:first-child:before {
+  content: '';
+}
+
+.comment-date li:before {
+  content: '.';
+  margin-left: -2px;
+  margin-right: 2px;
+}
+
+.comment-comment {
+  margin-bottom: 20px;
+  margin-left: 30px;
 }

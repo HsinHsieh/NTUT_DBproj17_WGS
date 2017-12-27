@@ -20,12 +20,32 @@ function GetCommentByID(id, index) {
     var callback = function(comment) {
         var resStr = "";
         for (var i = 0; i < Object.keys(comment).length; i++) {
-          resStr += "<tr><td><p class='form-control-static'>" + comment[i].Customer + "</p></td> \
-                         <td><p class='form-control-static'>" + comment[i].Grade + "</p></td> \
-                         <td><p class='form-control-static'>" + comment[i].Comment_Text + "</p></td> \
-                         <td><p class='form-control-static'>" + comment[i].Comment_Time + "</p></td></tr>";
+          //comment[i].Grade
+          resStr +=
+            "<li class='comment'>\
+                <div class='comment-body'>\
+                  <div class='well well-lg'>\
+                    <header class='text-left'>\
+                     <div class='star2'>\
+                       <ul>\
+                         <li class='comment-author text-uppercase reviews'><i class='fa fa-user'></i> " + comment[i].Customer + "</li>\
+                         <li class='yellow-color'><i class='fa fa-star' aria-hidden='true'></i></li>\
+                         <li class='yellow-color'><i class='fa fa-star' aria-hidden='true'></i></li>\
+                         <li class='yellow-color'><i class='fa fa-star' aria-hidden='true'></i></li>\
+                         <li class='yellow-color'><i class='fa fa-star' aria-hidden='true'></i></li>\
+                         <li><i class='fa fa-star' aria-hidden='true'></i></li>\
+                       </ul>\
+                     </div>\
+                     <time class='comment-date reviews'><i class='fa fa-clock-o'></i> " + comment[i].Comment_Time + "</time>\
+                   </header>\
+                   <div class='comment-comment'>\
+                     <p>" + comment[i].Comment_Text + "</p>\
+                   </div>\
+                 </div>\
+               </div>\
+             </li>";
         }
-        $(".comment_list").html(resStr);
+        $(".comment-list").html(resStr);
     }
     Get(apiUrl, callback);
 };
