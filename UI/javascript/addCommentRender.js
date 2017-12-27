@@ -30,7 +30,6 @@ function GetProductByID(id) {
         $("#product_pic").attr("src", "./product_pic/" + product_info["PID"] + ".jpg");
         $("#product_name").html(product_info["Product_Name"]);
         $("#commentform").attr("action", "/addcomment/submit/" + product_info["PID"]);
-        $("#commentform").attr("onsubmit", "PostComment('" + product_info["PID"] + "')");
     }
     Get(apiUrl, callback);
 };

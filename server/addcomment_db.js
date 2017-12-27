@@ -6,6 +6,7 @@ module.exports = class {
         this.comment = comment.text;
         this.rating = comment.rating;
         this.customer = comment.customer;
+        this.coid = comment.COID;
         this.db = DataBaseController.GetDB();
     }
 
@@ -26,7 +27,6 @@ module.exports = class {
                               .replace("{{PID}}", this.pid)
                               .replace("{{Rating}}", this.rating)
                               .replace("{{Text}}", this.comment)
-        console.log(command);
         this.db.query(command, function(error, rows, fields) {
             if (error)
                 throw error;
