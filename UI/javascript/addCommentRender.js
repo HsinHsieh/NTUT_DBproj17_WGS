@@ -51,7 +51,6 @@ function GetProductByID(id) {
 
 function PostComment() {
     var com = $("#commentform").serializeObject();
-    console.log(com);
     var pid = new URL(window.location.href).searchParams.get("pid");
     var apiUrl = '/addcomment/submit/' + pid;
     var data = {

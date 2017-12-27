@@ -36,5 +36,24 @@ module.exports = class {
             };
             (new Comment(comment)).PostComment(callback);
         });
+
+        this.router.post("/edit/:coid", function(req, res) {
+            var comment = {
+               COID: req.params.coid,
+               text: req.body.comment,
+               rating: req.body.rating
+            }
+            var callback = function(msg) {
+                res.send(msg);
+            };
+            (new Comment(comment)).EditComment(callback);
+        });
+
+        this.router.post("/delete/:coid", function(req, res) {
+            var comment = {
+               COID: req.params.pid
+            }
+            (new Comment(comment)).DeleteComment(callback);
+        });
     }
 }
