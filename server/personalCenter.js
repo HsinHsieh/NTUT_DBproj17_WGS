@@ -1,5 +1,4 @@
-const ItemPreview = require('./index_itemPreview.js');
-const CategoryItem = require('./index_categoryItem.js')
+const Order = require('./Order.js');
 
 module.exports = class {
 
@@ -15,19 +14,20 @@ module.exports = class {
             });
         });
 
-        // this.router.get("/new_arrival", function(req, res) {
-        //     var callback = function(msg) {
-        //         res.send(msg);
-        //     };
-        //     (new ItemPreview()).AddItemPreview(callback);
-        // });
-        //
-        // this.router.get("/categoryItem/:cate", function(req, res) {
-        //     var callback = function(msg) {
-        //         res.send(msg);
-        //         //console.log(msg);
-        //     };
-        //     (new CategoryItem(req.params.cate)).AddItems(callback);
-        // });
+        this.router.get("/GetOrderMains", function(req, res) {
+            var callback = function(err, msg) {
+                if (err) res.send(404);
+                res.send(msg);
+            };
+            (new Order()).GetOrderMain(req.session.session_id, callback);
+        });
+
+        this.router.get("/GetOrderContents/:OID", function(req, res) {
+            var callback = function(err, msg) {
+                if (err) res.send(404);
+                res.send(msg);
+            };
+            (new Order()).GetOrderContents(req.params.OID, callback);
+        });
     }
 }

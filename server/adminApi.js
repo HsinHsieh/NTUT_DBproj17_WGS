@@ -313,5 +313,19 @@ module.exports = class {
       var Str = "INSERT INTO `event` (`EID`, `Event_Name`, `Start_Date`, `End_Date`, `Event_Description`, `Event_Category`, `Discount_Rate`, `Target`, `Modified_Time`) VALUES (NULL, '" + req.body.Name + "', '" + req.body.Date_start + "', '" + req.body.Date_end + "', '" + req.body.Description + "', '" + req.body.Category + "', '" + req.body.Discount + "', '" + req.body.Target + "', CURRENT_TIMESTAMP)";
       (new sql(Str)).ReturnJson(callback);
     });
+    this.router.get("/eventEdit/:EID", function(req, res) {
+      var callback = function(msg) {
+        res.send(msg);
+      };
+      var sqlStr = "SELECT DISTINCT * FROM `event` WHERE `event`.`EID`='" + req.params.EID + "'";
+      (new sql(sqlStr)).ReturnJson(callback);
+    });
+    this.router.post("/eventEdit", function(req, res) {
+      var callback = function(msg) {
+        res.send(msg);
+      };
+      var Str = "UPDATE `event` SET `Event_Name` = '" + req.body.Name + "', `Start_Date` = '" + req.body.Date_start + "', `End_Date` = '" + req.body.Date_end + "', `Event_Category` = '" + req.body.Category + "', `Discount_Rate` = '" + req.body.Discount + "', `Target` = '" + req.body.Target + "', `Event_Description` = '" + req.body.Description + "' WHERE `event`.`EID` = " + req.body.EID;
+      (new sql(Str)).ReturnJson(callback);
+    });
   }
 }
