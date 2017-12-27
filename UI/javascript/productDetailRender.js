@@ -17,7 +17,7 @@ $(document).ready(function() {
 function GetCommentCount(id) {
   var apiUrl = '/product/Comment/' + id
     var callback = function (num) {
-        $("#comment_count").html(num.length + " comment(s)");
+        $("#comment_count").html("<i class='fa fa-commenting-o' aria-hidden='true'></i> " + num.length + " comment(s)");
     };
     Get(apiUrl, callback);
 };
