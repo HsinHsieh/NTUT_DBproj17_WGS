@@ -19,8 +19,6 @@ $(document).ready(function() {
     }
 
   };
-  $("#eventEdit_category").easyAutocomplete(categoryAutoComplete);
-
   var searchTarget = function(msg) {
     var resObj = JSON.parse(msg);
     for (var i = 0; i < Object.keys(resObj).length; i++) {
@@ -54,8 +52,8 @@ $(document).ready(function() {
     $('#eventEdit_discount').val(resObj[0].Discount_Rate);
     $('#eventEdit_target').val(resObj[0].Target);
     $('#eventEdit_category').val(resObj[0].Event_Category);
-    $('#eventEdit_date_start').val(resObj[0].Start_Date);
-    $('#eventEdit_date_end').val(resObj[0].End_Date);
+    $('#eventEdit_date_start').val(resObj[0].Start_DateF);
+    $('#eventEdit_date_end').val(resObj[0].End_DateF);
     $('#eventEdit_description').val(resObj[0].Event_Description);
   }
   Get('/admin/api/productCategory', searchTarget);
@@ -74,6 +72,6 @@ $(document).ready(function() {
 
     Post('/admin/api/eventEdit', data, addResult);
   });
-
+  $("#eventEdit_category").easyAutocomplete(categoryAutoComplete);
 
 });

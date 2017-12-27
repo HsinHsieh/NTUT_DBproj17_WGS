@@ -16,7 +16,6 @@ $(document).ready(function() {
     }
 
   };
-  $("#orderSearch_CID").easyAutocomplete(memberAutoComplete);
   var orderRow = function(msg) {
     var resStr = "";
     var resObj = JSON.parse(msg);
@@ -37,36 +36,6 @@ $(document).ready(function() {
     };
     Post('/admin/api/orderSearch', data, orderRow);
   }
-  $("#orderSearch").click(orderFetch);
-  $("#filterClear").click(function() {
-    $('#orderSearch_OID').val("");
-    $('#orderSearch_CID').val("");
-    $('#orderSearch_status').val("");
-    $('#orderSearch_price_up').val("");
-    $('#orderSearch_price_low').val("");
-    $('#orderSearch_date').val("");
-  });
-
-  // var searchCatagory = function(msg) {
-  //   var resObj = JSON.parse(msg);
-  //   for (var i = 0; i < Object.keys(resObj).length; i++) {
-  //     var resStr = "<option value=" + resObj[i].CAID + ">" + resObj[i].CAID + resObj[i].Category_Name + "</option>";
-  //     $("#productSearch_catagory").append(resStr);
-  //   }
-  // }
-  // var searchSupplier = function(msg) {
-  //   var resObj = JSON.parse(msg);
-  //   for (var i = 0; i < Object.keys(resObj).length; i++) {
-  //     var resStr = "<option value=" + resObj[i].Supplier + ">" + resObj[i].Supplier + "</option>";
-  //     $("#productSearch_supplier").append(resStr);
-  //   }
-  // }
-
-
-  // Get('/admin/api/productCatagory', searchCatagory);
-  // Get('/admin/api/productSupplier', searchSupplier);
-
-
   var deleteResult = function(msg) {
     var resObj = JSON.parse(msg);
     if ('errno' in resObj) {
@@ -77,7 +46,6 @@ $(document).ready(function() {
     }
     $('.alert').alert();
   }
-
   $('#orderDeleteModal').on('show.bs.modal', function(event) {
     var button = $(event.relatedTarget)
     var oid = button.data('oid');
@@ -95,4 +63,14 @@ $(document).ready(function() {
   $('#orderDeleteModal').on('hidden.bs.modal', function(event) {
     orderFetch();
   })
+  $("#orderSearch").click(orderFetch);
+  $("#filterClear").click(function() {
+    $('#orderSearch_OID').val("");
+    $('#orderSearch_CID').val("");
+    $('#orderSearch_status').val("");
+    $('#orderSearch_price_up').val("");
+    $('#orderSearch_price_low').val("");
+    $('#orderSearch_date').val("");
+  });
+  $("#orderSearch_CID").easyAutocomplete(memberAutoComplete);
 });

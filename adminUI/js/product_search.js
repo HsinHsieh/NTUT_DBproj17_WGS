@@ -61,8 +61,6 @@ $(document).ready(function() {
     $('#productDeleteModalFooter').html("");
     $('#productDeleteModalFooter').append("<input type=\"hidden\" id=\"productDeletePID\" value=\"\"><button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">取消</button><button type=\"button\" class=\"btn btn-danger productDeleteConfirm\">確認</button>")
   }
-  Get('/admin/api/productCategory', searchCategory);
-  Get('/admin/api/productSupplier', searchSupplier);
   $('.productDeleteConfirm').click(function() {
     Get('/admin/api/prouctDelete/' + $('#productDeletePID').val(), productDeleteResult);
   })
@@ -91,5 +89,6 @@ $(document).ready(function() {
       Get('/admin/api/prouctDelete/' + $('#productDeletePID').val(), productDeleteResult);
     })
   })
-
+  Get('/admin/api/productCategory', searchCategory);
+  Get('/admin/api/productSupplier', searchSupplier);
 });

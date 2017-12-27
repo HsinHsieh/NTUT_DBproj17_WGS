@@ -20,7 +20,6 @@ $(document).ready(function() {
     }
 
   };
-  $("#order_content_Item").easyAutocomplete(productAutoComplete);
   var searchOrderMain = function(msg) {
     var resObj = JSON.parse(msg);
     $('#orderEdit_OID').val(resObj[0].OID);
@@ -61,7 +60,6 @@ $(document).ready(function() {
       show: true
     });
   }
-
   var addResult = function(msg) {
     var resObj = JSON.parse(msg);
     if ('errno' in resObj) {
@@ -74,9 +72,7 @@ $(document).ready(function() {
     $('.alert').alert();
   }
   $("#orderEdit_discount").change(calculatePrice);
-  // Get('/admin/api/productCatagory', searchCatagory);
-  Get('/admin/api/orderEditMain/' + OriginalOID, searchOrderMain);
-  Get('/admin/api/orderEditContent/' + OriginalOID, contentRow);
+  $("#order_content_Item").easyAutocomplete(productAutoComplete);
   $("#order_edit_submit").click(function() {
     var data = {
       "OID": ($('#orderEdit_OID').val()),
@@ -87,7 +83,6 @@ $(document).ready(function() {
     };
     Post('/admin/api/orderEdit', data, editResult);
   });
-
   $("#order_content_add").click(function() {
     $("#order_content_Item").val("");
     //Post('/admin/api/orderContentAdd', data, editResult);
@@ -109,12 +104,12 @@ $(document).ready(function() {
     $('#orderContentDeleteModalBody').html("是否確認刪除以品項??<br>品項編號 : " + ocid + "<br>商品編號 : " + item);
     $("#order_content_delete_ocid").val(ocid);
   });
-
   $('#order_content_delete_confirm').click(function() {
     var ocid = $('#order_content_delete_ocid').val()
     Get('/admin/api/orderContentDelete/' + ocid, addResult);
     Get('/admin/api/orderEditContent/' + OriginalOID, contentRow);
     $('#orderContentDeleteModal').modal('hide');
   });
-
+  Get('/admin/api/orderEditMain/' + OriginalOID, searchOrderMain);
+  Get('/admin/api/orderEditContent/' + OriginalOID, contentRow);
 });

@@ -3,7 +3,7 @@ $(document).ready(function() {
     var resStr = "";
     var resObj = JSON.parse(msg);
     for (var i = 0; i < Object.keys(resObj).length; i++) {
-      resStr += "<tr><th scope='row'>" + (i + 1) + "</th><td>" + resObj[i].Event_Name + "</td><td>" + resObj[i].Start_Date + "</td><td>" + resObj[i].End_Date + "</td><td>" + resObj[i].Target + "</td><td>" + resObj[i].Discount_Rate + "</td><td><button class='btn btn-primary' type='button' name='button' onclick='javascript:location.href=\"./event_edit?EID=" + resObj[i].EID + "\"'>編輯</button></td><td><button class='btn btn-danger' type='button' id='productDeleteButton' data-toggle=\"modal\" data-target=\"#eventDeleteModal \"data-eid=\"" + resObj[i].EID + "\">刪除</button></td></tr>";
+      resStr += "<tr><th scope='row'>" + (i + 1) + "</th><td>" + resObj[i].Event_Name + "</td><td>" + resObj[i].Start_DateF + "</td><td>" + resObj[i].End_DateF + "</td><td>" + resObj[i].Target + "</td><td>" + resObj[i].Discount_Rate + "</td><td><button class='btn btn-primary' type='button' name='button' onclick='javascript:location.href=\"./event_edit?EID=" + resObj[i].EID + "\"'>編輯</button></td><td><button class='btn btn-danger' type='button' id='productDeleteButton' data-toggle=\"modal\" data-target=\"#eventDeleteModal \"data-eid=\"" + resObj[i].EID + "\">刪除</button></td></tr>";
     }
     $(".event_list").html(resStr);
   }
@@ -45,9 +45,6 @@ $(document).ready(function() {
     }
     $('.alert').alert();
   }
-
-  Get('/admin/api/productCategory', searchTarget);
-  Get('/admin/api/eventCategory', searchCategory);
   $("#eventSearch").click(eventFetch);
   $("#filterClear").click(function() {
     $('#eventSearch_EID').val("");
@@ -66,7 +63,6 @@ $(document).ready(function() {
     $('#eventDeleteModalBody').html("確認刪除活動" + eid + "?");
     $('#category_delete_eid').val(eid);
   });
-
   $('#event_delete_submit').click(function() {
     var eid = $('#category_delete_eid').val();
     Get('/admin/api/eventDelete/' + eid, Result);
@@ -74,5 +70,6 @@ $(document).ready(function() {
     eventFetch();
     Get('/admin/api/eventCategory', searchCategory);
   });
-
+  Get('/admin/api/productCategory', searchTarget);
+  Get('/admin/api/eventCategory', searchCategory);
 });
