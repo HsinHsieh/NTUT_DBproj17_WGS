@@ -6,18 +6,15 @@ module.exports = class {
 
   constructor(router) {
     this.router = router;
-    // this.productManager = new ProductManager();
-    this.SetAPI();
+    this.SetMainAPI()
+    this.SetProductAPI();
+    this.SetCategoryAPI();
+    this.SetOrderAPI();
+    this.SetEventAPI();
+    this.SetKeyAPI();
+    this.SetMemberAPI();
   }
-  SetAPI() {
-    this.router.get("/productCategory", function(req, res) {
-      var callback = function(msg) {
-        res.send(msg);
-      };
-      (new sql("SELECT * FROM `category`ORDER BY CAID ASC")).ReturnJson(callback);
-      // res.end(JSON.stringify({success:true , data:result}));
-    });
-
+  SetMainAPI() {
     this.router.get("/mainProductCategory", function(req, res) {
       var callback = function(msg) {
         res.send(msg);
@@ -55,12 +52,13 @@ module.exports = class {
       };
       (new sql("SELECT DISTINCT Supplier FROM `product`ORDER BY Supplier ASC")).ReturnJson(callback);
     });
-
-    this.router.get("/memberInOrderSearch", function(req, res) {
+  }
+  SetProductAPI() {
+    this.router.get("/productCategory", function(req, res) {
       var callback = function(msg) {
         res.send(msg);
       };
-      (new sql("SELECT DISTINCT `CID`,`First_Name`,`Last_Name` FROM `member`,`order_main` WHERE `member`.`CID`=`order_main`.`Customer` ORDER BY CID ASC")).ReturnJson(callback);
+      (new sql("SELECT * FROM `category`ORDER BY CAID ASC")).ReturnJson(callback);
       // res.end(JSON.stringify({success:true , data:result}));
     });
     this.router.get("/productInOrderSearch", function(req, res) {
@@ -113,27 +111,6 @@ module.exports = class {
       var sqlStr = "SELECT DISTINCT * ,DATE_FORMAT(Launch_Date,'%Y-%m-%d') AS Launch_DateF FROM `product` WHERE `product`.`PID`='" + req.params.PID + "'";
       (new sql(sqlStr)).ReturnJson(callback);
     });
-    this.router.post("/categoryAdd", function(req, res) {
-      var callback = function(msg) {
-        res.send(msg);
-      };
-      var Str = "INSERT INTO `category` (`CAID`, `Category_Name`) VALUES ('" + req.body.CAID + "', '" + req.body.Name + "')";
-      (new sql(Str)).ReturnJson(callback);
-    });
-    this.router.post("/categoryEdit", function(req, res) {
-      var callback = function(msg) {
-        res.send(msg);
-      };
-      var Str = "UPDATE `category` SET `CAID`='" + req.body.CAID + "', `Category_Name`='" + req.body.Name + "' WHERE `category`.`CAID`='" + req.body.OriginalCAID + "'";
-      (new sql(Str)).ReturnJson(callback);
-    });
-    this.router.get("/categoryDelete/:CAID", function(req, res) {
-      var callback = function(msg) {
-        res.send(msg);
-      };
-      var sqlStr = "DELETE FROM `category` WHERE `category`.`CAID`='" + req.params.CAID + "'";
-      (new sql(sqlStr)).ReturnJson(callback);
-    });
     this.router.post("/productAdd/file", upload.single("imagename"), function(req, res, next) {
       var fileFormat = (req.file.originalname).split(".");
       fs.rename('./UI/product_pic/temp', './UI/product_pic/' + req.body.title + "." + fileFormat[fileFormat.length - 1], function(err) {
@@ -175,6 +152,32 @@ module.exports = class {
       (new sql(sqlStr)).ReturnJson(callback);
 
     });
+  }
+  SetCategoryAPI() {
+    this.router.post("/categoryAdd", function(req, res) {
+      var callback = function(msg) {
+        res.send(msg);
+      };
+      var Str = "INSERT INTO `category` (`CAID`, `Category_Name`) VALUES ('" + req.body.CAID + "', '" + req.body.Name + "')";
+      (new sql(Str)).ReturnJson(callback);
+    });
+    this.router.post("/categoryEdit", function(req, res) {
+      var callback = function(msg) {
+        res.send(msg);
+      };
+      var Str = "UPDATE `category` SET `CAID`='" + req.body.CAID + "', `Category_Name`='" + req.body.Name + "' WHERE `category`.`CAID`='" + req.body.OriginalCAID + "'";
+      (new sql(Str)).ReturnJson(callback);
+    });
+    this.router.get("/categoryDelete/:CAID", function(req, res) {
+      var callback = function(msg) {
+        res.send(msg);
+      };
+      var sqlStr = "DELETE FROM `category` WHERE `category`.`CAID`='" + req.params.CAID + "'";
+      (new sql(sqlStr)).ReturnJson(callback);
+    });
+
+  }
+  SetOrderAPI() {
     this.router.post("/orderSearch", function(req, res) {
       var callback = function(msg) {
         res.send(msg);
@@ -239,37 +242,8 @@ module.exports = class {
       var sqlStr = "DELETE FROM `order_content` WHERE `order_content`.`OCID`='" + req.params.OCID + "'";
       (new sql(sqlStr)).ReturnJson(callback);
     });
-    this.router.post("/keySearch", function(req, res) {
-      var callback = function(msg) {
-        res.send(msg);
-      };
-      var sqlStr = "";
-      var sqlOID = (req.body.OID == '') ? '' : (" `order_main`.`OID`= '" + req.body.OID + "'");
-      var sqlCID = (req.body.CID == '') ? '' : (" `order_main`.`Customer` = '" + req.body.CID + "'");
-      var sqlPID = (req.body.PID == '') ? '' : (" `order_content`.`Item` = '" + req.body.PID + "'");
-      var sqlStatus = (req.body.Status == '') ? '' : (" `order_content`.`Key_Used`= '" + req.body.Status + "'");
-      sqlStr += sqlOID;
-      sqlStr += (sqlStr == '' || sqlCID == '') ? (sqlCID) : (" AND " + sqlCID);
-      sqlStr += (sqlStr == '' || sqlPID == '') ? (sqlPID) : (" AND " + sqlPID);
-      sqlStr += (sqlStr == '' || sqlStatus == '') ? (sqlStatus) : (" AND " + sqlStatus);
-      var sqlOrder = " ORDER BY `order_main`.`OID` DESC";
-      sqlStr = "SELECT order_content.*,order_main.Customer FROM order_content,order_main WHERE order_content.Order_Number=order_main.OID" + ((sqlStr == '') ? '' : (" AND" + sqlStr + sqlOrder));
-      (new sql(sqlStr)).ReturnJson(callback);
-    });
-    this.router.get("/keyActivate/:OCID", function(req, res) {
-      var callback = function(msg) {
-        res.send(msg);
-      };
-      var sqlStr = "UPDATE `order_content` SET `Key_Used` = '1' WHERE `order_content`.`OCID` = '" + req.params.OCID + "'";
-      (new sql(sqlStr)).ReturnJson(callback);
-    });
-    this.router.get("/keyDeactivate/:OCID", function(req, res) {
-      var callback = function(msg) {
-        res.send(msg);
-      };
-      var sqlStr = "UPDATE `order_content` SET `Key_Used` = '0' WHERE `order_content`.`OCID` = '" + req.params.OCID + "'";
-      (new sql(sqlStr)).ReturnJson(callback);
-    });
+  }
+  SetEventAPI() {
     this.router.get("/eventCategory", function(req, res) {
       var callback = function(msg) {
         res.send(msg);
@@ -326,6 +300,47 @@ module.exports = class {
       };
       var Str = "UPDATE `event` SET `Event_Name` = '" + req.body.Name + "', `Start_Date` = '" + req.body.Date_start + "', `End_Date` = '" + req.body.Date_end + "', `Event_Category` = '" + req.body.Category + "', `Discount_Rate` = '" + req.body.Discount + "', `Target` = '" + req.body.Target + "', `Event_Description` = '" + req.body.Description + "' WHERE `event`.`EID` = " + req.body.EID;
       (new sql(Str)).ReturnJson(callback);
+    });
+  }
+  SetKeyAPI() {
+    this.router.post("/keySearch", function(req, res) {
+      var callback = function(msg) {
+        res.send(msg);
+      };
+      var sqlStr = "";
+      var sqlOID = (req.body.OID == '') ? '' : (" `order_main`.`OID`= '" + req.body.OID + "'");
+      var sqlCID = (req.body.CID == '') ? '' : (" `order_main`.`Customer` = '" + req.body.CID + "'");
+      var sqlPID = (req.body.PID == '') ? '' : (" `order_content`.`Item` = '" + req.body.PID + "'");
+      var sqlStatus = (req.body.Status == '') ? '' : (" `order_content`.`Key_Used`= '" + req.body.Status + "'");
+      sqlStr += sqlOID;
+      sqlStr += (sqlStr == '' || sqlCID == '') ? (sqlCID) : (" AND " + sqlCID);
+      sqlStr += (sqlStr == '' || sqlPID == '') ? (sqlPID) : (" AND " + sqlPID);
+      sqlStr += (sqlStr == '' || sqlStatus == '') ? (sqlStatus) : (" AND " + sqlStatus);
+      var sqlOrder = " ORDER BY `order_main`.`OID` DESC";
+      sqlStr = "SELECT order_content.*,order_main.Customer FROM order_content,order_main WHERE order_content.Order_Number=order_main.OID" + ((sqlStr == '') ? '' : (" AND" + sqlStr + sqlOrder));
+      (new sql(sqlStr)).ReturnJson(callback);
+    });
+    this.router.get("/keyActivate/:OCID", function(req, res) {
+      var callback = function(msg) {
+        res.send(msg);
+      };
+      var sqlStr = "UPDATE `order_content` SET `Key_Used` = '1' WHERE `order_content`.`OCID` = '" + req.params.OCID + "'";
+      (new sql(sqlStr)).ReturnJson(callback);
+    });
+    this.router.get("/keyDeactivate/:OCID", function(req, res) {
+      var callback = function(msg) {
+        res.send(msg);
+      };
+      var sqlStr = "UPDATE `order_content` SET `Key_Used` = '0' WHERE `order_content`.`OCID` = '" + req.params.OCID + "'";
+      (new sql(sqlStr)).ReturnJson(callback);
+    });
+  }
+  SetMemberAPI() {
+    this.router.get("/memberInOrderSearch", function(req, res) {
+      var callback = function(msg) {
+        res.send(msg);
+      };
+      (new sql("SELECT DISTINCT `CID`,`First_Name`,`Last_Name` FROM `member`,`order_main` WHERE `member`.`CID`=`order_main`.`Customer` ORDER BY CID ASC")).ReturnJson(callback);
     });
   }
 }
