@@ -3,10 +3,20 @@ $(document).ready(function() {
     var pid = url.searchParams.get("pid");
 
     GetProductByID(pid);
+    GetCommentCount(pid);
+
     $(".addtocart2").click(function() {
         CheckLoginAndAdd(pid);
     });
 });
+
+function GetCommentCount(id) {
+  var apiUrl = '/product/Comment/' + id
+    var callback = function (num) {
+        $("#comment_count").html(num.length + " comment(s)");
+    };
+    Get(apiUrl, callback);
+};
 
 function GetProductByID(id) {
     var apiUrl = '/product/' + id
@@ -18,8 +28,7 @@ function GetProductByID(id) {
         $("#description").html(product_info["Product_Description"]);
         $("#release_date").html(product_info["Formated_Date"]);
         $("#supplier").html(product_info["Supplier"]);
-        $("#sys_req").html(product_info["System_Requirement"].replace(/(?:\r\n|\r|\n)/g, '<br />'));
-        $("#more_description").html("<br/>" + product_info["Product_Description"]);
+        $("#add_comment").attr("href", "../addcomment?pid=" + product_info["PID"]);
     }
     Get(apiUrl, callback);
 };

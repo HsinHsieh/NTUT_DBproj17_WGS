@@ -1,0 +1,177 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<!-- Latest Bootstrap min CSS -->
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css">
+	<!-- Dropdownhover CSS -->
+	<link rel="stylesheet" href="assets/css/bootstrap-dropdownhover.min.css" type="text/css">
+	<!-- latest fonts awesome -->
+	<link rel="stylesheet" href="assets/font/css/font-awesome.min.css" type="text/css">
+	<!-- simple line fonts awesome -->
+	<link rel="stylesheet" href="assets/simple-line-icon/css/simple-line-icons.css" type="text/css">
+	<!-- stroke-gap-icons -->
+	<link rel="stylesheet" href="assets/stroke-gap-icons/stroke-gap-icons.css" type="text/css">
+	<!-- Animate CSS -->
+	<link rel="stylesheet" href="assets/css/animate.min.css" type="text/css">
+	<!-- Style CSS -->
+	<link rel="stylesheet" href="assets/css/style.css" type="text/css">
+	<!-- Style CSS -->
+	<link rel="stylesheet" href="assets/css/slider.css" type="text/css">
+	<!--  baguetteBox -->
+	<link rel="stylesheet" href="assets/css/baguetteBox.css">
+	<!-- Owl Carousel Assets -->
+	<link href="assets/owl-carousel/owl.carousel.css" rel="stylesheet">
+	<link href="assets/owl-carousel/owl.theme.css" rel="stylesheet">
+
+	<script type="text/javascript" src="./javascript/ajax.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script type="text/javascript" src="./javascript/addCommentRender.js"></script>
+
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif]-->
+</head>
+
+<body>
+	<!--  Preloader  -->
+	<div id="preloader">
+		<div id="loading"> </div>
+	</div>
+	<header class="header2">
+		<!--  top-header  -->
+		<script>
+			$(function() {
+				$("#header").load("header.html");
+			});
+		</script>
+		<div id="header"></div>
+		<!--  /top-header  -->
+	</header>
+	<section class="shopping-cart">
+		<!-- .shopping-cart -->
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item"><a href="/">Home</a></li>
+						<li class="breadcrumb-item"><a href="javascript:history.back()">Product Detail</a></li>
+						<li class="breadcrumb-item active">Add your comment</li>
+					</ol>
+				</div>
+				<div class="col-md-6 contact-info">
+					<div class="contact-form">
+						<form name="form1" action="" method="post" id="commentform" class="comment-form">
+							<div class="row">
+								<div class="col-md-12">
+									<div class="contact-bg">
+										<h2><b>網上的肥宅需要你的評論</b></h2>
+										<p>這是一個公開的評論系統大家都會知道你是誰，你的每一句話都會被記錄並作為日後<u><b>被吉</b></u>的依據!</p>
+									</div>
+								</div>
+								<div class="col-md-12"><h3><b>評比</b></h3>
+									<div class="star2">
+										<!-- <ul>
+											<a herf="#"><li class="yellow-color"><i class="fa fa-star" aria-hidden="true"></i></li></a>
+											<a herf="#"><li class="yellow-color"><i class="fa fa-star" aria-hidden="true"></i></li></a>
+											<a herf="#"><li class="yellow-color"><i class="fa fa-star" aria-hidden="true"></i></li></a>
+											<a herf="#"><li class="yellow-color"><i class="fa fa-star" aria-hidden="true"></i></li></a>
+											<a herf="#"><li><i class="fa fa-star" aria-hidden="true"></i></li></a>
+										</ul> -->
+										<fieldset>
+									    <span class="star-cb-group">
+									      <input type="radio" id="rating-5" name="rating" value="5" /><label for="rating-5">5</label>
+									      <input type="radio" id="rating-4" name="rating" value="4" checked="checked" /><label for="rating-4">4</label>
+									      <input type="radio" id="rating-3" name="rating" value="3" /><label for="rating-3">3</label>
+									      <input type="radio" id="rating-2" name="rating" value="2" /><label for="rating-2">2</label>
+									      <input type="radio" id="rating-1" name="rating" value="1" /><label for="rating-1">1</label>
+									      <input type="radio" id="rating-0" name="rating" value="0" class="star-cb-clear" /><label for="rating-0">0</label>
+									    </span>
+									  </fieldset>
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="lable"><h3><b>評論</b></h3><span></span></div>
+									<p class="comment-form-comment"><textarea id="comment" name="comment" cols="45" rows="8" placeholder="你心中有什麼喜悅與不滿，都把它寫下來吧!" aria-required="true" style="resize: vertical;"></textarea></p>
+								</div>
+								<div class="col-md-12">
+									<p class="form-submit"><input name="submit" id="submit" class="btn btn-secondary" value="Submit Comment" type="submit" onclick="PostComment()" style=""> </p>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="col-md-6 contact-info">
+					<div class="contact-form">
+					<div class="col-md-12">
+						<div class="contact-bg">
+							<h2 id="product_name">Product_Name</h2>
+						</div>
+					</div>
+
+					<div class="product-pic">
+						<!-- product gallery -->
+							<div class="stage">
+								<div class="" style="text-align: center;">
+									<img id="product_pic" style="height: 450px; width: auto;" alt="GG！找不到圖片" />
+								</div>
+							</div>
+						<!-- / product gallery -->
+					</div>
+				</div>
+				</div>
+			</div>
+		</div>
+		<!-- /.shopping-cart -->
+	</section>
+	<section class="product-more">
+		<script>
+			$(function() {
+				$("#product-more").load("productMore.html");
+			});
+		</script>
+		<div id="product-more"></div>
+	</section>
+	<footer>
+		<script>
+			$(function() {
+				$("#footer").load("footer.html");
+			});
+		</script>
+		<div id="footer"></div>
+		<!--  /top-header  -->
+	</footer>
+	<!-- sticky-socia -->
+	<aside id="sticky-social">
+		<ul>
+			<li><a href="#" class="fa fa-facebook" target="_blank"><span><i class="fa fa-facebook" aria-hidden="true"></i> Facebook</span></a></li>
+			<li><a href="#" class="fa fa-twitter" target="_blank"><span><i class="fa fa-twitter" aria-hidden="true"></i> Twitter</span></a></li>
+			<li><a href="#" class="fa fa-rss" target="_blank"><span><i class="fa fa-rss" aria-hidden="true"></i> RSS</span></a></li>
+			<li><a href="#" class="fa fa-pinterest-p" target="_blank"><span><i class="fa fa-pinterest-p" aria-hidden="true"></i> Pinterest</span></a></li>
+			<li><a href="#" class="fa fa-share-alt" target="_blank"><span><i class="fa fa-share-alt" aria-hidden="true"></i> Flickr</span></a></li>
+		</ul>
+	</aside>
+	<!-- /sticky-socia -->
+	<p id="back-top"> <a href="#top"><i class="fa fa-chevron-up" aria-hidden="true"></i></a> </p>
+	<script src="assets/js/jquery.js"></script>
+	<!-- Bootstrap Core JavaScript -->
+	<script src="assets/js/bootstrap.min.js"></script>
+	<script src="assets/js/bootstrap-dropdownhover.min.js"></script>
+	<!-- Plugin JavaScript -->
+	<script src="assets/js/jquery.easing.min.js"></script>
+	<script src="assets/js/wow.min.js"></script>
+	<!-- owl carousel -->
+	<script src="assets/owl-carousel/owl.carousel.js"></script>
+	<!--  Custom Theme JavaScript  -->
+	<script src="assets/js/filter-price.js"></script>
+	<script src="assets/js/custom.js"></script>
+</body>
+
+</html>

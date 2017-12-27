@@ -33,7 +33,7 @@ function LoginRequest() {
 function CheckLogin() {
     var apiUrl = '/login/IsLoginedAdmin'
     var callback = function(loginStatus) {
-        console.log(loginStatus);
+        //console.log(loginStatus);
         if (loginStatus == "false") {
             LoginRequest();
         } else {
