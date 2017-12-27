@@ -3,7 +3,7 @@ $(document).ready(function() {
     var resStr = "";
     var resObj = JSON.parse(msg);
     for (var i = 0; i < Object.keys(resObj).length; i++) {
-      resStr += "<tr><th scope='row'>" + (i + 1) + "</th><td>" + resObj[i].Event_Name + "</td><td>" + resObj[i].Start_Date + "</td><td>" + resObj[i].End_Date + "</td><td>" + resObj[i].Target + "</td><td>" + resObj[i].Discount_Rate + "</td><td><button class='btn btn-primary' type='button' name='button' onclick='javascript:location.href=\"./product_edit?PID=" + resObj[i].PID + "\"'>編輯</button></td><td><button class='btn btn-danger' type='button' id='productDeleteButton' data-toggle=\"modal\" data-target=\"#eventDeleteModal \"data-eid=\"" + resObj[i].EID + "\">刪除</button></td></tr>";
+      resStr += "<tr><th scope='row'>" + (i + 1) + "</th><td>" + resObj[i].Event_Name + "</td><td>" + resObj[i].Start_Date + "</td><td>" + resObj[i].End_Date + "</td><td>" + resObj[i].Target + "</td><td>" + resObj[i].Discount_Rate + "</td><td><button class='btn btn-primary' type='button' name='button' onclick='javascript:location.href=\"./event_edit?EID=" + resObj[i].EID + "\"'>編輯</button></td><td><button class='btn btn-danger' type='button' id='productDeleteButton' data-toggle=\"modal\" data-target=\"#eventDeleteModal \"data-eid=\"" + resObj[i].EID + "\">刪除</button></td></tr>";
     }
     $(".event_list").html(resStr);
   }

@@ -36,7 +36,7 @@ $(document).ready(function() {
     //$("#productSearch_catagory").reset();
     tempPrice = 0
     for (var i = 0; i < Object.keys(resObj).length; i++) {
-      resStr += "'<tr><th scope='row'>" + (i + 1) + "</th><td><a href='/admin/product_edit?PID=" + resObj[i].Item + "' target='_blank' >" + resObj[i].Item + "</a></th><td>" + resObj[i].Price + "</td><td><button class='btn btn-warning' type='button' name='button' onclick='javascript:location.href=\"./order_edit?OID=" + resObj[i].OCID + "\"'>金鑰查詢</button></td><td><button class='btn btn-danger' type='button' id='orderCDeleteButton' data-toggle=\"modal\" data-target='#orderContentDeleteModal' data-ocid='" + resObj[i].OCID + "' data-item='" + resObj[i].Item + "'>刪除</button></td></tr>";
+      resStr += "'<tr><th scope='row'>" + (i + 1) + "</th><td><a href='/admin/product_edit?PID=" + resObj[i].Item + "' target='_blank' >" + resObj[i].Item + "</a></th><td>" + resObj[i].Price + "</td><td>" + resObj[i].License_Key + "</td><td><button class='btn btn-danger' type='button' id='orderCDeleteButton' data-toggle=\"modal\" data-target='#orderContentDeleteModal' data-ocid='" + resObj[i].OCID + "' data-item='" + resObj[i].Item + "'>刪除</button></td></tr>";
       tempPrice += resObj[i].Price;
     }
     $(".orderContent_list").html(resStr);
