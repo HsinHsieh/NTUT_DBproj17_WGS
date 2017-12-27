@@ -3,7 +3,24 @@ $(document).ready(function() {
   var url = new URL(window.location.href);
   var OriginalOID = url.searchParams.get("OID");
   var tempPrice;
+  var productAutoComplete = {
+    url: "api/productAllSearch",
+    getValue: "PID",
+    list: {
+      match: {
+        enabled: true
+      }
+    },
 
+    template: {
+      type: "custom",
+      method: function(value, item) {
+        return value + " | " + item.Product_Name;
+      }
+    }
+
+  };
+  $("#order_content_Item").easyAutocomplete(productAutoComplete);
   var searchOrderMain = function(msg) {
     var resObj = JSON.parse(msg);
     $('#orderEdit_OID').val(resObj[0].OID);
@@ -73,8 +90,7 @@ $(document).ready(function() {
 
   $("#order_content_add").click(function() {
     $("#order_content_Item").val("");
-
-    Post('/admin/api/orderContentAdd', data, editResult);
+    //Post('/admin/api/orderContentAdd', data, editResult);
   });
   $('#order_content_submit').click(function() {
     var data = {

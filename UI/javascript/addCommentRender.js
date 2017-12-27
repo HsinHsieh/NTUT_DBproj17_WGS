@@ -4,22 +4,6 @@ $(document).ready(function() {
 
     GetProductByID(pid);
     GetAccount();
-
-    $.fn.serializeObject = function() {
-        var o = {};
-        var a = this.serializeArray();
-        $.each(a, function() {
-            if (o[this.name]) {
-                if (!o[this.name].push) {
-                    o[this.name] = [o[this.name]];
-                }
-                o[this.name].push(this.value || '');
-            } else {
-                o[this.name] = this.value || '';
-            }
-        });
-        return o;
-    };
 });
 
 function GetAccount() {
@@ -50,18 +34,3 @@ function GetProductByID(id) {
     }
     Get(apiUrl, callback);
 };
-
-// function PostComment(pid) {
-//     var com = $("#commentform").serializeObject();
-//     // var pid = new URL(window.location.href).searchParams.get("pid");
-//     var apiUrl = '/submit/' + pid;
-//     var data = {
-//       PID: pid,
-//       comment: com["comment"],
-//       rating: com["rating"]
-//     };
-//     var callback = function(msg) {
-//         // swal()
-//     }
-//     Post(apiUrl, data, callback);
-// }

@@ -1,5 +1,42 @@
 // const product_search_row = "'<tr><th scope='row'>1</th<td>ACT0000007</td><td>{{Product_Name}}</td><td>{{Category}}</td><td>{{Price}}</td><td><button class='btn btn-primary' type='button' name='button' onclick='location.href='product_edit.html''>編輯</button></td><td><button class='btn btn-danger' type='button' name='button'>刪除</button></td></tr>"
 $(document).ready(function() {
+  var memberAutoComplete = {
+    url: "api/memberInOrderSearch",
+    getValue: "CID",
+    list: {
+      match: {
+        enabled: true
+      }
+    },
+
+    template: {
+      type: "custom",
+      method: function(value, item) {
+        return value + " | " + item.First_Name + item.Last_Name;
+      }
+    }
+
+  };
+  var productAutoComplete = {
+    url: "api/productInOrderSearch",
+    getValue: "PID",
+    list: {
+      match: {
+        enabled: true
+      }
+    },
+
+    template: {
+      type: "custom",
+      method: function(value, item) {
+        return value + " | " + item.Product_Name;
+      }
+    }
+
+  };
+
+  $("#keySearch_CID").easyAutocomplete(memberAutoComplete);
+  $("#keySearch_PID").easyAutocomplete(productAutoComplete);
   var keyRow = function(msg) {
     var resObj = JSON.parse(msg);
     var resStr = "";

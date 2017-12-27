@@ -5,6 +5,7 @@ module.exports = class {
     this.db = DataBaseController.GetDB();
     this.data = null;
     this.sqlStr = sqlStr;
+    console.log(sqlStr);
   }
   ReturnJson(callback) {
     this.db.query(this.sqlStr, function(error, rows, fields) {
