@@ -8,10 +8,6 @@ $(document).ready(function() {
     $(".addtocart2").click(function() {
         CheckLoginAndAdd(pid);
     });
-
-    $("#add_comment").click(function() {
-        CheckLoginAndComment(pid);
-    });
 });
 
 function GetCommentCount(id) {
@@ -32,6 +28,7 @@ function GetProductByID(id) {
         $("#description").html(product_info["Product_Description"]);
         $("#release_date").html(product_info["Formated_Date"]);
         $("#supplier").html(product_info["Supplier"]);
+        $("#add_comment").attr("href", "../addcomment?pid=" + product_info["PID"]);
     }
     Get(apiUrl, callback);
 };
@@ -56,24 +53,6 @@ function CheckLoginAndAdd(pid) {
                 showConfirmButton: false,
                 timer: 1500
             });
-        }
-    }
-    Get(apiUrl, callback);
-};
-
-function CheckLoginAndComment(pid) {
-    var apiUrl = '/login/IsLogined'
-    var callback = function(loginStatus) {
-        if (loginStatus == "false") {
-            swal({
-                position: 'top-right',
-                type: 'warning',
-                title: '請先登入',
-                showConfirmButton: false,
-                timer: 1500
-            });
-        } else {
-            window.location = "/addcomment?pid=" + pid;
         }
     }
     Get(apiUrl, callback);
