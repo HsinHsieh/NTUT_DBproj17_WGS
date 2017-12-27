@@ -2,19 +2,23 @@ var Data;
 
 $(document).ready(function() {
     CheckLoginAndShow();
+    GenerateBlocks();
 
     $(document).on("click", "#modifyBtn", modifyBtnHandle);
     $(document).on("click", "#pswBtn", pswBtnHandle);
 
     $('#myfile').click(function() {
+        CheckLoginAndShow();
         $("#contentsForPersonal").load("../personalCenter/myfile.html");
     });
     $('#historyOrder').click(function() {
+        GenerateBlocks();
         $("#contentsForPersonal").load("../personalCenter/historyOrder.html");
     });
 
 });
 
+//myfile
 function modifyBtnHandle() {
     var Data = {
         "CID": $('#myfile_CID').val(),
@@ -137,7 +141,7 @@ function AskMemberData() {
     var callback = function(Data) {
         //console.log(Data)
         $('#myfile_CID').val(Data.CID);
-        $('#myfile_Register_Date').val(Data.Register_Date);
+        $('#myfile_Register_Date').val(Data.Formated_Register_Date);
         $('#myfile_First_Name').val(Data.First_Name);
         $('#myfile_Last_Name').val(Data.Last_Name);
         $('#myfile_Gender').val(Data.Gender);
@@ -145,6 +149,71 @@ function AskMemberData() {
         $('#myfile_Birthday').val(Data.Birthday);
         $('#myfile_Email').val(Data.Email);
         $('#myfile_Adress').val(Data.Adress);
+    }
+    Get(apiUrl, callback);
+};
+
+
+
+function GenerateBlocks() {
+    var apiUrl = '/personal/GetOrderMains'
+    var callback = function(msg) {
+        var resStr = "";
+        for (var i = 0; i < msg.length; i++) {
+            resStr +=
+                "<div class='well'> \
+                <div class='row'> \
+                    <div class='form-group col-md-4'> \
+                        <label for='Name'>訂單編號</label> \
+                        <input type='text' readonly class='form-control' value='" + msg[i].OID + "'> \
+                    </div> \
+                    <div class='form-group col-md-4'> \
+                        <label for='Name'>訂購時間</label> \
+                        <input type='text' readonly class='form-control'  value='" + msg[i].Formated_Order_Time + "'> \
+                    </div> \
+                    <div class='form-group col-md-4'> \
+                        <label for='Name'>總價</label> \
+                        <input type='text' readonly class='form-control'  value='" + msg[i].Total_Price + "'> \
+                    </div> \
+                </div> \
+                <div class='row'> \
+                    <table class='table table-striped'> \
+                        <thead> \
+                            <tr> \
+                                <th class='col-xs-9'>商品名稱</th> \
+                                <th class='col-xs-3'>金鑰使用狀態</th> \
+                            </tr> \
+                        </thead> \
+                        <tbody id='" + "contents-" + msg[i].OID + "' class='product_list'> \
+                        </tbody>\
+                    </table>\
+                </div>\
+            </div>";
+
+            GetItemsInBlocks(msg[i].OID);
+        }
+        $("#orderMainBlocks").html(resStr);
+    }
+    Get(apiUrl, callback);
+};
+
+function GetItemsInBlocks(OID) {
+    var apiUrl = '/personal/GetOrderContents/' + OID;
+    var callback = function(msg) {
+        var Block = "";
+        var keyStatus = "已使用";
+        for (var i = 0; i < msg.length; i++) {
+            if (msg[i].Key_Used == 1)
+                keyStatus = "已使用";
+            else
+                keyStatus = "未使用";
+
+            Block += "<tr> \
+                   <td><a href='/product?pid=" + msg[i].PID + "'><p class='form-control-static'>" + msg[i].Product_Name + "</p></a></td> \
+                   <td><p class='form-control-static'>" + keyStatus + "</p></td> \
+                   </tr>";
+        }
+        $("#contents-" + OID).html(Block);
     }
     Get(apiUrl, callback);
 };
