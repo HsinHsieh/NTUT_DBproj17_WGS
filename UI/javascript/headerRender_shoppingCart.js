@@ -2,16 +2,39 @@ $(document).ready(function() {
     var user;
     CheckLogin();
 
-    $("#header_cart_btn").click(function () {
+    $("#header_cart_btn").click(function() {
         GetItems();
     });
 
-    $("#header_cart_btn").hover(function () {
+    $("#header_cart_btn").hover(function() {
         GetItems();
     });
 
-    $("#header_checkout").click(function () {
-        checkout();
+    $("#header_checkout").click(function() {
+        swal({
+            title: 'Are you sure?',
+            text: "將馬上進行付款!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, 刷下去!',
+            cancelButtonText: 'No, 我87我按錯!',
+            confirmButtonClass: 'btn btn-success',
+            cancelButtonClass: 'btn btn-danger',
+            buttonsStyling: false,
+            reverseButtons: true
+        }).then((result) => {
+            if (result.value) {
+                checkout();
+            } else if (result.dismiss === 'cancel') {
+                swal(
+                    '別考慮了',
+                    '想要的東西終究是會買的',
+                    'error'
+                )
+            }
+        })
     });
 
     function checkout() {
@@ -21,10 +44,20 @@ $(document).ready(function() {
             total: $("#header_total_price").data('total'),
             discount: $("#header_discount_price").data('discount'),
         };
-        var callback = function (msg) {
-            swal(msg);
-            GetItems();
-            window.location = '/';
+        var callback = function(msg) {
+
+            console.log(msg);
+            if (msg == "Checkout success!") {
+                swal(
+                    '你買到惹!',
+                    '恩 花錢不手軟 成功一大半',
+                    'success'
+                ).then(function() {
+                    GetItems();
+                    window.location = '/';
+                });
+            }
+
         }
         Post(url, data, callback);
     }
@@ -70,7 +103,7 @@ function GetTotal() {
     var data = {
         customer: this.user,
     };
-    var callback = function (msg) {
+    var callback = function(msg) {
         var result = "<div id='header_total_price' data-total='" + msg + "'></div>$" + msg;
         $("#header_cart_total").html(result);
         GetDiscount();
@@ -83,7 +116,7 @@ function GetDiscount() {
     var data = {
         customer: this.user,
     };
-    var callback = function (msg) {
+    var callback = function(msg) {
         var result = "<div id='header_discount_price' data-discount='" + msg + "'></div> - $" + msg;
         $("#header_cart_discount").html(result);
         GetFinal();
