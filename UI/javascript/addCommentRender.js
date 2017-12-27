@@ -50,18 +50,3 @@ function GetProductByID(id) {
     }
     Get(apiUrl, callback);
 };
-
-// function PostComment(pid) {
-//     var com = $("#commentform").serializeObject();
-//     // var pid = new URL(window.location.href).searchParams.get("pid");
-//     var apiUrl = '/submit/' + pid;
-//     var data = {
-//       PID: pid,
-//       comment: com["comment"],
-//       rating: com["rating"]
-//     };
-//     var callback = function(msg) {
-//         // swal()
-//     }
-//     Post(apiUrl, data, callback);
-// }

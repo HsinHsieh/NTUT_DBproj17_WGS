@@ -20,18 +20,20 @@ module.exports = class {
     }
 
     PostComment(callback){
-        // this.db.query("SELECT *, DATE_FORMAT(Comment_Time,'%Y-%m-%d %k:%i:%s') AS Comment_Time \
-        //                FROM `comment` \
-        //                WHERE `Product` = '" + this.id + "' \
-        //                ORDER BY `Comment_Time` DESC", function(error, rows, fields) {
-        //     if (error)
-        //         throw error;
-        //     callback(rows);
-        // });
-        callback([
-            this.id,
-            this.comment,
-            this.rating,
-            this.customer]);
+        var _command = "INSERT INTO `comment`(`Customer`, `Product`, `Grade`, `Comment_Text`) \
+                        VALUES ({{Customer}}, {{PID}}, {{Rating}}, {{Text}})"
+        command = _command.replace("{{Customer}}", this.customer)
+                          .replace("{{PID}}", this.pid)
+                          .replace("{{Rating}}", this.rating)
+                          .replace("{{Text}}", this.comment)
+        this.db.query(command, function(error, rows, fields) {
+            if (error)
+                throw error;
+            callback("success")
+        });
+    }
+
+    EditComment(callback){
+
     }
 }
