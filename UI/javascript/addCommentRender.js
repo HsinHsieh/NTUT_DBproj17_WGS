@@ -3,6 +3,15 @@ $(document).ready(function() {
     var pid = url.searchParams.get("pid");
 
     GetProductByID(pid);
+
+    /* star rate */
+    var logID = 'log',
+    log = $('<div id="'+logID+'"></div>');
+    $('body').append(log);
+      $('[type*="radio"]').change(function () {
+        var me = $(this);
+        log.html(me.attr('value'));
+      });
 });
 
 function GetProductByID(id) {
@@ -13,17 +22,15 @@ function GetProductByID(id) {
     }
     Get(apiUrl, callback);
 };
-function GetCommentByID(id) {
-    var apiUrl = '/addcomment/Comment/' + id
-    var callback = function(comment) {
-        var resStr = "";
-        for (var i = 0; i < Object.keys(comment).length; i++) {
-          resStr += "<tr><td><p class='form-control-static'>" + comment[i].Customer + "</p></td> \
-                         <td><p class='form-control-static'>" + comment[i].Grade + "</p></td> \
-                         <td><p class='form-control-static'>" + comment[i].Comment_Text + "</p></td> \
-                         <td><p class='form-control-static'>" + comment[i].Comment_Time + "</p></td></tr>";
-        }
-        $(".comment_list").html(resStr);
-    }
-    Get(apiUrl, callback);
-};
+
+function PostComment() {
+    var com = $('#commentform').serializeObject();
+    console.log(com);
+    var apiUrl = '/addcomment/submit'
+    // var data = {
+    //   PID: url.searchParams.get("pid");,
+    //   comment: ,
+    //   rating:
+    // }
+    // Post(apiUrl, data, )
+}

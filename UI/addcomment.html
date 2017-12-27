@@ -68,7 +68,7 @@
 				</div>
 				<div class="col-md-6 contact-info">
 					<div class="contact-form">
-						<form id="form1" name="form1" action="" method="post" id="commentform" class="comment-form">
+						<form name="form1" action="" method="post" id="commentform" class="comment-form">
 							<div class="row">
 								<div class="col-md-12">
 									<div class="contact-bg">
@@ -76,7 +76,7 @@
 										<p>這是一個公開的評論系統大家都會知道你是誰，你的每一句話都會被記錄並作為日後<u><b>被吉</b></u>的依據!</p>
 									</div>
 								</div>
-								<div class="col-md-6"><h3><b>評比</b></h3>
+								<div class="col-md-12"><h3><b>評比</b></h3>
 									<div class="star2">
 										<!-- <ul>
 											<a herf="#"><li class="yellow-color"><i class="fa fa-star" aria-hidden="true"></i></li></a>
@@ -86,9 +86,8 @@
 											<a herf="#"><li><i class="fa fa-star" aria-hidden="true"></i></li></a>
 										</ul> -->
 										<fieldset>
-									    <span class="star2">
+									    <span class="star-cb-group">
 									      <input type="radio" id="rating-5" name="rating" value="5" /><label for="rating-5">5</label>
-												<a herf="#"><li class="yellow-color"><i class="fa fa-star" aria-hidden="true"></i></li></a>
 									      <input type="radio" id="rating-4" name="rating" value="4" checked="checked" /><label for="rating-4">4</label>
 									      <input type="radio" id="rating-3" name="rating" value="3" /><label for="rating-3">3</label>
 									      <input type="radio" id="rating-2" name="rating" value="2" /><label for="rating-2">2</label>
@@ -103,7 +102,7 @@
 									<p class="comment-form-comment"><textarea id="comment" name="comment" cols="45" rows="8" placeholder="你心中有什麼喜悅與不滿，都把它寫下來吧!" aria-required="true" style="resize: vertical;"></textarea></p>
 								</div>
 								<div class="col-md-12">
-									<p class="form-submit"><input name="submit" id="submit" class="btn btn-secondary" value="Submit Comment   " type="submit" onclick="clickContackSubmit()"> </p>
+									<p class="form-submit"><input name="submit" id="submit" class="btn btn-secondary" value="Submit Comment" type="submit" onclick="PostComment()" style=""> </p>
 								</div>
 							</div>
 						</form>

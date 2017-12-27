@@ -15,17 +15,25 @@ module.exports = class {
     });
 
     this.router.get("/:id", function(req, res) {
+        var comment = {
+           PID: req.params.id,
+        }
         var callback = function(msg) {
             res.send(msg);
         };
-        (new Comment(req.params.id)).GetProductName(callback);
+        (new Comment(comment)).GetProduct(callback);
     });
 
     this.router.post("/submitcomment", function(req, res) {
+      var comment = {
+         PID: res.body.PID,
+         text: res.body.comment,
+         rating: res.body.rating
+      }
       var callback = function(msg) {
         res.send(msg);
       };
-      (new Comment(res.body.id)).GetCommentInfo(callback);
+      (new Comment(comment)).PostComment(callback);
     });
   }
 }
