@@ -23,6 +23,24 @@ function GetProductByID(id) {
     Get(apiUrl, callback);
 };
 
+function CheckLoginAnComment() {
+    var apiUrl = '/login/IsLogined'
+    var callback = function(loginStatus) {
+        if (loginStatus == "false") {
+            swal({
+                position: 'top-right',
+                type: 'warning',
+                title: '請先登入',
+                showConfirmButton: false,
+                timer: 1500
+            });
+        } else {
+          PostComment();
+        }
+    }
+    Get(apiUrl, callback);
+};
+
 function PostComment() {
     var com = $('#commentform').serializeObject();
     console.log(com);
