@@ -305,5 +305,13 @@ module.exports = class {
       var sqlStr = "DELETE FROM `event` WHERE `event`.`EID`='" + req.params.EID + "'";
       (new sql(sqlStr)).ReturnJson(callback);
     });
+    this.router.post("/eventAdd", function(req, res) {
+      var callback = function(msg) {
+        res.send(msg);
+      };
+      //console.log(sqlStr);
+      var Str = "INSERT INTO `event` (`EID`, `Event_Name`, `Start_Date`, `End_Date`, `Event_Description`, `Event_Category`, `Discount_Rate`, `Target`, `Modified_Time`) VALUES (NULL, '" + req.body.Name + "', '" + req.body.Date_start + "', '" + req.body.Date_end + "', '" + req.body.Description + "', '" + req.body.Category + "', '" + req.body.Discount + "', '" + req.body.Target + "', CURRENT_TIMESTAMP)";
+      (new sql(Str)).ReturnJson(callback);
+    });
   }
 }
