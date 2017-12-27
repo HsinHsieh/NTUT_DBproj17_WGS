@@ -24,17 +24,17 @@ module.exports = class {
             (new Comment(comment)).GetProduct(callback);
         });
 
-        // this.router.post("/submit/:pid", function(req, res) {
-        //     var comment = {
-        //        customer: req.session.session_id,
-        //        PID: req.params.pid,
-        //        text: req.body.comment,
-        //        rating: req.body.rating
-        //     }
-        //     var callback = function(msg) {
-        //         res.send(msg);
-        //     };
-        //     (new Comment(comment)).PostComment(callback);
-        // });
+        this.router.post("/submit/:pid", function(req, res) {
+            var comment = {
+               customer: req.session.session_id,
+               PID: req.params.pid,
+               text: req.body.comment,
+               rating: req.body.rating
+            }
+            var callback = function(msg) {
+                res.send(msg);
+            };
+            (new Comment(comment)).PostComment(callback);
+        });
     }
 }

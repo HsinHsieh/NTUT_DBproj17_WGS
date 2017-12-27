@@ -4609,7 +4609,7 @@ blockquote {
     width: 100%;
 }
 
-.contact-form .form-submit input, .contact-form button{
+.contact-form .form-submit input {
     background: #B11E22 none repeat scroll 0 0;
     border-radius: 0;
     color: #fff;

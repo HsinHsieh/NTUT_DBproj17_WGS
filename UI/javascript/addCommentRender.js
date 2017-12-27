@@ -1,22 +1,3 @@
-
-
-function PostComment() {
-    var com = $("#commentform").serializeObject();
-    // console.log(com);
-    var pid = new URL(window.location.href).searchParams.get("pid");
-    // console.log(pid);
-    var apiUrl = '/submit' + pid;
-    var data = {
-      PID: pid,
-      comment: com["comment"],
-      rating: com["rating"]
-    };
-    var callback = function(msg) {
-        console.log(msg);
-    }
-    Post(apiUrl, data, callback);
-}
-
 $(document).ready(function() {
     var url = new URL(window.location.href);
     var pid = url.searchParams.get("pid");
@@ -39,8 +20,6 @@ $(document).ready(function() {
         });
         return o;
     };
-    $("#send").click(PostComment());
-    // $("#commentform").submit();
 });
 
 function GetAccount() {
@@ -69,3 +48,28 @@ function GetProductByID(id) {
     }
     Get(apiUrl, callback);
 };
+
+function PostComment() {
+    var com = $("#commentform").serializeObject();
+    console.log(com);
+    var pid = new URL(window.location.href).searchParams.get("pid");
+    var apiUrl = '/addcomment/submit/' + pid;
+    var data = {
+      PID: pid,
+      comment: com["comment"],
+      rating: com["rating"]
+    };
+    var callback = function(msg) {
+        if (msg == "success") {
+            swal({
+                type: 'success',
+                title: '評論張貼成功',
+                showConfirmButton: false,
+                timer: 1500
+            }).then(function(){
+                window.location = "/product?pid=" + pid;
+            });
+        }
+    };
+    Post(apiUrl, data, callback);
+}

@@ -30,7 +30,7 @@ module.exports = class {
         this.db.query(command, function(error, rows, fields) {
             if (error)
                 throw error;
-            // callback("success")
+            callback("success")
         });
     }
 
