@@ -3,6 +3,9 @@ const DataBaseController = require('../DB/DatabaseController.js')
 module.exports = class {
     constructor(comment) {
         this.id = comment.PID;
+        this.comment = comment.text;
+        this.rating = comment.rating;
+        this.customer = comment.customer;
         this.db = DataBaseController.GetDB();
     }
 
@@ -17,13 +20,18 @@ module.exports = class {
     }
 
     PostComment(callback){
-        this.db.query("SELECT *, DATE_FORMAT(Comment_Time,'%Y-%m-%d %k:%i:%s') AS Comment_Time \
-                       FROM `comment` \
-                       WHERE `Product` = '" + this.id + "' \
-                       ORDER BY `Comment_Time` DESC", function(error, rows, fields) {
-            if (error)
-                throw error;
-            callback(rows);
-        });
+        // this.db.query("SELECT *, DATE_FORMAT(Comment_Time,'%Y-%m-%d %k:%i:%s') AS Comment_Time \
+        //                FROM `comment` \
+        //                WHERE `Product` = '" + this.id + "' \
+        //                ORDER BY `Comment_Time` DESC", function(error, rows, fields) {
+        //     if (error)
+        //         throw error;
+        //     callback(rows);
+        // });
+        callback([
+            this.id,
+            this.comment,
+            this.rating,
+            this.customer]);
     }
 }

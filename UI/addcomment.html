@@ -28,6 +28,9 @@
 	<link href="assets/owl-carousel/owl.carousel.css" rel="stylesheet">
 	<link href="assets/owl-carousel/owl.theme.css" rel="stylesheet">
 
+	<script src="./javascript/sweetalert2/dist/sweetalert2.min.js"></script>
+	<link rel="stylesheet" href="./javascript/sweetalert2/dist/sweetalert2.min.css">
+
 	<script type="text/javascript" src="./javascript/ajax.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script type="text/javascript" src="./javascript/addCommentRender.js"></script>
@@ -68,7 +71,7 @@
 				</div>
 				<div class="col-md-6 contact-info">
 					<div class="contact-form">
-						<form name="form1" action="" method="post" id="commentform" class="comment-form">
+						<form id="commentform" name="form1" method="post" action="#" class="comment-form" onsubmit="PostComment()">
 							<div class="row">
 								<div class="col-md-12">
 									<div class="contact-bg">
@@ -78,13 +81,6 @@
 								</div>
 								<div class="col-md-12"><h3><b>評比</b></h3>
 									<div class="star2">
-										<!-- <ul>
-											<a herf="#"><li class="yellow-color"><i class="fa fa-star" aria-hidden="true"></i></li></a>
-											<a herf="#"><li class="yellow-color"><i class="fa fa-star" aria-hidden="true"></i></li></a>
-											<a herf="#"><li class="yellow-color"><i class="fa fa-star" aria-hidden="true"></i></li></a>
-											<a herf="#"><li class="yellow-color"><i class="fa fa-star" aria-hidden="true"></i></li></a>
-											<a herf="#"><li><i class="fa fa-star" aria-hidden="true"></i></li></a>
-										</ul> -->
 										<fieldset>
 									    <span class="star-cb-group">
 									      <input type="radio" id="rating-5" name="rating" value="5" /><label for="rating-5">5</label>
@@ -98,13 +94,14 @@
 									</div>
 								</div>
 								<div class="col-md-12">
-									<div class="lable"><h3><b>評論</b></h3><span></span></div>
+									<div class="contact-bg"><h3><b>評論</b></h3></div>
 									<p class="comment-form-comment"><textarea id="comment" name="comment" cols="45" rows="8" placeholder="你心中有什麼喜悅與不滿，都把它寫下來吧!" aria-required="true" style="resize: vertical;"></textarea></p>
 								</div>
-								<div class="col-md-12">
-									<p class="form-submit">
-										<input name="submit" id="submit" class="btn btn-secondary" value="Submit Comment" type="submit" onclick="CheckLoginAnComment()" style="">
-									</p>
+								<div class="col-md-6">
+									<p class="form-submit"><input name="submit" id="submit" class="btn btn-secondary" value="Post Comment" type="submit" style="width: 100%; margin-top: 7px;"> </p>
+								</div>
+								<div class="col-md-6">
+									<div class="contact-bg"><h4><b>評論者：</b></h4></div><h4 id="username" style="font-weight: 300;"></h4>
 								</div>
 							</div>
 						</form>
