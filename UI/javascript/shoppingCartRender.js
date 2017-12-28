@@ -67,9 +67,12 @@ $(document).ready(function() {
             customer: this.user,
         };
         var callback = function(data) {
-            if (data.length == 0)
+            if (data.length == 0) {
+                $("#checkout").attr("style", "pointer-events: none;");
+                $("#checkout").text("加點東西到購物車才能結帳喔");
+                $('#clear').hide();
                 var result = "	<h4>目前購物車尚無商品</h4>";
-            else {
+            } else {
                 var result = "<tr><th></th><th>Product name</th><th>Price</th><th>Cancel</th></tr>"
                 for (var i = 0; i < data.length; i++) {
                     var p = data[i];
