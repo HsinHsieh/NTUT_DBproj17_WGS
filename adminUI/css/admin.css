@@ -1,9 +1,14 @@
-.stat_num{
-  font-size: 32px;
-}
+
 .stat_name{
   font-size:16px;
   font-family: "微軟正黑體";
+  color:#FFFFFF
+}
+.stat_info{
+  font-size: 75px;
+  text-align: right;
+  font-family: "微軟正黑體";
+  color:#FFFFFF
 }
 .admin_title{
   font-size: 32px;
@@ -12,7 +17,36 @@
   font-size:16px;
 }
 
-.stat_info{
-  font-size: 32px;
-  font-family: "微軟正黑體";
+
+.gridly {
+  position: relative;
+  width: 100%;
+}
+
+.brick.info{
+  width: 250px;
+  height: 125px;
+
+}
+.c1{
+  background:#E67E22;
+}
+.c2{
+  background:#27AE60;
+}
+.c3{
+  background:#2980B9;
+}
+.c4{
+  background:#C0392B;
+}
+
+.brick.large {
+  width: 515px;
+  height: 125px;
+}
+.brick.enormous {
+  width: 515px;
+  height: 388px;
+  background: ;
 }
