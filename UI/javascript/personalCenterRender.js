@@ -6,6 +6,8 @@ $(document).ready(function() {
 
     $(document).on("click", "#modifyBtn", modifyBtnHandle);
     $(document).on("click", "#pswBtn", pswBtnHandle);
+    $(document).on("click", "#editbutton", EditComment);
+    $(document).on("click", "#deletebutton", DeleteComment);
 
     $('#myfile').click(function() {
         CheckLoginAndShow();
@@ -15,7 +17,10 @@ $(document).ready(function() {
         GenerateBlocks();
         $("#contentsForPersonal").load("../personalCenter/historyOrder.html");
     });
-
+    $('#myComments').click(function() {
+        GetMyComments();
+        $("#contentsForPersonal").load("../personalCenter/myComments.html");
+    });
 });
 
 //myfile
@@ -106,7 +111,7 @@ function pswBtnHandle() {
                 } else if (result.dismiss === 'cancel') {
                     swal(
                         'Cancelled',
-                        '取消了修改的一個動作',
+                        '取消了一個修改的動作',
                         'error'
                     )
                 }
@@ -217,3 +222,71 @@ function GetItemsInBlocks(OID) {
     }
     Get(apiUrl, callback);
 };
+
+function GetMyComments() {
+    var apiUrl = '/addcomment/get';
+    var data;
+    var _table;
+    var _commentBlock = "<div class='comment-body'> \
+                          <div class='well well-lg'> \
+                            <header class='text-left'> \
+                              <div class='star2'> \
+                                <ul> \
+                                  <li class='comment-author text-uppercase reviews'><i class='fa fa-user'></i> {{User}}</li> \
+                                  {{Stars}} \
+                                </ul> \
+                              </div> \
+                              <time class='comment-date reviews'><i class='fa fa-clock-o'></i> {{Time}}</time> \
+                            </header> \
+                            <div class='comment-comment'> \
+                              <p>{{Text}}</p> \
+                            </div> \
+                            <div class='row'> \
+                              <div class='col-md-10'></div> \
+                              <div class='col-md-1'> \
+                                <button id='editbutton' class='btn btn-primary pull-right' data-pid='{{PID}}'>修改</button> \
+                              </div> \
+                              <div class='col-md-1'> \
+                                <button id='deletebutton' class='btn btn-danger pull-right' data-coid='{{COID}}'>刪除</button> \
+                              </div> \
+                            </div> \
+                          </div> \
+                        </div>";
+    var callback = function(comments) {
+        for (var i = 0; i < comments.length; i++)  {
+            var result = '';
+            for (var j = 0; j < comments[i].Grade; j++) {
+                result += "<li class='yellow-color'><i class='fa fa-star' aria-hidden='true'></i></li>";
+            }
+            for (var j = 0; j < 5-comments[i].Grade; j++) {
+                result += "<li><i class='fa fa-star' aria-hidden='true'></i></li>";
+            }
+            var commentBlock = _commentBlock.replace("{{Stars}}", result)
+                                            .replace("{{User}}", comments[i].Customer)
+                                            .replace("{{Time}}", comments[i].Formated_Date_Time)
+                                            .replace("{{Text}}", comments[i].Comment_Text)
+                                            .replace("{{PID}}", comments[i].Product)
+                                            .replace("{{COID}}", comments[i].COID);
+            _table += "<tr style='cursor: pointer;' data-toggle='collapse' data-target='#show_" + comments[i].COID + "' class='accordion-toggle'>" +
+            "<td><p class='form-control-static'>" + comments[i].COID +
+            "</p></td><td><p class='form-control-static'>" + comments[i].Product_Name +
+            "</p></td><td><p class='form-control-static'>" + comments[i].Formated_Date_Time +
+            "</p></td></tr>"+
+            "<tr><td colspan='6' style='padding: 0;'><div class='accordian-body collapse' id='show_" + comments[i].COID + "'>"+commentBlock+"</div></td></tr>";
+
+            // $("#show_"+comments[i].COID).html(commentBlock);
+        }
+        $("#my_comments").html(_table);
+        // $("div[id^='show_']").on("click", GetCommentByCOID(COID));
+    }
+    Post(apiUrl, data, callback)
+}
+
+function EditComment(event){
+    window.location.href = "/addcomment?pid=" + event.target.dataset.pid;
+
+}
+
+function DeleteComment(event){
+    var apiUrl = '/addcomment/edit' + event.target.dataset.coid;
+}
