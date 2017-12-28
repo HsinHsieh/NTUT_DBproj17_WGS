@@ -22,7 +22,7 @@ function GetCommentByID(id, index) {
         for (var i = 0; i < Object.keys(comment).length; i++) {
             var yellowStarts = function(Grade){
                 var result = "";
-                for (var i = 0; i <= Grade; i++) {
+                for (var i = 0; i < Grade; i++) {
                     result += "<li class='yellow-color'><i class='fa fa-star' aria-hidden='true'></i></li>";
                 }
                 for (var i = 0; i < 5-Grade; i++) {
