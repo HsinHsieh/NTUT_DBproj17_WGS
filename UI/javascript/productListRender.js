@@ -53,8 +53,8 @@ function GetBestSell() {
         for (var i = 0; i < msg.length; i++) {
             Str += "<li> \
 						<div class='e-product'> \
-							<div class='pro-img'> <img src='./product_pic/" + msg[i].Item + ".jpg' alt='幹!找不到圖片'> </div> \
-							<div class='pro-text-outer'> <span>Macbook, Laptop</span> \
+							<div class='pro-img'> <img style='height:80px; width:50px;' src='./product_pic/" + msg[i].Item + ".jpg' alt='幹!找不到圖片'> </div> \
+							<div class='pro-text-outer'> \
 								<a href='/product?pid=" + msg[i].Item + "'> \
 									<h4> " + msg[i].Product_Name + " </h4> \
 								</a> \

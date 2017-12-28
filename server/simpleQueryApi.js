@@ -14,7 +14,6 @@ module.exports = class {
                 res.send(msg);
             };
             (new sql("SELECT * FROM `category`ORDER BY CAID ASC")).ReturnJson(callback);
-            // res.end(JSON.stringify({success:true , data:result}));
         });
         this.router.get("/mainProductNum", function(req, res) {
             var callback = function(msg) {

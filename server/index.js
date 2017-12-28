@@ -23,7 +23,7 @@ module.exports = class {
             (new ItemPreview()).AddItemPreview(callback);
         });
 
-        this.router.get("/categoryItem/:cate", function(req, res) {
+        this.router.get("/categoryItemRAND/:cate", function(req, res) {
             var callback = function(msg) {
                 res.send(msg);
                 //console.log(msg);
