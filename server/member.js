@@ -1,7 +1,7 @@
-const DataBaseController = require('../DB/DatabaseController.js')
+const DataBaseController = require('../DB/DatabaseController.js');
 
 module.exports = class {
-    constructor(sqlStr) {
+    constructor() {
         this.db = DataBaseController.GetDB();
         this.data = null;
     }

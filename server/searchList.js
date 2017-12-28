@@ -4,7 +4,6 @@ module.exports = class {
 
     constructor(router) {
         this.router = router;
-        // this.productManager = new ProductManager();
         this.SetAPI();
     }
 

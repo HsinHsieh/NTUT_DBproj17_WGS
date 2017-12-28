@@ -17,7 +17,7 @@ function GetCategory() {
 };
 
 function GetItemsInBlocks(cate) {
-    var apiUrl = '/categoryItem/' + cate;
+    var apiUrl = '/categoryItemRAND/' + cate;
     var callback = function(msg) {
         $("#" + cate).html(msg);
     }
