@@ -47,7 +47,12 @@ function GetProductKeys(CID) {
         for (var i = 0; i < Object.keys(product_keys).length; i++) {
           resStr += "<tr><td><p class='form-control-static'>" + product_keys[i].Order_Number + "</p></td><td><p class='form-control-static'>" + product_keys[i].Product_Name + "</p></td><td><p class='form-control-static'>" + product_keys[i].Formated_Order_Time + "</p></td><td>"+ product_keys[i].Key_Status +"</td></tr>";
         }
-        $(".product_list").html(resStr);
+        if (resStr != "") {
+          $(".product_list").html(resStr);
+        }
+        else {
+          $(".product_list").parent().parent().append("<div style='text-align: center;'>你沒有任何金鑰購買紀錄ㄛ，趕快敗下去吧！</div>");
+        }
     }
     Get(apiUrl, callback);
 };

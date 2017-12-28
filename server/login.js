@@ -75,9 +75,16 @@ module.exports = class {
 
         this.router.get('/', function(req, res) {
             //console.log(req.session.session_id + "++" + req.session.sessionAdmin_id);
-            db.query("DELETE FROM `sessions` WHERE `data` LIKE '%" + req.session.session_id + "%' OR  `data` LIKE '%" + req.session.sessionAdmin_id + "%'");
+            db.query("DELETE FROM `sessions` WHERE `data` LIKE '%\"session_id\":\"" + req.session.session_id + "\"%' OR  `data` LIKE '%\"sessionAdmin_id\":\"" + req.session.sessionAdmin_id + "\"%'");
             req.session.destroy();
             res.send('你已經登出惹 ㄅㄅ\n(將登出所有使用中的本帳戶)');
+        });
+
+        this.router.get('/logoutAllUser', function(req, res) {
+            //console.log(req.session.session_id + "++" + req.session.sessionAdmin_id);
+            db.query("DELETE FROM `sessions` WHERE 1");
+            req.session.destroy();
+            res.send('successed');
         });
 
         this.router.get("/IsLogined", function(req, res) {
@@ -132,7 +139,7 @@ module.exports = class {
 
         this.router.post("/loginAdmin", function(req, res) {
             //解決admin 和 UI session衝突
-            db.query("DELETE FROM `sessions` WHERE `data` LIKE '%" + req.session.session_id + "%' OR  `data` LIKE '%" + req.session.sessionAdmin_id + "%'");
+            db.query("DELETE FROM `sessions` WHERE `data` LIKE '%\"session_id\":\"" + req.session.session_id + "\"%' OR  `data` LIKE '%\"sessionAdmin_id\":\"" + req.session.sessionAdmin_id + "\"%'");
             var User = new member();
             User.IsAdminMember(req.body.account, function(err, results) {
                 if (results == null) {

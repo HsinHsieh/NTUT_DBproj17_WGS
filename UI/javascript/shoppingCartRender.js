@@ -25,7 +25,8 @@ $(document).ready(function() {
                 showConfirmButton: false,
                 timer: 1500
             }).then(function() {
-                window.location = '/shopping_cart';
+                // window.location = '/shopping_cart';
+                GetItems();
             });
         }
         Post(url, data, callback);
@@ -53,7 +54,8 @@ $(document).ready(function() {
         };
         var callback = function(msg) {
             swal(msg).then(function() {
-                window.location = '/shopping_cart';
+                // window.location = '/shopping_cart';
+                GetItems();
             });
         };
         Post(url, data, callback);
@@ -65,20 +67,26 @@ $(document).ready(function() {
             customer: this.user,
         };
         var callback = function(data) {
-            var result = "<tr><th></th><th>Product name</th><th>Price</th><th>Cancel</th></tr>"
-            for (var i = 0; i < data.length; i++) {
-                var p = data[i];
-                var pic = "<td><a href='/product?pid=" + p.pic + "'><img src='./product_pic/" + p.pic + ".jpg'" + "' alt='幹找不到圖片' style='width:165px; height:240px'></a></td>";
-                var name = "<td style='font-size:20px;'>" + p.name + "</td>";
-                var price = "<td><strong>$" + p.price + "</strong></td>";
-                result += "<tr>" + pic + name + price;
-                result += "<td ><span class='red'>\
+            if (data.length == 0) {
+                $("#checkout").attr("style", "pointer-events: none;");
+                $("#checkout").text("加點東西到購物車才能結帳喔");
+                $('#clear').hide();
+                var result = "	<h4>目前購物車尚無商品</h4>";
+            } else {
+                var result = "<tr><th></th><th>Product name</th><th>Price</th><th>Cancel</th></tr>"
+                for (var i = 0; i < data.length; i++) {
+                    var p = data[i];
+                    var pic = "<td><a href='/product?pid=" + p.pic + "'><img src='./product_pic/" + p.pic + ".jpg'" + "' alt='幹找不到圖片' style='width:165px; height:240px'></a></td>";
+                    var name = "<td style='font-size:20px;'>" + p.name + "</td>";
+                    var price = "<td><strong>$" + p.price + "</strong></td>";
+                    result += "<tr>" + pic + name + price;
+                    result += "<td ><span class='red'>\
                             <i class='e04 fa fa-times' aria-hidden='true' style='cursor:pointer;' data-OCID='" + p.ocid + "'></i>\
                             </span></td></tr>";
+                }
             }
             $("#CartList").html(result);
         };
-
         Post(url, data, callback);
         GetTotal();
     }
@@ -125,7 +133,7 @@ $(document).ready(function() {
         var callback = function(loginStatus) {
             if (loginStatus == "false") {
                 swal({
-                    position: 'top-right',
+                    position: 'center',
                     type: 'warning',
                     title: '請先登入',
                     showConfirmButton: true,

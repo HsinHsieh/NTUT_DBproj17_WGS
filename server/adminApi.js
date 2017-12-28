@@ -342,5 +342,37 @@ module.exports = class {
       };
       (new sql("SELECT DISTINCT `CID`,`First_Name`,`Last_Name` FROM `member`,`order_main` WHERE `member`.`CID`=`order_main`.`Customer` ORDER BY CID ASC")).ReturnJson(callback);
     });
+    this.router.get("/memberSearch", function(req, res) {
+      var callback = function(msg) {
+        res.send(msg);
+      };
+      (new sql("SELECT DISTINCT * FROM `member`ORDER BY `CID` ASC")).ReturnJson(callback);
+    });
+    this.router.post("/memberSearch", function(req, res) {
+      var callback = function(msg) {
+        res.send(msg);
+      };
+      var sqlStr = "";
+      var sqlCID = (req.body.CID == '') ? '' : (" `CID` = '" + req.body.CID + "'");
+      var sqlEmail = (req.body.Email == '') ? '' : (" `Email` = '" + req.body.Email + "'");
+      var sqlName = (req.body.Name == '') ? '' : (" `Last_Name` Like '%" + req.body.Name + "%'");
+      var sqlGender = (req.body.Gender == '') ? '' : (" `Gender` = '" + req.body.Gender + "'");
+      var sqlType = (req.body.Type == '') ? '' : (" `Type` = '" + req.body.Type + "'");
+      sqlStr += sqlCID;
+      sqlStr += (sqlStr == '' || sqlEmail == '') ? (sqlEmail) : (" AND " + sqlEmail);
+      sqlStr += (sqlStr == '' || sqlName == '') ? (sqlName) : (" AND " + sqlName);
+      sqlStr += (sqlStr == '' || sqlGender == '') ? (sqlGender) : (" AND " + sqlGender);
+      sqlStr += (sqlStr == '' || sqlType == '') ? (sqlType) : (" AND " + sqlType);
+      var sqlOrder = " ORDER BY `CID` DESC";
+      sqlStr = "SELECT *  FROM `member` " + ((sqlStr == '') ? '' : ("WHERE" + sqlStr + sqlOrder));
+      (new sql(sqlStr)).ReturnJson(callback);
+    });
+    this.router.get("/memberDelete/:CID", function(req, res) {
+      var callback = function(msg) {
+        res.send(msg);
+      };
+      var sqlStr = "DELETE FROM `member` WHERE `member`.`CID`='" + req.params.CID + "'";
+      (new sql(sqlStr)).ReturnJson(callback);
+    });
   }
 }

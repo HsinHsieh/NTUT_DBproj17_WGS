@@ -7,7 +7,7 @@ module.exports = class {
         this.db = DataBaseController.GetDB();
         this.data = "";
         //this.target = tar;
-        this.queryCmd = "SELECT * FROM `product` WHERE Category = '" + tar + "'LIMIT 4";
+        this.queryCmd = "SELECT * FROM `product` WHERE Category = '" + tar + "'ORDER BY RAND() LIMIT 4";
     }
 
 

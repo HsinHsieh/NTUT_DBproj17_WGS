@@ -16,7 +16,7 @@ module.exports = class {
     }
 
     GetProductKeysInfo(callback){
-        var command = "SELECT `Order_Number`, `OCID`, `Product_Name`, DATE_FORMAT(Order_Time,'%Y-%m-%d %k:%i:%s') AS Formated_Order_Time, `License_Key`, `Key_Used` \
+        var command = "SELECT `Order_Number`, `OCID`, `Product_Name`, DATE_FORMAT(Order_Time,'%Y-%m-%d %H:%i:%s') AS Formated_Order_Time, `License_Key`, `Key_Used` \
                        FROM (`order_content` \
                                 JOIN `order_main` ON `order_content`.`Order_Number` = `order_main`.`OID`) \
                                 JOIN `product` ON `order_content`.`Item` = `product`.`PID` \

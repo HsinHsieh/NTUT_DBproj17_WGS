@@ -15,9 +15,17 @@ $(document).ready(function() {
 });
 
 function GetCommentCount(id) {
-  var apiUrl = '/product/Comment/' + id
+    var apiUrl = '/product/Comment/' + id
     var callback = function (num) {
-        $("#comment_count").html(num.length + " comment(s)");
+        $("#comment_count").html("<i class='fa fa-commenting-o' aria-hidden='true'></i> " + num.length + " comment(s)");
+        var avg_star = 0;
+        for(var i = 0; i < num.length; i++){
+            avg_star += num[i].Grade;
+        }
+        avg_star = Math.round(avg_star / num.length * 10) / 10;
+        var starPercentage = avg_star / 5 * 100 + "%";
+        $(".stars-inner").attr("style", "width: " + starPercentage + ";");
+        $(".stars-value").html(avg_star);
     };
     Get(apiUrl, callback);
 };

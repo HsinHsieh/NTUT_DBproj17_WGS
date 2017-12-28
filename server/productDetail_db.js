@@ -17,7 +17,7 @@ module.exports = class {
     }
 
     GetCommentInfo(callback){
-        this.db.query("SELECT *, DATE_FORMAT(Comment_Time,'%Y-%m-%d %k:%i:%s') AS Comment_Time \
+        this.db.query("SELECT *, DATE_FORMAT(Comment_Time,'%Y-%m-%d %H:%i:%s') AS Comment_Time \
                        FROM `comment` \
                        WHERE `Product` = '" + this.id + "' \
                        ORDER BY `Comment_Time` DESC", function(error, rows, fields) {

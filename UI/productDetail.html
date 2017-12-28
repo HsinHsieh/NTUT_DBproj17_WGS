@@ -28,6 +28,8 @@
 	<link href="assets/owl-carousel/owl.carousel.css" rel="stylesheet">
 	<link href="assets/owl-carousel/owl.theme.css" rel="stylesheet">
 
+	<link rel="stylesheet" href="assets/css/productDetailStars.css">
+
 	<script src="./javascript/sweetalert2/dist/sweetalert2.min.js"></script>
 	<link rel="stylesheet" href="./javascript/sweetalert2/dist/sweetalert2.min.css">
 	<!-- Include a polyfill for ES6 Promises (optional) for IE11 and Android browser -->
@@ -108,15 +110,16 @@
 							<h4 id="product_name"></h4>
 							<div class="star2">
 								<ul>
-									<li class="yellow-color"><i class="fa fa-star" aria-hidden="true"></i></li>
-									<li class="yellow-color"><i class="fa fa-star" aria-hidden="true"></i></li>
-									<li class="yellow-color"><i class="fa fa-star" aria-hidden="true"></i></li>
-									<li class="yellow-color"><i class="fa fa-star" aria-hidden="true"></i></li>
-									<li><i class="fa fa-star" aria-hidden="true"></i></li>
-									<li><a class="comment" id="comment_count" href="#">0 comment(s)</a></li>
+									<li>
+										<div class="stars-outer">
+											<div class="stars-inner"></div>
+										</div>
+									</li>
+									<li><span><strong class="stars-value"></strong></span></li>
+									<li><a class="comment" id="comment_count" href="#product-more"><i class="fa fa-commenting-o" aria-hidden="true"></i> 0 comment(s)</a></li>
 								</ul>
 							</div>
-							<h5><a class="comment" id="add_comment" href="#"> Add your comment</a></h5>
+							<h5><a class="comment" id="add_comment" href="#"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Add your comment</a></h5>
 							<br>
 							<p>
 								<strong id="price"></strong>
@@ -162,7 +165,7 @@
 		</div>
 		<!-- /.grid-shop -->
 	</section>
-	<section class="product-more">
+	<section class="product-more" id="product-more">
 		<script>
 			$(function() {
 				$("#product-more").load("productMore.html");
