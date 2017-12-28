@@ -80,6 +80,13 @@ module.exports = class {
             res.send('你已經登出惹 ㄅㄅ\n(將登出所有使用中的本帳戶)');
         });
 
+        this.router.get('/logoutAllUser', function(req, res) {
+            //console.log(req.session.session_id + "++" + req.session.sessionAdmin_id);
+            db.query("DELETE FROM `sessions` WHERE 1");
+            req.session.destroy();
+            res.send('successed');
+        });
+
         this.router.get("/IsLogined", function(req, res) {
             if (req.session.session_id) res.send(req.session.session_id);
             else res.send('false');
