@@ -4,7 +4,6 @@ $(document).ready(function() {
 
     GetProductByID(pid);
     GetCommentCount(pid);
-    // GetStars();
 
     $(".addtocart2").click(function() {
         CheckLoginAndAdd(pid);
@@ -14,16 +13,6 @@ $(document).ready(function() {
         CheckLoginAndComment(pid);
     });
 });
-
-function GetStars() {
-    var star = 1.74;
-    var starTotal = 5;
-
-    var starPercentage = star / starTotal * 100 + "%";
-    $(".stars-inner").attr("style", "width: " + starPercentage + ";");
-
-    // window.CP.exitedLoop(1);
-};
 
 function GetCommentCount(id) {
     var apiUrl = '/product/Comment/' + id
