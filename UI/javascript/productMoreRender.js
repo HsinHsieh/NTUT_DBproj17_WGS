@@ -29,7 +29,7 @@ function GetCommentByID(id, index) {
                     result += "<li><i class='fa fa-star' aria-hidden='true'></i></li>";
                 }
                 return result;
-            }(comment[i].Grade);;
+            }(comment[i].Grade);
             resStr +=
               "<li class='comment'>\
                   <div class='comment-body'>\
