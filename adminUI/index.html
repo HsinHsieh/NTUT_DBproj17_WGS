@@ -60,26 +60,77 @@
 
 			<div class="brick large c3">
 				<div class="stat_name">
-					商品查詢
-				</div>
-			</div>
 
-			<div class="brick enormous">
-				<h4>商品分類統計</h4>
-				<canvas id="myChart"></canvas>
-			</div>
-			<div class="brick large c3">
-				<div class="stat_name">
-					商品查詢
+					<div class="col-md-9">
+						<label for="Name">商品快查</label>
+						<div class="input-group">
+							<input type="text" class="form-control" id="productSearch" placeholder="商品編號"  style="width:250px">
+							<span class ="inputgroup-btn">
+								<button class="btn btn-warning"type="button" name="button">Go</button>
+							</span>
+							<div class="align-bottom">
+								<br>
+								<button class="btn btn-warning" type="button" name="button">新增商品</button>
+								<button class="btn btn-default" type="button" name="button">分類管理</button>
+							</div>
+
+						</div>
 				</div>
-			</div>
-			<div class="brick large c3">
-				<div class="stat_name">
-					商品查詢
+				<div class="col-md-3">
+					<img src="/admin/images/package.png" alt="" align="right">
 				</div>
-			</div>
 
 			</div>
+		</div>
+
+		<div class="brick enormous">
+			<h4>商品分類統計</h4>
+			<hr><br>
+			<canvas id="myChart"></canvas>
+
+
+		</div>
+		<div class="brick large c3">
+			<div class="stat_name">
+
+				<div class="col-md-9">
+					<label for="Name">訂單快查</label>
+					<div class="input-group">
+						<input type="text" class="form-control" id="productSearch" placeholder="訂單編號" style="width:250px">
+						<span class="inputgroup-btn">
+							<button class="btn btn-warning"type="button" name="button">Go</button>
+						</span>
+						<div class="align-bottom">
+							<br>
+							<button class="btn btn-warning" type="button" name="button">訂單詳覽</button>
+							<button class="btn btn-default" type="button" name="button">金鑰管理</button>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3">
+					<img src="/admin/images/shopping-cart.png" alt="" align="right">
+				</div>
+
+			</div>
+		</div>
+		<div class="brick large c3">
+			<div class="stat_name">
+				<div class="col-md-9">
+					會員資訊
+					<div class="align-bottom">
+						<hr>
+						<button class="btn btn-warning" type="button" name="button">會員查詢</button>
+						<button class="btn btn-danger" type="button" name="button">登出所有會員</button>
+					</div>
+				</div>
+				<div class="col-md-3">
+
+					<img src="/admin/images/user.png" alt="" align="right">
+				</div>
+			</div>
+		</div>
+
+		</div>
 		</div>
 	</section>
 	<div id="footer"></div>

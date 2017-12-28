@@ -59,7 +59,7 @@ $(document).ready(function() {
     gutter: 6, // px
     columns: 20
   });
-
+  $('.gridly').gridly('draggable', 'off');
   Get('/admin/api//mainProductCategory', ShowCategoryChart);
   Get('/admin/api/mainProductNum', ProductNum);
   Get('/admin/api/mainOrderNum', OrderNum);
