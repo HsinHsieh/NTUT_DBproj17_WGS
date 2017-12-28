@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>WGS - Admin</title>
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="css/admin.css">
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<script src="./js/EasyAutoComplete/jquery.easy-autocomplete.min.js"></script>
+	<link rel="stylesheet" href="./js/EasyAutoComplete/easy-autocomplete.min.css">
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+	      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	    <![endif]-->
+</head>
+
+<body>
+	<script>
+		$(function() {
+			$("#header").load("header.html");
+			$("#footer").load("footer.html");
+		});
+	</script>
+	<script src="./js/ajax.js"></script>
+	<script src="./js/event_edit.js"></script>
+	<div id="header"></div>
+	<!-- /.navbar-collapse -->
+	<section>
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2">
+				<div class="well">
+					<span class="admin_title"> 活動修改</span>
+				</div>
+			</div>
+		</div>
+
+	</section>
+
+	<section>
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2">
+				<div class="form-group col-md-8">
+					<label for="Name">活動編號</label>
+					<input type="text" class="form-control" id="eventEdit_EID" placeholder="你看不到我" readonly>
+				</div>
+				<div class="form-group col-md-6">
+					<label for="Name">活動名稱</label>
+					<input type="text" class="form-control" id="eventEdit_name" placeholder="請輸入活動名稱">
+				</div>
+				<div class="form-group col-md-6">
+					<label for="Name">折扣</label>
+					<input type="text" class="form-control" id="eventEdit_discount" placeholder="請輸入0-1間小數">
+				</div>
+				<div class="form-group col-md-6">
+					<label for="exampleFormControlSelect1">適用對象</label>
+					<select class="form-control" id="eventEdit_target">
+                <option value=""></option>
+              </select>
+				</div>
+				<div class="form-group col-md-6">
+					<label for="Name">活動分類</label>
+					<input type="text" class="form-control" id="eventEdit_category" placeholder="活動分類">
+				</div>
+				<div class="form-group col-md-6">
+					<label for="Name">起始日期</label>
+					<input type="text" class="form-control" id="eventEdit_date_start" placeholder="開始日期">
+				</div>
+				<div class="form-group col-md-6">
+					<label for="Name">終止日期</label>
+					<input type="text" class="form-control" id="eventEdit_date_end" placeholder="結束日期">
+				</div>
+				<div class="form-group col-md-12">
+					<label for="Product_Description">活動描述</label>
+					<textarea class="form-control" id="eventEdit_description" type="text" placeholder="Enter here" rows="8"></textarea>
+				</div>
+				<button class="btn btn-primary btn-lg pull-right" id="event_edit_submit">送出</button>
+			</div>
+		</div>
+	</section>
+
+	<section>
+		<div class="modal fade" id="eventEditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content eventEditModalBody">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title" id="eventEditModalTitle"></h4>
+					</div>
+					<div class="modal-body" id="eventEditModalBody"></div>
+					<div class="modal-footer" id="eventEditModalFooter"></div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<hr>
+	<div id="footer"></div>
+
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="js/bootstrap.js"></script>
+</body>
+
+</html>

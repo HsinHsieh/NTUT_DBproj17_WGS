@@ -35,15 +35,20 @@ module.exports = class {
     }
 
     SetAPI(db) {
-        // this.router.post(
-        //     '/',
-        //     Passport.authenticate('local', {session: true}),function(req, res) {
-        //         res.send('User' + req.user.acc.toString());
-        // });
+        this.router.get("/memberData", function(req, res) {
+            var callback = function(err, msg) {
+                if (err) res.send(404);
+                res.send(msg);
+            };
+            (new member()).GetMemberFromAccount(req.session.session_id, callback);
+        });
 
         this.router.post("/", function(req, res) {
-            if (req.session.session_id) {
-                res.send("你已經登入");
+
+            if (req.session.sessionAdmin_id) {
+                res.send("Admin登入中\n請先登出Admin");
+            } else if (req.session.session_id) {
+                res.send("你已經登入!\n一台電腦中一個瀏覽器僅能有一個使用者");
             } else {
                 var User = new member();
                 User.GetMemberFromAccount(req.body.account, function(err, results) {
@@ -72,7 +77,7 @@ module.exports = class {
             //console.log(req.session.session_id + "++" + req.session.sessionAdmin_id);
             db.query("DELETE FROM `sessions` WHERE `data` LIKE '%" + req.session.session_id + "%' OR  `data` LIKE '%" + req.session.sessionAdmin_id + "%'");
             req.session.destroy();
-            res.send('你已經登出惹 ㄅㄅ');
+            res.send('你已經登出惹 ㄅㄅ\n(將登出所有使用中的本帳戶)');
         });
 
         this.router.get("/IsLogined", function(req, res) {
@@ -102,6 +107,27 @@ module.exports = class {
             });
         });
 
+        this.router.post("/modifyData", function(req, res) {
+            var User = new member();
+            User.MemberModify(req.body, function(err, results) {
+                if (err) {
+                    res.send("failed")
+                } else {
+                    res.send("successed");
+                }
+            });
+        });
+
+        this.router.post("/modifyPsw", function(req, res) {
+            var User = new member();
+            User.MemberPswModify(req.body, function(err, results) {
+                if (err) {
+                    res.send("failed")
+                } else {
+                    res.send("successed");
+                }
+            });
+        });
 
 
         this.router.post("/loginAdmin", function(req, res) {

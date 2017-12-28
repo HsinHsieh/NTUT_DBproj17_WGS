@@ -51,12 +51,11 @@
                     </li>
                     <li>
                         <div class="dropdown">
-                            <a id="personalCenter" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" style="font-size:14px; color: white; display: none;">
+                            <a id="personalCenter" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" style="font-size:14px; color: white; display: none; cursor:pointer;">
                                 <i class="icon-docs icons" aria-hidden="true"></i> 個人中心
                             </a>
                             <ul class="dropdown-menu dropdownhover-bottom" style="font-size:14px; min-width: 200px;">
-                                <li><a href="#">帳戶設定</a></li>
-                                <li><a href="#">個人檔案</a></li>
+                                <li><a href="/personal">個人檔案</a></li>
                                 <li><a href="/productKeys">我的金鑰</a></li>
                             </ul>
                         </div>
@@ -108,7 +107,7 @@
                     <li class="dropdown"> <a id="header_cart_btn" href="#" data-toggle="dropdown" onclick="MustLogin()"><i class="icon-basket-loaded icons" aria-hidden="true"></i></a>
                         <!-- <span class="subno" id="size">2</span> -->
                         <strong>Your Cart</strong>
-                        <div id="HeaderCartDropdown" class="dropdown-menu cart-outer"  style="display: none;">
+                        <div id="HeaderCartDropdown" class="dropdown-menu cart-outer" style="display: none;">
                             <div id="HeaderCart">
 
                             </div>
@@ -118,7 +117,7 @@
                                 <div class="col-md-6 text-right"> <strong id="header_cart_total"></strong> <strong id="header_cart_discount"></strong><strong id="header_cart_final"> </strong></div>
                             </div>
                             <a href="/shopping_cart" class="cart-btn">VIEW CART </a>
-                            <a class="cart-btn" id="header_checkout">CHECKOUT</a>
+                            <a href="#" class="cart-btn" id="header_checkout">快速結帳</a>
                         </div>
                     </li>
                 </ul>

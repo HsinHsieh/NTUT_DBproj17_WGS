@@ -2,7 +2,7 @@ const DataBaseController = require('../DB/DataBaseController.js')
 
 module.exports = class {
     constructor(id, quantity) {
-        this.pic_url="";
+        this.pic_url = "";
         this.name = "";
         this.price = 0;
         this.description = "";
@@ -15,7 +15,7 @@ module.exports = class {
         this.total = this.quantity * this.price;
     }
 
-    query(){
+    query() {
         command = "SELECT * FROM `product` WHERE `PID`='" + this.id + "'";
         this.db.query(command, function(error, rows, fields) {
             if (error)
@@ -25,6 +25,5 @@ module.exports = class {
             this.price = data.Price;
             this.Product_Description = data.Product_Description;
         });
-
     }
 }
