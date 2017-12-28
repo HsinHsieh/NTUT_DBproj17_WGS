@@ -20,13 +20,38 @@ module.exports = class {
         });
     }
 
+    GetCommentByCustomer(callback){
+        var _command = "SELECT `comment`.*, `product`.`Product_Name` , DATE_FORMAT(`Comment_Time`, '%Y-%m-%d %H:%i:%s') AS Formated_Date_Time \
+                        FROM `comment`, `product` \
+                        WHERE `Customer` = '{{Customer}}' AND product.PID = `comment`.`Product` \
+                        ORDER BY `Comment_Time` DESC";
+        var command = _command.replace("{{Customer}}", this.customer)
+        var db = DataBaseController.GetDB();
+        db.query(command, function(error, rows, fields) {
+            if (error)
+                throw error;
+            callback(rows);
+        });
+    }
+
+    GetCommentByCOID(callback){
+        var _command = "SELECT *, DATE_FORMAT(`Comment_Time`, '%Y-%m-%d %H:%i:%s') AS Formated_Date_Time FROM `comment` WHERE `COID` = '{{COID}}'";
+        var command = _command.replace("{{COID}}", this.coid)
+        var db = DataBaseController.GetDB();
+        db.query(command, function(error, rows, fields) {
+            if (error)
+                throw error;
+            callback(rows[0]);
+        });
+    }
+
     PostComment(callback){
         var _pid = this.pid;
         var _comment = this.comment;
         var _rating = this.rating;
         var _customer = this.customer;
 
-        var _checkcommand = "SELECT * FROM `comment` WHERE `Product` = '{{PID}}' AND `Customer` = '{{Customer}}' ORDER BY `Comment_Time` ASC"
+        var _checkcommand = "SELECT * FROM `comment` WHERE `Product` = '{{PID}}' AND `Customer` = '{{Customer}}'"
         var checkcommand = _checkcommand.replace("{{Customer}}", _customer)
                                         .replace("{{PID}}", _pid)
         var db = DataBaseController.GetDB();
