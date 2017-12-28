@@ -1,3 +1,5 @@
+const COMMENTS_PER_PAGE = 3;
+
 $(document).ready(function() {
     var url = new URL(window.location.href);
     var pid = url.searchParams.get("pid");
@@ -22,7 +24,7 @@ function GetCommentByID(id, index) {
             var resStr = "<div>本商品未存在任何評論 快來寫下你的評論吧!</div>";
         } else {
             var resStr = "";
-            for (var i = 1; i <= Math.ceil(Object.keys(comment).length/3); i++) {
+            for (var i = 1; i <= Math.ceil(Object.keys(comment).length/COMMENTS_PER_PAGE); i++) {
                 resStr += MakeCommentPage(i, comment);
             }
             resStr += MakePageTags(Object.keys(comment).length);
@@ -39,8 +41,8 @@ function MakeCommentPage(pageNo, comment) {
   } else {
     result += "<div id='comment-page" + pageNo + "' class='tab-pane fade'><ul>";
   }
-  for (var i = 0; i < 3; i++) {
-    var index = (pageNo-1)*3 + i;
+  for (var i = 0; i < COMMENTS_PER_PAGE; i++) {
+    var index = (pageNo-1)*COMMENTS_PER_PAGE + i;
     if(comment[index]) {
       result += MakeCommentBox(comment[index].Customer, comment[index].Grade, comment[index].Comment_Time, comment[index].Comment_Text);
     }
@@ -81,11 +83,11 @@ function MakeCommentBox(author, grade, date, text) {
 
 function MakePageTags(commentNum) {
   var result = "";
-  if (commentNum > 3) {
+  if (commentNum > COMMENTS_PER_PAGE) {
     result += "<div class='col-xs-12 col-sm-12 col-md-12 text-right'>"
     result += "<ul class='pagination'>";
     result += "<li class='active'><a data-toggle='tab' href='#comment-page1'>1</a></li>"
-    for (var i = 2; i <= Math.ceil(commentNum/3); i++) {
+    for (var i = 2; i <= Math.ceil(commentNum/COMMENTS_PER_PAGE); i++) {
       result += "<li><a data-toggle='tab' href='#comment-page" + i + "'>" + i + "</a></li>";
     }
     result += "</ul>";
