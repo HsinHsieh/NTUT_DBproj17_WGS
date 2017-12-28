@@ -374,5 +374,19 @@ module.exports = class {
       var sqlStr = "DELETE FROM `member` WHERE `member`.`CID`='" + req.params.CID + "'";
       (new sql(sqlStr)).ReturnJson(callback);
     });
+    this.router.get("/memberEdit/:CID", function(req, res) {
+      var callback = function(msg) {
+        res.send(msg);
+      };
+      var sqlStr = "SELECT DISTINCT * ,DATE_FORMAT(Birthday,'%Y-%m-%d') AS BirthdayF FROM `member` WHERE `member`.`CID`='" + req.params.CID + "'";
+      (new sql(sqlStr)).ReturnJson(callback);
+    });
+    this.router.post("/memberEdit", function(req, res) {
+      var callback = function(msg) {
+        res.send(msg);
+      };
+      var Str = "UPDATE `member` SET `First_Name` = '" + req.body.First_name + "', `Last_Name` = '" + req.body.Last_name + "', `Email` = '" + req.body.Email + "', `Phone` = '" + req.body.Phone + "', `Gender` = '" + req.body.Gender + "', `Address` = '" + req.body.Address + "', `Birthday` = '" + req.body.Birthday + "', `Reward_Point` = '" + req.body.Reward_point + "' WHERE `member`.`CID` = '" + req.body.CID + "'";
+      (new sql(Str)).ReturnJson(callback);
+    });
   }
 }
