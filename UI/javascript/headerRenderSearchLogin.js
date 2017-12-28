@@ -20,6 +20,14 @@ $("#btnSearch").click(function() {
     var target = $("#headerSearch").val();
     if (target != "")
         window.location = '/search?s=' + encodeURIComponent(target);
+    else {
+        swal({
+            type: 'warning',
+            title: '你打空白4要找屁喔?',
+            showConfirmButton: false,
+            timer: 1000
+        });
+    }
 });
 
 function CheckLogin() {

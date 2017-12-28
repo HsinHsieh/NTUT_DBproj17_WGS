@@ -194,15 +194,18 @@ a:hover {
 }
 
 .well.carousel-search.hidden-phone {
-    margin: 0;
+    margin: 2px;
     padding-top: 3px;
     padding-bottom: 3px;
+    padding-right: 0px;
 }
 
 .well.carousel-search.hidden-phone a.btn {
     margin: 0;
     padding-top: 3px;
     padding-bottom: 3px;
+    padding-left: 0px;
+    padding-right: 0px;
     color: black;
 }
 
@@ -217,6 +220,7 @@ a:hover {
 
 .well #btnSearch {
     background: rgb(177, 30, 34) none repeat scroll 0 0;
+    margin-left: 10px;
     border: medium none;
     border-radius: 0 5px 5px 0;
     box-shadow: 0 0 0;
@@ -469,7 +473,7 @@ a:hover {
 .dropdown:hover .dropdown-menu {
     display: block;
     margin-top: 2px;
- }
+}
 
 .main-memu-socail>ul {
     float: right;
@@ -2917,6 +2921,11 @@ ul {
 .star2 li {
     display: inline;
     color: #dfdfdf;
+}
+
+.star2 li.comment-author {
+    color: #555555;
+    margin-right: 10px;
 }
 
 .star2 li.yellow-color {
@@ -5614,63 +5623,73 @@ blockquote {
 }
 
 /* star rating */
+
 @charset "UTF-8";
 .star-cb-group {
-  /* remove inline-block whitespace */
-  font-size: 0;
-  /* flip the order so we can use the + and ~ combinators */
-  unicode-bidi: bidi-override;
-  direction: rtl;
-  /* the hidden clearer */
+    /* remove inline-block whitespace */
+    font-size: 0;
+    /* flip the order so we can use the + and ~ combinators */
+    unicode-bidi: bidi-override;
+    direction: rtl;
+    /* the hidden clearer */
 }
+
 .star-cb-group * {
-  font-size: 1rem;
+    font-size: 1rem;
 }
-.star-cb-group > input {
-  display: none;
+
+.star-cb-group>input {
+    display: none;
 }
-.star-cb-group > input + label {
-  /* only enough room for the star */
-  display: inline-block;
-  overflow: hidden;
-  text-indent: 9999px;
-  width: 1em;
-  white-space: nowrap;
-  cursor: pointer;
+
+.star-cb-group>input+label {
+    /* only enough room for the star */
+    display: inline-block;
+    overflow: hidden;
+    text-indent: 9999px;
+    width: 1em;
+    white-space: nowrap;
+    cursor: pointer;
 }
-.star-cb-group > input + label:before {
-  display: inline-block;
-  text-indent: -9999px;
-  content: "☆";
-  color: #888;
+
+.star-cb-group>input+label:before {
+    display: inline-block;
+    text-indent: -9999px;
+    content: "☆";
+    color: #888;
 }
-.star-cb-group > input:checked ~ label:before, .star-cb-group > input + label:hover ~ label:before, .star-cb-group > input + label:hover:before {
-  content: "★";
-  color: #e52;
-  text-shadow: 0 0 1px #333;
+
+.star-cb-group>input:checked~label:before, .star-cb-group>input+label:hover~label:before, .star-cb-group>input+label:hover:before {
+    content: "★";
+    color: #ffc600;
+    text-shadow: 0 0 1px #333;
 }
-.star-cb-group > .star-cb-clear + label {
-  text-indent: -9999px;
-  width: .5em;
-  margin-left: -.5em;
+
+.star-cb-group>.star-cb-clear+label {
+    text-indent: -9999px;
+    width: .5em;
+    margin-left: -.5em;
 }
-.star-cb-group > .star-cb-clear + label:before {
-  width: .5em;
+
+.star-cb-group>.star-cb-clear+label:before {
+    width: .5em;
 }
-.star-cb-group:hover > input + label:before {
-  content: "☆";
-  color: #888;
-  text-shadow: none;
+
+.star-cb-group:hover>input+label:before {
+    content: "☆";
+    color: #888;
+    text-shadow: none;
 }
-.star-cb-group:hover > input + label:hover ~ label:before, .star-cb-group:hover > input + label:hover:before {
-  content: "★";
-  color: #e52;
-  text-shadow: 0 0 1px #333;
+
+.star-cb-group:hover>input+label:hover~label:before, .star-cb-group:hover>input+label:hover:before {
+    content: "★";
+    color: #ffc600;
+    text-shadow: 0 0 1px #333;
 }
 
 :root {
-  font-size: 2em;
-  font-family: Helvetica, arial, sans-serif;
+    font-size: 2em;
+    font-family: Helvetica, arial, sans-serif;
 }
 
 /* fieldset {
@@ -5681,8 +5700,54 @@ blockquote {
 } */
 
 #log {
-  margin: 1em auto;
-  width: 5em;
-  text-align: center;
-  background: transparent;
+    margin: 1em auto;
+    width: 5em;
+    text-align: center;
+    background: transparent;
+}
+
+.row1 {
+    min-height: 300px;
+}
+
+.row1 .tab-content {
+    padding-top: 0px;
+    padding-right: 50px;
+    padding-bottom: 0px;
+    padding-left: 50px;
+}
+
+.reviews {
+    color: #555;
+    font-weight: bold;
+    margin: 10px auto 10px;
+}
+
+.comment-body {
+    position: relative;
+}
+
+.comment-date {
+    position: absolute;
+    right: 25px;
+    top: 25px;
+}
+
+.comment-date li {
+    padding: 0;
+}
+
+.comment-date li:first-child:before {
+    content: '';
+}
+
+.comment-date li:before {
+    content: '.';
+    margin-left: -2px;
+    margin-right: 2px;
+}
+
+.comment-comment {
+    margin-bottom: 20px;
+    margin-left: 30px;
 }

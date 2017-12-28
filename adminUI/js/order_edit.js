@@ -3,7 +3,23 @@ $(document).ready(function() {
   var url = new URL(window.location.href);
   var OriginalOID = url.searchParams.get("OID");
   var tempPrice;
+  var productAutoComplete = {
+    url: "api/productAllSearch",
+    getValue: "PID",
+    list: {
+      match: {
+        enabled: true
+      }
+    },
 
+    template: {
+      type: "custom",
+      method: function(value, item) {
+        return value + " | " + item.Product_Name;
+      }
+    }
+
+  };
   var searchOrderMain = function(msg) {
     var resObj = JSON.parse(msg);
     $('#orderEdit_OID').val(resObj[0].OID);
@@ -19,7 +35,7 @@ $(document).ready(function() {
     //$("#productSearch_catagory").reset();
     tempPrice = 0
     for (var i = 0; i < Object.keys(resObj).length; i++) {
-      resStr += "'<tr><th scope='row'>" + (i + 1) + "</th><td><a href='/admin/product_edit?PID=" + resObj[i].Item + "' target='_blank' >" + resObj[i].Item + "</a></th><td>" + resObj[i].Price + "</td><td><button class='btn btn-warning' type='button' name='button' onclick='javascript:location.href=\"./order_edit?OID=" + resObj[i].OCID + "\"'>金鑰查詢</button></td><td><button class='btn btn-danger' type='button' id='orderCDeleteButton' data-toggle=\"modal\" data-target='#orderContentDeleteModal' data-ocid='" + resObj[i].OCID + "' data-item='" + resObj[i].Item + "'>刪除</button></td></tr>";
+      resStr += "'<tr><th scope='row'>" + (i + 1) + "</th><td><a href='/admin/product_edit?PID=" + resObj[i].Item + "' target='_blank' >" + resObj[i].Item + "</a></th><td>" + resObj[i].Price + "</td><td>" + resObj[i].License_Key + "</td><td><button class='btn btn-danger' type='button' id='orderCDeleteButton' data-toggle=\"modal\" data-target='#orderContentDeleteModal' data-ocid='" + resObj[i].OCID + "' data-item='" + resObj[i].Item + "'>刪除</button></td></tr>";
       tempPrice += resObj[i].Price;
     }
     $(".orderContent_list").html(resStr);
@@ -44,7 +60,6 @@ $(document).ready(function() {
       show: true
     });
   }
-
   var addResult = function(msg) {
     var resObj = JSON.parse(msg);
     if ('errno' in resObj) {
@@ -57,9 +72,7 @@ $(document).ready(function() {
     $('.alert').alert();
   }
   $("#orderEdit_discount").change(calculatePrice);
-  // Get('/admin/api/productCatagory', searchCatagory);
-  Get('/admin/api/orderEditMain/' + OriginalOID, searchOrderMain);
-  Get('/admin/api/orderEditContent/' + OriginalOID, contentRow);
+  $("#order_content_Item").easyAutocomplete(productAutoComplete);
   $("#order_edit_submit").click(function() {
     var data = {
       "OID": ($('#orderEdit_OID').val()),
@@ -70,11 +83,9 @@ $(document).ready(function() {
     };
     Post('/admin/api/orderEdit', data, editResult);
   });
-
   $("#order_content_add").click(function() {
     $("#order_content_Item").val("");
-
-    Post('/admin/api/orderContentAdd', data, editResult);
+    //Post('/admin/api/orderContentAdd', data, editResult);
   });
   $('#order_content_submit').click(function() {
     var data = {
@@ -93,12 +104,12 @@ $(document).ready(function() {
     $('#orderContentDeleteModalBody').html("是否確認刪除以品項??<br>品項編號 : " + ocid + "<br>商品編號 : " + item);
     $("#order_content_delete_ocid").val(ocid);
   });
-
   $('#order_content_delete_confirm').click(function() {
     var ocid = $('#order_content_delete_ocid').val()
     Get('/admin/api/orderContentDelete/' + ocid, addResult);
     Get('/admin/api/orderEditContent/' + OriginalOID, contentRow);
     $('#orderContentDeleteModal').modal('hide');
   });
-
+  Get('/admin/api/orderEditMain/' + OriginalOID, searchOrderMain);
+  Get('/admin/api/orderEditContent/' + OriginalOID, contentRow);
 });

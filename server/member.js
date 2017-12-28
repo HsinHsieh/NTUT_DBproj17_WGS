@@ -8,7 +8,7 @@ module.exports = class {
 
     GetMemberFromAccount(account, callback) {
         this.db.query(
-            "SELECT * FROM member WHERE CID = '" + account + "';",
+            "SELECT * , DATE_FORMAT(Register_Date,'%Y-%m-%d %k:%i:%s') AS Formated_Register_Date FROM member WHERE CID = '" + account + "';",
             function(err, result, fields) {
                 //console.log(result[0]);
                 callback(err, result[0]);

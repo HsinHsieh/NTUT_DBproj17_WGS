@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>WGS - Admin</title>
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="css/admin.css">
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<script src="./js/EasyAutoComplete/jquery.easy-autocomplete.min.js"></script>
+	<link rel="stylesheet" href="./js/EasyAutoComplete/easy-autocomplete.min.css">
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+	      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	    <![endif]-->
+</head>
+
+<body>
+
+	<script>
+		$(function() {
+			$("#header").load("header.html");
+			$("#footer").load("footer.html");
+		});
+	</script>
+	<div id="header"></div>
+	<!-- /.navbar-collapse -->
+	<script src="./js/ajax.js"></script>
+	<script src="./js/event_add.js"></script>
+	<section>
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2">
+				<div class="well">
+					<span class="admin_title">新增活動</span>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section>
+
+		<div class="col-md-8 col-md-offset-2">
+			<div class="form-group col-md-6">
+				<label for="Name">活動名稱</label>
+				<input type="text" class="form-control" id="eventAdd_name" placeholder="請輸入活動名稱">
+				<!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+			</div>
+			<div class="form-group col-md-6">
+				<label for="Name">活動分類</label>
+				<input type="text" class="form-control" id="eventAdd_category" placeholder="請輸入活動分類">
+				<!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+			</div>
+			<div class="form-group col-md-6">
+				<label for="Name">折扣</label>
+				<input type="text" class="form-control" id="eventAdd_discount" placeholder="請輸入整數$">
+				<!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+			</div>
+			<div class="form-group col-md-6">
+				<label for="exampleFormControlSelect1">適用對象</label>
+				<select class="form-control" id="eventAdd_target">
+                <option value=""></option>
+        </select>
+			</div>
+			<div class="form-group col-md-6">
+				<label for="Name">活動開始時間</label>
+				<input type="text" class="form-control" id="eventAdd_date_start" placeholder="YYYY-MM-DD">
+				<!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+			</div>
+			<div class="form-group col-md-6">
+				<label for="Name">活動結束時間</label>
+				<input type="text" class="form-control" id="eventAdd_date_end" placeholder="YYYY-MM-DD">
+				<!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+			</div>
+			<div class="form-group col-md-12">
+				<label for="Product_Description">活動描述</label>
+				<textarea class="form-control" id="eventAdd_description" type="text" placeholder="請輸入商品描述" rows="8"></textarea>
+			</div>
+			<button class="btn btn-primary btn-lg pull-right" id="event_add_submit">送出</button>
+		</div>
+
+	</section>
+	<section>
+		<div class="modal fade" id="eventAddModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content eventAddModalBody">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title" id="eventAddModalTitle"></h4>
+					</div>
+					<div class="modal-body" id="eventAddModalBody"></div>
+					<div class="modal-footer" id="eventAddModalFooter"></div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<hr>
+	<div id="footer"></div>
+
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="js/bootstrap.js"></script>
+</body>
+
+</html>

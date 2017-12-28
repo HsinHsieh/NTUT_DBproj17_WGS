@@ -9,6 +9,10 @@ $(document).ready(function() {
     $(".addtocart2").click(function() {
         CheckLoginAndAdd(pid);
     });
+
+    $("#add_comment").click(function() {
+        CheckLoginAndComment(pid);
+    });
 });
 
 function GetStars() {
@@ -24,7 +28,7 @@ function GetStars() {
 function GetCommentCount(id) {
     var apiUrl = '/product/Comment/' + id
     var callback = function (num) {
-        $("#comment_count").html(num.length + " comment(s)");
+        $("#comment_count").html("<i class='fa fa-commenting-o' aria-hidden='true'></i> " + num.length + " comment(s)");
         var avg_star = 0;
         for(var i = 0; i < num.length; i++){
             avg_star += num[i].Grade;
@@ -32,7 +36,7 @@ function GetCommentCount(id) {
         avg_star = Math.round(avg_star / num.length * 10) / 10;
         var starPercentage = avg_star / 5 * 100 + "%";
         $(".stars-inner").attr("style", "width: " + starPercentage + ";");
-        $(".stars-value").html(avg_star)
+        $(".stars-value").html(avg_star);
     };
     Get(apiUrl, callback);
 };
@@ -47,7 +51,6 @@ function GetProductByID(id) {
         $("#description").html(product_info["Product_Description"]);
         $("#release_date").html(product_info["Formated_Date"]);
         $("#supplier").html(product_info["Supplier"]);
-        $("#add_comment").attr("href", "../addcomment?pid=" + product_info["PID"]);
     }
     Get(apiUrl, callback);
 };
@@ -72,6 +75,24 @@ function CheckLoginAndAdd(pid) {
                 showConfirmButton: false,
                 timer: 1500
             });
+        }
+    }
+    Get(apiUrl, callback);
+};
+
+function CheckLoginAndComment(pid) {
+    var apiUrl = '/login/IsLogined'
+    var callback = function(loginStatus) {
+        if (loginStatus == "false") {
+            swal({
+                position: 'top-right',
+                type: 'warning',
+                title: '請先登入',
+                showConfirmButton: false,
+                timer: 1500
+            });
+        } else {
+            window.location = "/addcomment?pid=" + pid;
         }
     }
     Get(apiUrl, callback);

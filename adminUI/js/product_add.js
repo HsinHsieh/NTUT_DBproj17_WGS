@@ -32,7 +32,6 @@ $(document).ready(function() {
     str = str.substr(-7);
     $('#productAdd_PID').val(pid + str);
   }
-  Get('/admin/api/productCategory', searchCategory);
   $("#product_add_submit").click(function() {
     var data = {
       "PID": ($('#productAdd_PID').val()),
@@ -59,5 +58,5 @@ $(document).ready(function() {
   $("#productAdd_category").change(function() {
     Get('/admin/api/productMaxID', searchID);
   });
-
+  Get('/admin/api/productCategory', searchCategory);
 });
