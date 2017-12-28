@@ -54,7 +54,7 @@ $(document).ready(function() {
                     'success'
                 ).then(function() {
                     GetItems();
-                    window.location = '/';
+                    // window.location = '/';
                 });
             }
 
@@ -80,17 +80,23 @@ function GetItems() {
         customer: this.user,
     };
     var callback = function(data) {
-        result = "";
-        for (var i = 0; i < data.length; i++) {
-            var p = data[i];
-            result += "<div class='cart-content'>\
+        if (data.length == 0) {
+            result = "";
+            $("#header_checkout").attr("style", "pointer-events: none;");
+            $("#header_checkout").text("空空如也!");
+        } else {
+            result = "";
+            for (var i = 0; i < data.length; i++) {
+                var p = data[i];
+                result += "<div class='cart-content'>\
                         <div class='col-sm-4 col-md-4'><a href='/product?pid=" + p.pic + "'><img src='./product_pic/" + p.pic + ".jpg' alt='幹找不到圖片' style='width:68px; height:100px; display:inline-block;'></a></div>\
                         <div class='col-sm-8 col-md-8'> \
                           <div class='pro-text'> <a href='#'>" + p.name + "</a>\
-                            <div class='close'>x</div> <strong>$" + p.price + "</strong>\
+                             <strong>$" + p.price + "</strong>\
                           </div>\
                         </div>\
                        </div>";
+            }
         }
         $("#HeaderCart").html(result);
         GetTotal();
