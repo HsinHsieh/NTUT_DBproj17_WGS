@@ -46,7 +46,6 @@ $(document).ready(function() {
         };
         var callback = function(msg) {
 
-            console.log(msg);
             if (msg == "Checkout success!") {
                 swal(
                     '你買到惹!',
@@ -85,6 +84,8 @@ function GetItems() {
             $("#header_checkout").attr("style", "pointer-events: none;");
             $("#header_checkout").text("空空如也!");
         } else {
+            $("#header_checkout").attr("style", "pointer-events: true;");
+            $("#header_checkout").text("快速結帳");
             result = "";
             for (var i = 0; i < data.length; i++) {
                 var p = data[i];
