@@ -124,7 +124,7 @@ module.exports = class {
 
 
             var db = DataBaseController.GetDB();
-            var callback = function(error, rows, rields) {
+            var callback = function(error, rows, fields) {
                 if (error) {
                     throw error;
                 }
@@ -132,16 +132,26 @@ module.exports = class {
                 for (var i = 0; i < rows.length; i++) {
                     price += rows[i].Price;
                 }
-                res.send(price.toString());
+                var update = "UPDATE order_main \
+                                SET order_main.Total_Price = "
+                                    + price + "\
+                                WHERE order_main.Customer = '" + req.body.customer +
+                                "' AND order_main.Status = 0";
+                var updateCallback = function (error, rows, fields) {
+                    if (error)
+                        throw error;
+                    res.send(price.toString());
+                };
+                db.query(update, updateCallback);
             }
             db.query(command, callback)
         });
 
         this.router.post("/discount", function (req, res) {
-            var command = "SELECT event.Discount_Rate, event.Event_Category, product.Price\
+            var command = "SELECT event.Discount_Rate, product.Price\
                             FROM event, order_main, order_content, product\
                             WHERE order_main.Customer = '" + req.body.customer + "' AND order_content.Order_Number = order_main.OID AND \
-                                product.PID = order_content.Item AND product.Category = event.Target AND order_main.Status = 0";
+                                product.PID = order_content.Item AND order_main.Status = 0  AND (product.Category = event.Target OR event.Target IS NULL)";
 
             var db = DataBaseController.GetDB();
             var discount = 0;
