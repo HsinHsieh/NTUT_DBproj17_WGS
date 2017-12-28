@@ -4,16 +4,35 @@ $(document).ready(function() {
 
     GetProductByID(pid);
     GetCommentCount(pid);
+    // GetStars();
 
     $(".addtocart2").click(function() {
         CheckLoginAndAdd(pid);
     });
 });
 
+function GetStars() {
+    var star = 1.74;
+    var starTotal = 5;
+
+    var starPercentage = star / starTotal * 100 + "%";
+    $(".stars-inner").attr("style", "width: " + starPercentage + ";");
+
+    // window.CP.exitedLoop(1);
+};
+
 function GetCommentCount(id) {
-  var apiUrl = '/product/Comment/' + id
+    var apiUrl = '/product/Comment/' + id
     var callback = function (num) {
         $("#comment_count").html(num.length + " comment(s)");
+        var avg_star = 0;
+        for(var i = 0; i < num.length; i++){
+            avg_star += num[i].Grade;
+        }
+        avg_star = Math.round(avg_star / num.length * 10) / 10;
+        var starPercentage = avg_star / 5 * 100 + "%";
+        $(".stars-inner").attr("style", "width: " + starPercentage + ";");
+        $(".stars-value").html(avg_star)
     };
     Get(apiUrl, callback);
 };

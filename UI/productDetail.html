@@ -28,6 +28,8 @@
 	<link href="assets/owl-carousel/owl.carousel.css" rel="stylesheet">
 	<link href="assets/owl-carousel/owl.theme.css" rel="stylesheet">
 
+	<link rel="stylesheet" href="assets/css/productDetailStars.css">
+
 	<script src="./javascript/sweetalert2/dist/sweetalert2.min.js"></script>
 	<link rel="stylesheet" href="./javascript/sweetalert2/dist/sweetalert2.min.css">
 	<!-- Include a polyfill for ES6 Promises (optional) for IE11 and Android browser -->
@@ -106,13 +108,19 @@
 							<!-- /.pro-img -->
 							<span id="category" class="span1"> </span>
 								<h4 id="product_name"></h4>
+
+
 							<div class="star2">
 								<ul>
-									<li class="yellow-color"><i class="fa fa-star" aria-hidden="true"></i></li>
-									<li class="yellow-color"><i class="fa fa-star" aria-hidden="true"></i></li>
-									<li class="yellow-color"><i class="fa fa-star" aria-hidden="true"></i></li>
-									<li class="yellow-color"><i class="fa fa-star" aria-hidden="true"></i></li>
-									<li><i class="fa fa-star" aria-hidden="true"></i></li>
+									<li><div class="stars-outer">
+										<div class="stars-inner"></div>
+									</div></li>
+
+										<li class="stars-value" style="color: #b11e22;"></li>
+								</ul>
+							</div>
+							<div class="star2">
+								<ul>
 									<li><a class="comment" id="comment_count" href="#">10 comment(s)</a></li>
 									<li><a class="comment" id="add_comment" href="#"> Add your comment</a></li>
 								</ul>
