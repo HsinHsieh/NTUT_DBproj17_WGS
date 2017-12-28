@@ -33,7 +33,7 @@ function GetAccount() {
                 showConfirmButton: false,
                 timer: 1500
             }).then(function() {
-                window.history.back()
+                window.location = '/';
             });
         } else {
             $("#username").html(loginStatus);
