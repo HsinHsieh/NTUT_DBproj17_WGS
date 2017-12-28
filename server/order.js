@@ -8,7 +8,7 @@ module.exports = class {
 
     GetOrderMain(account, callback) {
         this.db.query(
-            "SELECT `OID`,`Total_Price`, DATE_FORMAT(Order_Time,'%Y-%m-%d %k:%i:%s') AS Formated_Order_Time  FROM `order_main` WHERE `Customer`= '" + account + "' AND `Status` = 1;",
+            "SELECT `OID`,`Total_Price`, DATE_FORMAT(Order_Time,'%Y-%m-%d %k:%i:%s') AS Formated_Order_Time  FROM `order_main` WHERE `Customer`= '" + account + "' AND `Status` = 1 ORDER BY order_main.OID DESC;",
             function(err, result, fields) {
                 //console.log(result);
                 callback(err, result);
