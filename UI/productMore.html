@@ -2,49 +2,189 @@
 <script type="text/javascript" src="./javascript/productMoreRender.js"></script>
 
 <div class="container">
-    <div class="row1">
-        <div class="tab-bg">
-            <ul>
-                <li class="active"><a data-toggle="tab" href="#home">DESCRIPTION</a></li>
-                <li><a data-toggle="tab" href="#menu1">SYSTEM REQUIREMENT</a></li>
-                <li><a id="commentBtn" class="comment" data-toggle="tab" href="#menu2">COMMENTS</a></li>
-            </ul>
-        </div>
-        <div class="tab-content">
-            <div id="home" class="tab-pane fade in active">
-                <p id="more_description"></p>
-            </div>
-            <div id="menu1" class="tab-pane fade">
-                <p id="sys_req"></p>
-            </div>
-            <div id="menu2" class="tab-pane fade">
-                <div class='col-sm-12'>
-                    <ul class='comment-list'>
-                        <li class='comment'>
-                            <div class='comment-body'>
-                                <div class='well well-lg'>
-                                    <header class='text-left'>
-                                        <div class='star2'>
-                                            <ul>
-                                                <li class='comment-author text-uppercase reviews'><i class='fa fa-user'></i> Author name</li>
-                                                <li class='yellow-color'><i class='fa fa-star' aria-hidden='true'></i></li>
-                                                <li class='yellow-color'><i class='fa fa-star' aria-hidden='true'></i></li>
-                                                <li class='yellow-color'><i class='fa fa-star' aria-hidden='true'></i></li>
-                                                <li class='yellow-color'><i class='fa fa-star' aria-hidden='true'></i></li>
-                                                <li><i class='fa fa-star' aria-hidden='true'></i></li>
-                                            </ul>
-                                        </div>
-                                        <time class='comment-date reviews'><i class='fa fa-clock-o'></i> mm dd, yyyy</time>
-                                    </header>
-                                    <div class='comment-comment'>
-                                        <p></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+  <div class="row1">
+    <div class="tab-bg">
+      <ul>
+        <li class="active"><a data-toggle="tab" href="#home">DESCRIPTION</a></li>
+        <li><a data-toggle="tab" href="#menu1">SYSTEM REQUIREMENT</a></li>
+        <li><a id="commentBtn" class="comment" data-toggle="tab" href="#menu2">COMMENTS</a></li>
+      </ul>
     </div>
+    <div class="tab-content">
+      <div id="home" class="tab-pane fade in active">
+        <p id="more_description"></p>
+      </div>
+      <div id="menu1" class="tab-pane fade">
+        <p id="sys_req"></p>
+      </div>
+      <div id="menu2" class="tab-pane fade">
+        <div class='col-sm-12 tab-content'>
+          <div id="comment-page1" class="tab-pane fade in active">
+            <ul>
+              <li class='comment'>
+                <div class='comment-body'>
+                  <div class='well well-lg'>
+                    <header class='text-left'>
+                      <div class='star2'>
+                        <ul>
+                          <li class='comment-author text-uppercase reviews'><i class='fa fa-user'></i> " + comment[i].Customer + "</li>" + yellowStarts + "</ul>
+                      </div>
+                      <time class='comment-date reviews'><i class='fa fa-clock-o'></i> " + comment[i].Comment_Time + "</time>
+                    </header>
+                    <div class='comment-comment'>
+                      <p>" 1111111111111111111 "</p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class='comment'>
+                <div class='comment-body'>
+                  <div class='well well-lg'>
+                    <header class='text-left'>
+                      <div class='star2'>
+                        <ul>
+                          <li class='comment-author text-uppercase reviews'><i class='fa fa-user'></i> " + comment[i].Customer + "</li>" + yellowStarts + "</ul>
+                      </div>
+                      <time class='comment-date reviews'><i class='fa fa-clock-o'></i> " + comment[i].Comment_Time + "</time>
+                    </header>
+                    <div class='comment-comment'>
+                      <p>" + comment[i].Comment_Text + "</p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class='comment'>
+                <div class='comment-body'>
+                  <div class='well well-lg'>
+                    <header class='text-left'>
+                      <div class='star2'>
+                        <ul>
+                          <li class='comment-author text-uppercase reviews'><i class='fa fa-user'></i> " + comment[i].Customer + "</li>" + yellowStarts + "</ul>
+                      </div>
+                      <time class='comment-date reviews'><i class='fa fa-clock-o'></i> " + comment[i].Comment_Time + "</time>
+                    </header>
+                    <div class='comment-comment'>
+                      <p>" + comment[i].Comment_Text + "</p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div id="comment-page2" class="tab-pane fade">
+            <ul>
+              <li class='comment'>
+                <div class='comment-body'>
+                  <div class='well well-lg'>
+                    <header class='text-left'>
+                      <div class='star2'>
+                        <ul>
+                          <li class='comment-author text-uppercase reviews'><i class='fa fa-user'></i> " + comment[i].Customer + "</li>" + yellowStarts + "</ul>
+                      </div>
+                      <time class='comment-date reviews'><i class='fa fa-clock-o'></i> " + comment[i].Comment_Time + "</time>
+                    </header>
+                    <div class='comment-comment'>
+                      <p>" + 2222222222222222222222222222 + "</p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class='comment'>
+                <div class='comment-body'>
+                  <div class='well well-lg'>
+                    <header class='text-left'>
+                      <div class='star2'>
+                        <ul>
+                          <li class='comment-author text-uppercase reviews'><i class='fa fa-user'></i> " + comment[i].Customer + "</li>" + yellowStarts + "</ul>
+                      </div>
+                      <time class='comment-date reviews'><i class='fa fa-clock-o'></i> " + comment[i].Comment_Time + "</time>
+                    </header>
+                    <div class='comment-comment'>
+                      <p>" + comment[i].Comment_Text + "</p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class='comment'>
+                <div class='comment-body'>
+                  <div class='well well-lg'>
+                    <header class='text-left'>
+                      <div class='star2'>
+                        <ul>
+                          <li class='comment-author text-uppercase reviews'><i class='fa fa-user'></i> " + comment[i].Customer + "</li>" + yellowStarts + "</ul>
+                      </div>
+                      <time class='comment-date reviews'><i class='fa fa-clock-o'></i> " + comment[i].Comment_Time + "</time>
+                    </header>
+                    <div class='comment-comment'>
+                      <p>" + comment[i].Comment_Text + "</p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div id="comment-page3" class="tab-pane fade">
+            <ul>
+              <li class='comment'>
+                <div class='comment-body'>
+                  <div class='well well-lg'>
+                    <header class='text-left'>
+                      <div class='star2'>
+                        <ul>
+                          <li class='comment-author text-uppercase reviews'><i class='fa fa-user'></i> " + comment[i].Customer + "</li>" + yellowStarts + "</ul>
+                      </div>
+                      <time class='comment-date reviews'><i class='fa fa-clock-o'></i> " + comment[i].Comment_Time + "</time>
+                    </header>
+                    <div class='comment-comment'>
+                      <p>" + 3333333333333333333 + "</p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class='comment'>
+                <div class='comment-body'>
+                  <div class='well well-lg'>
+                    <header class='text-left'>
+                      <div class='star2'>
+                        <ul>
+                          <li class='comment-author text-uppercase reviews'><i class='fa fa-user'></i> " + comment[i].Customer + "</li>" + yellowStarts + "</ul>
+                      </div>
+                      <time class='comment-date reviews'><i class='fa fa-clock-o'></i> " + comment[i].Comment_Time + "</time>
+                    </header>
+                    <div class='comment-comment'>
+                      <p>" + comment[i].Comment_Text + "</p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class='comment'>
+                <div class='comment-body'>
+                  <div class='well well-lg'>
+                    <header class='text-left'>
+                      <div class='star2'>
+                        <ul>
+                          <li class='comment-author text-uppercase reviews'><i class='fa fa-user'></i> " + comment[i].Customer + "</li>" + yellowStarts + "</ul>
+                      </div>
+                      <time class='comment-date reviews'><i class='fa fa-clock-o'></i> " + comment[i].Comment_Time + "</time>
+                    </header>
+                    <div class='comment-comment'>
+                      <p>" + comment[i].Comment_Text + "</p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-12 text-right">
+            <ul class="pagination">
+              <li class="active"><a data-toggle="tab" href="#comment-page1">1</a></li>
+              <li><a data-toggle="tab" href="#comment-page2">2</a></li>
+              <li><a data-toggle="tab" href="#comment-page3">3</a></li>
+              <!--li><a data-toggle="tab" href="#">&raquo;</a></li-->
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

@@ -3,7 +3,7 @@ $(document).ready(function() {
     var pid = url.searchParams.get("pid");
 
     GetProductByID(pid, url.pathname);
-    GetCommentByID(pid, url.pathname);
+    //GetCommentByID(pid, url.pathname);
 });
 
 function GetProductByID(id, index) {
