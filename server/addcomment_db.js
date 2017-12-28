@@ -103,7 +103,7 @@ module.exports = class {
     }
 
     DeleteComment(callback){
-        var _command = "DELETE FROM `comment` WHERE COID` = '{{COID}}'"
+        var _command = "DELETE FROM `comment` WHERE `COID` = '{{COID}}'"
         var command = _command.replace("{{COID}}", this.coid)
 
         var db = DataBaseController.GetDB();

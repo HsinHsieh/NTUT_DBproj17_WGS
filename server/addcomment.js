@@ -71,8 +71,11 @@ module.exports = class {
 
         this.router.post("/delete/:coid", function(req, res) {
             var comment = {
-               COID: req.params.pid
+               COID: req.params.coid,
             }
+            var callback = function(msg) {
+                res.send(msg);
+            };
             (new Comment(comment)).DeleteComment(callback);
         });
     }

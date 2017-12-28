@@ -288,5 +288,32 @@ function EditComment(event){
 }
 
 function DeleteComment(event){
-    var apiUrl = '/addcomment/edit' + event.target.dataset.coid;
+    swal({
+        title: '確定要刪除此評論嗎？',
+        text: "此動作無法復原",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: '確定',
+        cancelButtonText: '算了'
+    }).then(function(result){
+        if(result.value) {
+            var apiUrl = '/addcomment/delete/' + event.target.dataset.coid;
+            var data;
+            var callback = function(msg) {
+                if(msg == "deleted") {
+                    swal({
+                        title: '已刪除該評論',
+                        type: 'success',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                    $("tr[data-target='#show_"+event.target.dataset.coid+"']").remove();
+                    $("#show_"+event.target.dataset.coid).remove();
+                }
+            }
+            Post(apiUrl, data, callback)
+        }
+    });
 }
