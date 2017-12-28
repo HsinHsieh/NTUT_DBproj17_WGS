@@ -1,4 +1,5 @@
 const sql = require('./sql.js');
+const BestSell = require('./analyst.js');
 
 module.exports = class {
 
@@ -39,6 +40,14 @@ module.exports = class {
             var sqlStr = "SELECT *  FROM `product` WHERE" + sqlPID + sqlName + sqlPrice + sqlSupplier + sqlCategory;
             // console.log(sqlStr);
             (new sql(sqlStr)).ReturnJson(callback);
+        });
+
+        this.router.get("/bestSell", function(req, res) {
+            var callback = function(err, msg) {
+                // if (err) res.send(404);
+                res.send(msg);
+            };
+            (new BestSell()).AddBestSell(callback);
         });
     }
 }

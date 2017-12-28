@@ -8,6 +8,8 @@ $(document).ready(function() {
     GetItemsInGrid(s);
     GetItems(s);
     GetCategory(s);
+    GetBestSell();
+
     $("#itemGrid").hide();
 
     $("#listbtn").click(function() {
@@ -40,6 +42,28 @@ function GetItemsInGrid(s) {
         if (msg.length == 0) {
             $("#itemList").text("　　　未找到任何商品");
         }
+    }
+    Get(apiUrl, callback);
+};
+
+function GetBestSell() {
+    var apiUrl = '/query/bestSell';
+    var callback = function(msg) {
+        var Str = "";
+        for (var i = 0; i < msg.length; i++) {
+            Str += "<li> \
+						<div class='e-product'> \
+							<div class='pro-img'> <img src='./product_pic/" + msg[i].Item + ".jpg' alt='幹!找不到圖片'> </div> \
+							<div class='pro-text-outer'> <span>Macbook, Laptop</span> \
+								<a href='/product?pid=" + msg[i].Item + "'> \
+									<h4> " + msg[i].Product_Name + " </h4> \
+								</a> \
+								<p class='wk-price'>$ " + msg[i].Price + " </p> \
+							</div> \
+						</div> \
+					</li>"
+        }
+        $("#bestSell").html(Str);
     }
     Get(apiUrl, callback);
 };
