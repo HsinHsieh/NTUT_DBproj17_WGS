@@ -105,9 +105,10 @@
 							<th class="col-xs-1">#</th>
 							<th class="col-xs-2">帳號</th>
 							<th class="col-xs-2">姓名</th>
-							<th class="col-xs-3">Email</th>
+							<th class="col-xs-2">Email</th>
 							<th class="col-xs-1">性別</th>
-							<th class="col-xs-2">身份</th>
+							<th class="col-xs-1">身份</th>
+							<th class="col-xs-1">權限</th>
 							<th class="col-xs-1">編輯</th>
 							<th class="col-xs-1">刪除</th>
 						</tr>
@@ -136,6 +137,36 @@
 						<input type="hidden" id="memberDeleteCID" value="">
 						<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
 						<button type="button" class="btn btn-danger memberDeleteConfirm">確認</button>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<div class="modal fade" id="memberAuthorizeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content memberAuthorizeModalBody">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title" id="memberAuthorizeModalTitle">權限設定</h4>
+					</div>
+					<div class="modal-body" id="memberAuthorizeModalBody">
+
+						<div class="memberAuthorizeContent">
+							<label for='Name'>分類編號</label>
+							<input type='text' class='form-control' id='memberAuthorize_CID' value='' readonly>
+							<label for="exampleFormControlSelect1">權限</label>
+							<select class="form-control" id="memberAuthorize_type">
+										<option value=""></option>
+										<option value="0">顧客</option>
+										<option value="1">職員</option>
+										<option value="2">管理員</option>
+								</select>
+						</div>
+
+					</div>
+					<div class="modal-footer" id="memberAuthorizeModalFooter">
+						<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+						<button type="button" class="btn btn-success memberAuthorizeConfirm">確認</button>
 					</div>
 				</div>
 			</div>

@@ -388,5 +388,12 @@ module.exports = class {
       var Str = "UPDATE `member` SET `First_Name` = '" + req.body.First_name + "', `Last_Name` = '" + req.body.Last_name + "', `Email` = '" + req.body.Email + "', `Phone` = '" + req.body.Phone + "', `Gender` = '" + req.body.Gender + "', `Address` = '" + req.body.Address + "', `Birthday` = '" + req.body.Birthday + "', `Reward_Point` = '" + req.body.Reward_point + "' WHERE `member`.`CID` = '" + req.body.CID + "'";
       (new sql(Str)).ReturnJson(callback);
     });
+    this.router.post("/memberAuthorize", function(req, res) {
+      var callback = function(msg) {
+        res.send(msg);
+      };
+      var Str = "UPDATE `member` SET `Type` = '" + req.body.Type + "' WHERE `member`.`CID` = '" + req.body.CID + "'";
+      (new sql(Str)).ReturnJson(callback);
+    });
   }
 }

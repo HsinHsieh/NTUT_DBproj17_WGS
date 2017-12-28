@@ -2,25 +2,7 @@
 $(document).ready(function() {
   var url = new URL(window.location.href);
   var OriginalCID = url.searchParams.get("CID");
-  var categoryAutoComplete = {
-    url: "api/eventCategory",
-    getValue: "Event_Category",
-    list: {
-      match: {
-        enabled: true
-      }
-    },
-
-    template: {
-      type: "custom",
-      method: function(value, item) {
-        return value;
-      }
-    }
-
-  };
   var editResult = function(msg) {
-    //console.log(msg);
     var resObj = JSON.parse(msg);
     console.log(resObj);
     if ('errno' in resObj) {
@@ -49,7 +31,6 @@ $(document).ready(function() {
     $('#memberEdit_birthday').val(resObj[0].BirthdayF);
     $('#memberEdit_reward_point').val(resObj[0].Reward_Point);
   }
-  Get('/admin/api/memberEdit/' + OriginalCID, searchDetail);
   $("#member_edit_submit").click(function() {
     var data = {
       "CID": ($('#memberEdit_CID').val()),
@@ -64,6 +45,5 @@ $(document).ready(function() {
     };
     Post('/admin/api/memberEdit', data, editResult);
   });
-  $("#eventEdit_category").easyAutocomplete(categoryAutoComplete);
-
+  Get('/admin/api/memberEdit/' + OriginalCID, searchDetail);
 });
