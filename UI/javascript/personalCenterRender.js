@@ -214,7 +214,7 @@ function GetItemsInBlocks(OID) {
                 keyStatus = "未使用";
 
             Block += "<tr> \
-                   <td><a href='/product?pid=" + msg[i].PID + "'><p class='form-control-static'>" + msg[i].Product_Name + "</p></a></td> \
+                   <td><a href='/product?pid=" + msg[i].PID + "' target='_blank'><p class='form-control-static'>" + msg[i].Product_Name + "</p></a></td> \
                    <td><p class='form-control-static'>" + keyStatus + "</p></td> \
                    </tr>";
         }
