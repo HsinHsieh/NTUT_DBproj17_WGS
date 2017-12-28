@@ -54,6 +54,12 @@ $(document).ready(function() {
     });
 
   }
+  $('.gridly').gridly({
+    base: 60, // px
+    gutter: 6, // px
+    columns: 20
+  });
+
   Get('/admin/api//mainProductCategory', ShowCategoryChart);
   Get('/admin/api/mainProductNum', ProductNum);
   Get('/admin/api/mainOrderNum', OrderNum);
