@@ -26,7 +26,7 @@ module.exports = class {
 
     MemberRegister(RegisterData, callback) {
         var command = "INSERT INTO `member` (`CID`, `Password`, `Type`, `First_Name`, `Last_Name`,`Phone`, `Gender`,`Emial`) VALUES ('" + RegisterData.CID + "','" + RegisterData.Password +
-            "','0','" + RegisterData.First_Name + "','" + RegisterData.Last_Name + "','" + RegisterData.Phone + "','" + RegisterData.Gender + "','" + RegisterData.CID "')";
+            "','0','" + RegisterData.First_Name + "','" + RegisterData.Last_Name + "','" + RegisterData.Phone + "','" + RegisterData.Gender + "','" + RegisterData.CID + "')";
         //console.log(command);
         this.db.query(
             command,
