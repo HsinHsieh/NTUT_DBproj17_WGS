@@ -14,6 +14,7 @@ module.exports = class {
     this.SetKeyAPI();
     this.SetMemberAPI();
     this.SetCommentAPI();
+    this.SetReportAPI();
   }
   SetMainAPI() {
     this.router.get("/mainProductCategory", function(req, res) {
@@ -407,5 +408,23 @@ module.exports = class {
   }
   SetCommentAPI() {
 
+  }
+  SetReportAPI() {
+    this.router.get("/reportT10product", function(req, res) {
+      var callback = function(msg) {
+        res.send(msg);
+      };
+      var Str = "SELECT COUNT(order_content.OCID) AS Snum,product.Product_Name FROM order_content,product WHERE order_content.Item=product.PID GROUP BY order_content.Item ORDER BY Snum DESC LIMIT 10";
+      console.log(Str);
+      (new sql(Str)).ReturnJson(callback);
+    });
+    this.router.get("/reportSaleCategory", function(req, res) {
+      var callback = function(msg) {
+        res.send(msg);
+      };
+      var Str = "SELECT product.Category,category.Category_Name,count(order_content.OCID) AS Onum FROM product,order_content,category WHERE order_content.Item=product.PID AND product.Category=category.CAID GROUP BY product.Category ORDER BY Onum DESC";
+      console.log(Str);
+      (new sql(Str)).ReturnJson(callback);
+    });
   }
 }
