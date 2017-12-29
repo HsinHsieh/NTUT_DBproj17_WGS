@@ -5,8 +5,8 @@ $(document).ready(function() {
         var resObj = JSON.parse(msg);
         console.log(msg);
         for (var i = 0; i < Object.keys(resObj).length; i++) {
-            resStr += "'<tr><th scope='row'>" + (i + 1) + "</th><td>" + resObj[i].COID + "</td><td>" + resObj[i].Customer + "</td><td>" + resObj[i].Product_Name + "</td><td>" + resObj[i].Grade + "</td><td>" + resObj[i].Comment_Text.substr(0, 60) + "　．．．" +
-                "</td><td><button class='btn btn-primary' type='button' data-toggle=\"modal\" data-target=\"#commentModal \"data-PID=\"" + resObj[i].COID + "\">檢視詳細</button></td><td><button class='btn btn-danger' type='button' id='productDeleteButton' >刪除</button></td></tr>";
+            resStr += "'<tr><th scope='row'>" + (i + 1) + "</th><td>" + resObj[i].COID + "</td><td>" + resObj[i].Customer + "</td><td>" + resObj[i].Product_Name + "</td><td>" + resObj[i].Grade + "</td><td>" + resObj[i].Comment_Text +
+                "</td><td><button class='btn btn-danger' type='button' id='productDeleteButton' data-OCID ='" + resObj[i].COID + "'>刪除</button></td></tr>";
         }
         $(".product_list").html(resStr);
     }
