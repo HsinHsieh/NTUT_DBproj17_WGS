@@ -9,7 +9,7 @@ module.exports = class {
         this.db = DataBaseController.GetDB();
         this.data = "";
         //this.target = tar;
-        this.queryCmd = "SELECT * FROM `product` WHERE `Product_Name` LIKE '%" + tar + "%' OR product.Category = '" + tar + "'";
+        this.queryCmd = "SELECT * FROM `product` WHERE `Product_Name` LIKE '%" + tar + "%' OR product.Category LIKE '" + tar + "'";
         // console.log(this.queryCmd);
     }
 
