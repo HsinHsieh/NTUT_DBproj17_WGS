@@ -11,6 +11,8 @@
 	<link rel="stylesheet" href="css/admin.css">
 	<script src="js/gridly/jquery.gridly.js" type="text/javascript"></script>
 	<link href="js/gridly/jquery.gridly.css" rel="stylesheet" type="text/css" />
+	<script src="./js/EasyAutoComplete/jquery.easy-autocomplete.min.js"></script>
+	<link rel="stylesheet" href="./js/EasyAutoComplete/easy-autocomplete.min.css">
 	<!--[if lt IE 9]>
 	      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 	      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -61,22 +63,22 @@
 			<div class="brick large c3">
 				<div class="stat_name">
 
-					<div class="col-md-9">
+					<div class="col-md-10">
 						<label for="Name">商品快查</label>
 						<div class="input-group">
-							<input type="text" class="form-control" id="productSearch" placeholder="商品編號"  style="width:250px">
+							<input type="text" class="form-control" id="quickProductSearch" placeholder="商品編號"  style="width:250px">
 							<span class ="inputgroup-btn">
-								<button class="btn btn-warning"type="button" name="button">Go</button>
+								<button class="btn btn-warning"type="button" name="button" id="quickProductSubmit" >Go</button>
 							</span>
 							<div class="align-bottom">
 								<br>
-								<button class="btn btn-warning" type="button" name="button">新增商品</button>
-								<button class="btn btn-default" type="button" name="button">分類管理</button>
+								<button class="btn btn-warning" type="button" name="button" onclick="window.location.href='/admin/product_add'">新增商品</button>
+								<button class="btn btn-default" type="button" name="button" onclick="window.location.href='/admin/category_edit'">分類管理</button>
 							</div>
 
 						</div>
 				</div>
-				<div class="col-md-3">
+				<div class="col-md-2">
 					<img src="/admin/images/package.png" alt="" align="right">
 				</div>
 
@@ -96,14 +98,14 @@
 				<div class="col-md-9">
 					<label for="Name">訂單快查</label>
 					<div class="input-group">
-						<input type="text" class="form-control" id="productSearch" placeholder="訂單編號" style="width:250px">
+						<input type="text" class="form-control" id="quickOrderSearch" placeholder="訂單編號" style="width:250px">
 						<span class="inputgroup-btn">
-							<button class="btn btn-warning"type="button" name="button">Go</button>
+							<button class="btn btn-warning"type="button" name="button" id="quickOrderSubmit" >Go</button>
 						</span>
 						<div class="align-bottom">
 							<br>
-							<button class="btn btn-warning" type="button" name="button">訂單詳覽</button>
-							<button class="btn btn-default" type="button" name="button">金鑰管理</button>
+							<button class="btn btn-warning" type="button" name="button" onclick="window.location.href='/admin/order_search'">訂單詳覽</button>
+							<button class="btn btn-default" type="button" name="button" onclick="window.location.href='/admin/key_manage'">金鑰管理</button>
 						</div>
 					</div>
 				</div>
@@ -119,8 +121,8 @@
 					會員資訊
 					<div class="align-bottom">
 						<hr>
-						<button class="btn btn-warning" type="button" name="button">會員查詢</button>
-						<button class="btn btn-danger" type="button" name="button">登出所有會員</button>
+						<button class="btn btn-warning" type="button" name="button" onclick="window.location.href='/admin/member_search'">會員查詢</button>
+						<button class="btn btn-danger" type="button" name="button" id="logoutAll">登出所有會員</button>
 					</div>
 				</div>
 				<div class="col-md-3">

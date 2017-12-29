@@ -13,6 +13,7 @@ module.exports = class {
     this.SetEventAPI();
     this.SetKeyAPI();
     this.SetMemberAPI();
+    this.SetCommentAPI();
   }
   SetMainAPI() {
     this.router.get("/mainProductCategory", function(req, res) {
@@ -242,6 +243,13 @@ module.exports = class {
       var sqlStr = "DELETE FROM `order_content` WHERE `order_content`.`OCID`='" + req.params.OCID + "'";
       (new sql(sqlStr)).ReturnJson(callback);
     });
+    this.router.get("/orderAllSearch", function(req, res) {
+      var callback = function(msg) {
+        res.send(msg);
+      };
+      (new sql("SELECT DISTINCT `OID`,DATE_FORMAT(Order_Time,'%Y-%m-%d %k:%i:%s') AS Date FROM `product` ORDER BY PID ASC")).ReturnJson(callback);
+      // res.end(JSON.stringify({success:true , data:result}));
+    });
   }
   SetEventAPI() {
     this.router.get("/eventCategory", function(req, res) {
@@ -301,6 +309,7 @@ module.exports = class {
       var Str = "UPDATE `event` SET `Event_Name` = '" + req.body.Name + "', `Start_Date` = '" + req.body.Date_start + "', `End_Date` = '" + req.body.Date_end + "', `Event_Category` = '" + req.body.Category + "', `Discount_Rate` = '" + req.body.Discount + "', `Target` = '" + req.body.Target + "', `Event_Description` = '" + req.body.Description + "' WHERE `event`.`EID` = " + req.body.EID;
       (new sql(Str)).ReturnJson(callback);
     });
+
   }
   SetKeyAPI() {
     this.router.post("/keySearch", function(req, res) {
@@ -395,5 +404,8 @@ module.exports = class {
       var Str = "UPDATE `member` SET `Type` = '" + req.body.Type + "' WHERE `member`.`CID` = '" + req.body.CID + "'";
       (new sql(Str)).ReturnJson(callback);
     });
+  }
+  SetCommentAPI() {
+
   }
 }
