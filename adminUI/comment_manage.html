@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>WGS - Admin</title>
+	<script src="./js/jquery-1.11.1.min.js"></script>
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="css/admin.css">
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+	      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	    <![endif]-->
+</head>
+
+<body>
+	<script>
+		$(function() {
+			$("#header").load("header.html");
+			$("#footer").load("footer.html");
+		});
+	</script>
+	<script src="./js/ajax.js"></script>
+	<script src="./js/comment_manage.js"></script>
+	<div id="header"></div>
+	<!-- /.navbar-collapse -->
+	<section>
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2">
+				<div class="well">
+					<span class="admin_title">評論查詢修改</span>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section>
+		<div class="row">
+			<div class="col-md-4 col-md-offset-2">
+				<div class="well">
+					<div class="row">
+						<h4>依商品查詢</h4>
+						<div class="form-group col-md-6">
+							<label for="Name">商品編號</label>
+							<input type="text" class="form-control" id="commentSearch_PID" placeholder="請輸入商品編號" value="">
+						</div>
+						<div class="form-group col-md-6">
+							<label for="Name">商品名稱</label>
+							<input type="text" class="form-control" id="commentSearch_name" placeholder="請輸入商品名稱" value="">
+						</div>
+					</div>
+				</div>
+				<div class="well">
+					<div class="row">
+						<h4>依會員查詢</h4>
+						<div class="form-group col-md-12">
+							<label for="Name">會員帳號</label>
+							<input type="text" class="form-control" id="commentSearch_CID" placeholder="遊戲編號" value="">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="well">
+					<div class="row">
+						<h4>依評論評分查詢</h4>
+						<div class="form-group col-md-12">
+							<label for="Name">評論編號</label>
+							<input type="text" class="form-control" id="commentSearch_COID" placeholder="評語編號" value="">
+						</div>
+						<div class="form-group col-md-12">
+							<label for="Name">評論關鍵字</label>
+							<input type="text" class="form-control" id="commentSearch_keyword" placeholder="評語關鍵字" value="">
+						</div>
+						<div class="form-group col-md-6">
+							<label for="Name">評分</label>
+							<input type="text" class="form-control" id="commentSearch_grade_ceiling" placeholder="評分上限" value="">
+						</div>
+						<div class="form-group col-md-6">
+							<label for="Name">　　</label>
+							<input type="text" class="form-control" id="commentSearch_grade_floor" placeholder="評分下限" value="">
+						</div>
+						<!-- <div class="form-group col-md-6">
+							<label for="Name">評論時間</label>
+							<input type="text" class="form-control" id="commentSearch_date_ceiling" placeholder="從... (YYYY-MM-DD)" value="">
+						</div>
+						<div class="form-group col-md-6">
+							<label for="Name">　　</label>
+							<input type="text" class="form-control" id="commentSearch_date_floor" placeholder="...至 (YYYY-MM-DD)" value="">
+						</div> -->
+					</div>
+
+				</div>
+			</div>
+		</div>
+		</div>
+	</section>
+	<section>
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2">
+				<div class="row">
+					<button class="btn btn-primary btn-lg pull-right" id="commentSearch">查詢</button>
+					<button class="btn btn-warning btn-lg pull-right " id="filterClear">清除</button>
+				</div>
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th class="col-xs-1">#</th>
+							<th class="col-xs-1">評論編號</th>
+							<th class="col-xs-2">評論會員</th>
+							<th class="col-xs-2">被評商品</th>
+							<th class="col-xs-1">評分</th>
+							<th class="col-xs-4">評語</th>
+							<!-- <th class="col-xs-1">檢視詳細</th> -->
+							<th class="col-xs-1">刪除</th>
+						</tr>
+					</thead>
+					<tbody class="product_list">
+
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</section>
+	<!-- <section>
+		<div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content productDeleteModalBody">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title" id="commentModalTitle">Details</h4>
+					</div>
+					<div class="modal-body" id="commentModalBody">
+
+						<div class="row">
+							<div class="col-md-6">
+								<div class="commentModalContent"></div>
+							</div>
+							<div class="col-md-6">
+								<div class="commentModalPic"> </div>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer" id="commentModalFooter">
+						<input type="hidden" id="productDeletePID" value="">
+						<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+						<button type="button" class="btn btn-danger productDeleteConfirm">確認</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section> -->
+	<hr>
+	<div id="footer"></div>
+
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="js/bootstrap.js"></script>
+</body>
+
+</html>
