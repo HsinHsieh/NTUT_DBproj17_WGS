@@ -429,22 +429,56 @@ module.exports = class {
     });
   }
   SetReportAPI() {
+    this.router.post("/reportProductNum", function(req, res) {
+      var callback = function(msg) {
+        res.send(msg);
+      };
+      var Str = "SELECT COUNT(order_content.Item) AS Pnum,product.Product_Name FROM order_content,product WHERE order_content.Item=product.PID AND order_content.Order_Number IN(SELECT order_main.OID FROM order_main WHERE order_main.Order_Time BETWEEN '" + req.body.Date_start + "' AND '" + req.body.Date_end + "') GROUP BY product.Product_Name ORDER BY Pnum DESC LIMIT 10";
+      (new sql(Str)).ReturnJson(callback);
+    });
+    this.router.post("/reportCategoryNum", function(req, res) {
+      var callback = function(msg) {
+        res.send(msg);
+      };
+      var Str = "SELECT COUNT(order_content.Item) AS Cnum,product.Category,category.Category_Name FROM order_content,product,category WHERE order_content.Item=product.PID AND order_content.Order_Number IN(SELECT order_main.OID FROM order_main WHERE order_main.Order_Time BETWEEN '" + req.body.Date_start + "' AND '" + req.body.Date_end + "') AND product.Category=category.CAID GROUP BY product.Category ORDER BY Cnum DESC";
+      (new sql(Str)).ReturnJson(callback);
+    })
+    this.router.post("/reportGenderNum", function(req, res) {
+      var callback = function(msg) {
+        res.send(msg);
+      };
+      var Str = "SELECT member.Gender,COUNT(order_content.OCID) AS Gnum  FROM member,order_main,order_content WHERE member.CID=order_main.Customer AND order_main.OID=order_content.Order_Number AND order_main.Order_Time BETWEEN '" + req.body.Date_start + "' AND '" + req.body.Date_end + "' GROUP BY member.Gender";
+      (new sql(Str)).ReturnJson(callback);
+    })
+    this.router.post("/reportDateSumDay", function(req, res) {
+      var callback = function(msg) {
+        res.send(msg);
+      };
+      var Str = "SELECT SUM(order_main.Total_Price) AS Osum,DATE_FORMAT(order_main.Order_Time,'%Y-%m-%d') AS DateF FROM order_main WHERE order_main.Order_Time BETWEEN '" + req.body.Date_start + "' AND '" + req.body.Date_end + "' GROUP BY DateF ORDER BY DateF";
+      (new sql(Str)).ReturnJson(callback);
+    })
+    this.router.post("/reportDateSumWeek", function(req, res) {
+      var callback = function(msg) {
+        res.send(msg);
+      };
+      var Str = "SELECT SUM(order_main.Total_Price) AS Osum,DATE_FORMAT(order_main.Order_Time,'%Y-%U') AS DateF FROM order_main WHERE order_main.Order_Time BETWEEN '" + req.body.Date_start + "' AND '" + req.body.Date_end + "' GROUP BY DateF ORDER BY DateF";
+      (new sql(Str)).ReturnJson(callback);
+    })
+    this.router.post("/reportDateSumMonth", function(req, res) {
+      var callback = function(msg) {
+        res.send(msg);
+      };
+      var Str = "SELECT SUM(order_main.Total_Price) AS Osum,DATE_FORMAT(order_main.Order_Time,'%Y-%m') AS DateF FROM order_main WHERE order_main.Order_Time BETWEEN '" + req.body.Date_start + "' AND '" + req.body.Date_end + "' GROUP BY DateF ORDER BY DateF";
+      (new sql(Str)).ReturnJson(callback);
+    })
+    this.router.post("/reportBuyerSum", function(req, res) {
+      var callback = function(msg) {
+        res.send(msg);
+      };
+      var Str = "SELECT member.First_Name,member.Last_Name,SUM(order_main.Total_Price) AS Csum FROM member,order_main WHERE member.CID=order_main.Customer AND order_main.Order_Time BETWEEN '" + req.body.Date_start + "' AND '" + req.body.Date_end + "' GROUP BY member.CID ORDER BY Csum DESC LIMIT 10";
+      (new sql(Str)).ReturnJson(callback);
+    })
 
-    this.router.get("/reportT10product", function(req, res) {
-      var callback = function(msg) {
-        res.send(msg);
-      };
-      var Str = "SELECT COUNT(order_content.OCID) AS Snum,product.Product_Name FROM order_content,product WHERE order_content.Item=product.PID GROUP BY order_content.Item ORDER BY Snum DESC LIMIT 10";
-      console.log(Str);
-      (new sql(Str)).ReturnJson(callback);
-    });
-    this.router.get("/reportSaleCategory", function(req, res) {
-      var callback = function(msg) {
-        res.send(msg);
-      };
-      var Str = "SELECT product.Category,category.Category_Name,count(order_content.OCID) AS Onum FROM product,order_content,category WHERE order_content.Item=product.PID AND product.Category=category.CAID GROUP BY product.Category ORDER BY Onum DESC";
-      console.log(Str);
-      (new sql(Str)).ReturnJson(callback);
-    });
+
   }
 }
