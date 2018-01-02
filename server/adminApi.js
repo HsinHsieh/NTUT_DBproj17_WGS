@@ -94,7 +94,6 @@ module.exports = class {
       var callback = function(msg) {
         res.send(msg);
       };
-      //console.log(sqlStr);
       var Str = "INSERT INTO `product` (`PID`, `Product_Name`, `Price`, `Product_Description`, `System_Requirement`, `Supplier`, `Launch_Date`, `Category`, `Modified_Time`, `Pic_Url`) VALUES ('" + req.body.PID + "','" + req.body.Name + "','" + req.body.Price + "','" + req.body.Description + "','" + req.body.Requirement + "','" + req.body.Supplier + "','" + req.body.Date;
       var Str2 = "','" + req.body.Category + "',CURRENT_TIMESTAMP, '')";
 
@@ -226,7 +225,6 @@ module.exports = class {
       };
       var Str = "UPDATE `order_main` SET `Customer` = '" + req.body.Customer + "', `Discount` = '" + req.body.Discount + "', `Status` = '" + req.body.Status + "', `Total_Price` = '" + req.body.Price;
       var Str2 = "' WHERE `order_main`.`OID` = '" + req.body.OID + "'";
-      console.log(Str + Str2);
       (new sql(Str + Str2)).ReturnJson(callback);
     });
     this.router.post("/orderContentAdd", function(req, res) {
@@ -292,7 +290,6 @@ module.exports = class {
       var callback = function(msg) {
         res.send(msg);
       };
-      //console.log(sqlStr);
       var Str = "INSERT INTO `event` (`EID`, `Event_Name`, `Start_Date`, `End_Date`, `Event_Description`, `Event_Category`, `Discount_Rate`, `Target`, `Modified_Time`) VALUES (NULL, '" + req.body.Name + "', '" + req.body.Date_start + "', '" + req.body.Date_end + "', '" + req.body.Description + "', '" + req.body.Category + "', '" + req.body.Discount + "', '" + req.body.Target + "', CURRENT_TIMESTAMP)";
       (new sql(Str)).ReturnJson(callback);
     });
@@ -424,7 +421,7 @@ module.exports = class {
       var sqlKeyword = (req.body.keyword == '') ? "" : " AND `Comment_Text` LIKE '%" + req.body.keyword + "%'";
       var sqlOrder = " ORDER BY Comment_Time DESC";
       var sqlStr = "SELECT `comment`.* ,`product`.`Product_Name` FROM `comment`,`product` WHERE `comment`.Product = product.PID " + sqlCOID + sqlPID + sqlPname + sqlCID + sqlGrade + sqlKeyword + sqlOrder;
-      console.log(sqlStr);
+
       (new sql(sqlStr)).ReturnJson(callback);
     });
   }
