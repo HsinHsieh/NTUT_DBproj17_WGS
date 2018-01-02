@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  $('#reportNumDate_start').val('2017-12-01');
+  $('#reportNumDate_start').val('2017-01-01');
   $('#reportNumDate_end').val('2017-12-31');
   var ShowProductNum = function(msg) {
     var resObj = JSON.parse(msg);
