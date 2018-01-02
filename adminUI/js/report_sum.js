@@ -3,7 +3,6 @@ $(document).ready(function() {
   $('#reportNumDate_end').val('2017-12-31');
   var ShowSumDay = function(msg) {
     var resObj = JSON.parse(msg);
-    console.log(resObj);
 
     var chart = c3.generate({
       bindto: '#SumDayChart',

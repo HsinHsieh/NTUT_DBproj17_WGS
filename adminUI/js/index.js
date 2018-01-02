@@ -48,7 +48,6 @@ $(document).ready(function() {
   }
   var OrderSum = function(msg) {
     var resObj = JSON.parse(msg);
-    console.log(resObj[0]);
     $(".stat_sum").html(resObj[0].OSum);
   }
   var ShowCategoryChart = function(msg) {
